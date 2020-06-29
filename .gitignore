@@ -1,0 +1,11 @@
+*.cmake
+*.o
+*.inc
+*.json
+Makefile
+CMakeCache.txt
+CMakeFiles/
+build/
+dist/
+nbproject/
+grocking
