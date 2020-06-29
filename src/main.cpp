@@ -7,6 +7,7 @@
 
 //#include <cstdlib>
 #include <iostream>
+#include "core/PrimaryServer.h"
 
 
 using namespace std;
