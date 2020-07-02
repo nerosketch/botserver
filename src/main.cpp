@@ -7,14 +7,21 @@
 
 //#include <cstdlib>
 #include <iostream>
-#include "core/PrimaryServer.h"
+//#include "core/PrimaryServer.h"
+#include "GameConfig.h"
 
 
-using namespace std;
+// using namespace std;
 
-#define OUT(fun) std::cout << "======================" << std::endl; fun(); std::cout << std::endl;
+// #define OUT(msg) std::cout << "======================" << std::endl; msg; std::cout << std::endl;
 
 int main (int argc, char** argv)
 {
+    GameConfig c;
+    c.load_config("config-example.conf");
+    const VkConfig& vk = c.get_vk_config();
+
+    std::cout << "VkApi key: " << vk.get_api_key() << std::endl;
+
     return 0;
 }
