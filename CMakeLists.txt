@@ -14,16 +14,22 @@ aux_source_directory( ${CMAKE_CURRENT_SOURCE_DIR}/src/ExternalApi SRC )
 aux_source_directory( ${CMAKE_CURRENT_SOURCE_DIR}/src/quest SRC )
 aux_source_directory( ${CMAKE_CURRENT_SOURCE_DIR}/src/storage SRC )
 aux_source_directory( ${CMAKE_CURRENT_SOURCE_DIR}/src/user SRC )
+aux_source_directory( ${CMAKE_CURRENT_SOURCE_DIR}/src/httpserver SRC )
+
+set( SRC ${SRC}
+	${CMAKE_CURRENT_SOURCE_DIR}/src/third_party/libscgi/parser.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/src/third_party/libscgi/scgiServer.cpp)
 
 set( LIBS
-	config++)
+	config++
+	event )
 
-find_package(CURL)
+find_package(CURL REQUIRED)
 if(CURL_FOUND)
-include_directories(${CURL_INCLUDE_DIR})
-set(LIBS ${LIBS} ${CURL_LIBRARIES} )
+	include_directories(${CURL_INCLUDE_DIR})
+	set(LIBS ${LIBS} ${CURL_LIBRARIES} )
 else(CURL_FOUND)
-message(fatal_error "Could not find the CURL library and development files.")
+	message(fatal_error "Could not find the CURL library and development files.")
 endif(CURL_FOUND)
 
 # Target libconfig
