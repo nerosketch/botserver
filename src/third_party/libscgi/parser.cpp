@@ -20,7 +20,7 @@ using namespace std;
 class Parser {
 	public:
 
-		int run(char * buff, map< string,string > * parms) {
+		int run(char * buff, RequestParamsMap *params) {
 			char * p = buff;
 			char * buff_end = buff+BUFFSIZE;
 			char name[32];
@@ -58,7 +58,7 @@ class Parser {
 				} else if (*p == '\0' && !isName) {
 					q = value;
 					value[l]='\0';
-					parms->insert(pair<string,string>(string(name),string(value)));
+					params->insert(pair<string,string>(string(name),string(value)));
 					//printf("%s %s\n",name,value);
 					l=0;
 					q = name;
@@ -72,9 +72,9 @@ class Parser {
 			}
 
 			// parse POST
-			map<string,string>::iterator it;
-			it = parms->find("CONTENT_LENGTH");
-			if (it == parms->end()) {
+			RequestParamsMap::iterator it;
+			it = params->find("CONTENT_LENGTH");
+			if (it == params->end()) {
 				cout << "cannot CONTENT_LENGTH parameter\n";
 				return -1;
 			}
@@ -86,7 +86,7 @@ class Parser {
 			strncpy(value,p,len);
 			*(value+len) = '\0';
 
-			parms->insert(pair<string,string>("POST_DATA",value));
+			params->insert(pair<string,string>("POST_DATA",value));
 
 			return 0;
 		}

@@ -45,13 +45,13 @@ void on_connect(int fd, short event, void *arg)
 			return;
 		}
 
-		map<string,string> parms;
+		RequestParamsMap params;
 		Parser parser;
-		parser.run(data, &parms);
+		parser.run(data, &params);
 
-		map<string,string>::iterator ip;
+		RequestParamsMap::iterator ip;
 
-//		for(ip = parms.begin(); ip != parms.end(); ip++) {
+//		for(ip = params.begin(); ip != params.end(); ip++) {
 //			cout << (*ip).first << "\t\t" << (*ip).second << endl;
 //		}
 
@@ -62,7 +62,7 @@ void on_connect(int fd, short event, void *arg)
 		map<string,IScgiHandler *>::iterator it;
 		map<string,IScgiHandler *> * pHandlers = reinterpret_cast< map<string,IScgiHandler *> * >(arg);
 
-		it = pHandlers->find( parms["DOCUMENT_URI"] );
+		it = pHandlers->find( params["DOCUMENT_URI"] );
 
 		int statusCode = 200;
 		char statusMsg[10];
@@ -78,12 +78,19 @@ void on_connect(int fd, short event, void *arg)
 		} else {
 			strcpy(statusMsg, "Ok");
 			IScgiHandler * handler = (*it).second;
-			handler->run(&parms, handler_data);
+			handler->dispatch(params, handler_data);
 			contentLenght = strlen(handler_data);
 			handler->getHeaders(headersOutBuff);
 		}
 
-		sprintf(out_data,"Status: %d %s\r\nContent-lenght: %d\r\nX-Powered-By: libscgi\r\n%s\r\n%s", statusCode, statusMsg, contentLenght, headersOutBuff,handler_data);
+		sprintf(out_data,
+                        "Status: %d %s\r\n"
+                        "Content-lenght: %d\r\n"
+                        "X-Powered-By: libscgi\r\n"
+                        "%s\r\n%s",
+                 statusCode, statusMsg,
+                 contentLenght,
+                 headersOutBuff, handler_data);
 
 		write(sock, out_data, strlen((char*)out_data) );
 
@@ -101,7 +108,7 @@ void on_connect(int fd, short event, void *arg)
 
 	int scgiServer::init(const char * ip_addr, u_short port) {
 
-		scgiServer::pidfile="scgi_server.pid";
+		scgiServer::pidfile = "scgi_server.pid";
 		// Create server socket
 		scgiServer::server_sock = socket(AF_INET, SOCK_STREAM, 0);
 		if (server_sock == -1) {
@@ -243,10 +250,15 @@ int scgiServer::savePid( pid_t pid )
 	return 0;
 };
 
-string IScgiHandler::getParam(string paramName, map< string,string > * parms) {
-	map< string,string >::iterator it = parms->find(paramName);
 
-	if ( it != parms->end())
+IScgiHandler::IScgiHandler(){}
+IScgiHandler::IScgiHandler(const IScgiHandler&){}
+IScgiHandler::~IScgiHandler(){}
+
+string IScgiHandler::getParam(string paramName, RequestParamsMap& params) {
+	RequestParamsMap::iterator it = params.find(paramName);
+
+	if ( it != params.end())
 		return (*it).second;
 
 	return "";
@@ -271,3 +283,22 @@ void IScgiHandler::getHeaders(char * headersOutBuff) {
 void  IScgiHandler::addHeader(string header) {
 	headers.push_back(header);
 };
+
+
+void IScgiHandler::dispatch(RequestParamsMap& params, char *buffOut)
+{
+	const string method = getParam("REQUEST_METHOD", params);
+
+        const string query_string = getParam("QUERY_STRING", params);
+
+        if ( method == "POST" ) {
+            const string post_data = getParam("POST_DATA", params);
+            this->post(params, post_data, query_string, buffOut);
+        }
+        else if (method == "GET") {
+            this->get(params, query_string, buffOut);
+        }
+        else {
+            cerr << "Unexpected method: " << method << endl;
+        }
+}

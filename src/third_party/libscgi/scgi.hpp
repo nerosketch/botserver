@@ -37,6 +37,8 @@
 #define BUFFSIZE 2048
 using namespace std;
 
+typedef map<string, string> RequestParamsMap;
+
 class IScgiHandler {
 	protected:
 		void *userData;
@@ -44,17 +46,24 @@ class IScgiHandler {
 
 	void addHeader(string header);
 
+	IScgiHandler(const IScgiHandler&);
+
 	public:
-		IScgiHandler(){};
+		IScgiHandler();
 
 	void setUserData(void *userData_) {
 		userData = userData_;
 	};
 
-	string getParam(string paramName, map< string,string > * parms);
-	virtual ~IScgiHandler(){};
-	virtual void run(map< string,string > * parms, char * buffUot) {};
-	void getHeaders(char * outBuffer);
+	string getParam(string paramName, RequestParamsMap& params);
+	virtual ~IScgiHandler();
+
+	void getHeaders(char *outBuffer);
+
+        virtual void dispatch(RequestParamsMap& params, char *buffOut);
+        virtual void get(RequestParamsMap& params, const string& query_string, char *buffOut) = 0;
+        virtual void post(RequestParamsMap& params, const string& post_data, const string& query_string, char *buffOut) = 0;
+//        virtual void put(RequestParamsMap& params, char *buffOut) = 0;
 };
 
 class scgiServer
