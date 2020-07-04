@@ -1,16 +1,16 @@
 /*
- * Copyright 2011 (C) Alexandre Kalendarev 
- * 
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" 
- * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
- * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
- * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE 
+ * Copyright 2011 (C) Alexandre Kalendarev
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
  * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
- * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR 
- * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER 
- * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, 
- * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE 
- * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. 
+ * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+ * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+ * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+ * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
 #include "scgi.hpp"
@@ -25,21 +25,21 @@ class Parser {
 			char * buff_end = buff+BUFFSIZE;
 			char name[32];
 			char value[256];
-			
+
 			while(*(++p)!=':' && p != buff_end);
 			if (p == buff_end) return -1;
-			
-			strncpy(value,buff, p-buff);			
-			value[p-buff]='\0';	
-			int len = atoi(value);					
+
+			strncpy(value,buff, p-buff);
+			value[p-buff]='\0';
+			int len = atoi(value);
 //			cout<< "len=" << len << endl;
-			
+
 			if (*(p+len+1) != ',') {
 				printf("error format c=%c ", *(p+len+1));
 				printf("%s\n", (p+len+1));
 				return -1;
 			}
-			
+
 			// parse params
 			char * q = name;
 			++p;
@@ -51,15 +51,15 @@ class Parser {
 				if (*p == '\0' && isName) {
 					q = name;
 					name[l]='\0';
-//					printf("%s\n", q);	
-					q=value;		
-					l=0; 
+//					printf("%s\n", q);
+					q=value;
+					l=0;
 					isName = false;
 				} else if (*p == '\0' && !isName) {
 					q = value;
 					value[l]='\0';
 					parms->insert(pair<string,string>(string(name),string(value)));
-					//printf("%s %s\n",name,value);			
+					//printf("%s %s\n",name,value);
 					l=0;
 					q = name;
 					isName = true;
@@ -78,7 +78,7 @@ class Parser {
 				cout << "cannot CONTENT_LENGTH parameter\n";
 				return -1;
 			}
-			
+
 			const char * len_str = const_cast<char *>((*it).second.c_str());
 			len = atoi(len_str);
 			n=0;
@@ -87,7 +87,7 @@ class Parser {
 			*(value+len) = '\0';
 
 			parms->insert(pair<string,string>("POST_DATA",value));
-			
+
 			return 0;
 		}
 };

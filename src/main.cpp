@@ -16,12 +16,14 @@
 
 // #define OUT(msg) std::cout << "======================" << std::endl; msg; std::cout << std::endl;
 
-static GameConfig c;
+
 
 int main (int argc, char** argv)
 {
-    c.load_config("config-example.conf");
-    const VkConfig& vk = c.get_vk_config();
+    // game_config is defined in "HttpServerScgi.h"
+    game_config.load_config("config-example.conf");
+
+    const VkConfig& vk = game_config.get_vk_config();
 
     std::cout << "VkApi key: " << vk.get_api_key() << std::endl;
 

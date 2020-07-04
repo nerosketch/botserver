@@ -6,6 +6,7 @@
  */
 
 #include "../third_party/libscgi/scgi.hpp"
+#include "../GameConfig.h"
 #include "HttpServerScgi.h"
 
 using namespace std;
@@ -25,15 +26,15 @@ HttpServerScgi::~HttpServerScgi () { }
 class Handler1: public IScgiHandler {
 
 	void run(map< string,string > * parms, char * buffUot) {
-		string parm = getParam("REQUEST_METHOD",parms);
+		string parm = getParam("REQUEST_METHOD", parms);
 		// if method is POST
 		if ( parm == "POST" ) {
 			// return to WEB-client the POST data
-			strcpy(buffUot, getParam("POST_DATA",parms).c_str());
+			strcpy(buffUot, getParam("POST_DATA", parms).c_str());
 			return;
 		}
 		// or return to WEB-client the QUERY_STRING parameter
-		strcpy(buffUot, reinterpret_cast<char*>(userData));
+		strcpy(buffUot, "TEST");
 	}
 };
 
@@ -48,7 +49,8 @@ int HttpServerScgi::run()
       }
 
     // initialize server, bind and listen socket
-    if (scgi.init("127.0.0.1", 8082) )
+    const ScgiConfig &scgi_conf = game_config.get_scgi_config ();
+    if (scgi.init(scgi_conf.get_host().c_str(), scgi_conf.get_port ()) )
       {
         cerr << "server stopped\n";
         return 1;
@@ -56,10 +58,10 @@ int HttpServerScgi::run()
 
     //const char *userData = "user data";
 
-    auto_ptr<Handler1>h1(new Handler1());
+    auto h1 = make_shared<Handler1>();
     //h1->setUserData( reinterpret_cast<void *>(userData));
     // add specific handlers
-    scgi.addHandler("/post", reinterpret_cast<IScgiHandler *>(h1.get()));
+    scgi.addHandler("/post", h1.get());
 //    scgi.addHandler("/xxx",  reinterpret_cast<IScgiHandler *>(new Handler2()));
 
     scgi.run();

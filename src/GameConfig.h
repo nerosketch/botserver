@@ -32,6 +32,36 @@ private:
 
 };
 
+class ScgiConfig
+{
+public:
+  ScgiConfig();
+  virtual ~ScgiConfig();
+
+  const std::string& get_host() const
+  {
+    return host;
+  }
+  void set_host(const std::string& _host)
+  {
+    host = _host;
+  }
+  const u_short get_port() const
+  {
+    return port;
+  }
+  void set_port(u_short _port)
+  {
+    port = _port;
+  }
+  
+private:
+  ScgiConfig (const ScgiConfig&);
+
+  std::string host;
+  u_short port;
+};
+
 
 class GameConfig
 {
@@ -45,12 +75,19 @@ public:
   {
     return _vk;
   }
+  const ScgiConfig& get_scgi_config() const
+  {
+    return _scgi;
+  }
 
   
 private:
-  GameConfig (const GameConfig& orig);
+  GameConfig (const GameConfig& o);
 
   VkConfig _vk;
+  ScgiConfig _scgi;
 };
+
+extern GameConfig game_config;
 
 #endif /* GAMECONFIG_H */

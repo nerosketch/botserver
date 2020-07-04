@@ -15,6 +15,9 @@ using namespace std;
 using namespace libconfig;
 
 
+GameConfig game_config;
+
+
 VkConfig::VkConfig () { }
 
 VkConfig::VkConfig (const VkConfig& o) { }
@@ -23,10 +26,17 @@ VkConfig::~VkConfig () { }
 
 
 
+ScgiConfig::ScgiConfig () { }
+
+ScgiConfig::ScgiConfig (const ScgiConfig& o) { }
+
+ScgiConfig::~ScgiConfig () { }
+
+
 
 GameConfig::GameConfig () { }
 
-GameConfig::GameConfig (const GameConfig& orig) { }
+GameConfig::GameConfig (const GameConfig& o) { }
 
 GameConfig::~GameConfig () { }
 
@@ -62,11 +72,12 @@ int GameConfig::load_config(const char* fname)
   {
     cerr << "No 'greeting' setting in configuration file." << endl;
   }
+  
+  const Setting& app = root.lookup ("application");
 
   try
   {
-    const Setting& vk_settings = root.lookup("application.vk");
-
+    const Setting& vk_settings = app.lookup("vk");
     const string& hash = vk_settings["api_key"];
     _vk.set_api_key(hash);
   }
@@ -75,7 +86,21 @@ int GameConfig::load_config(const char* fname)
     cerr << "No 'application.vk' setting in configuration file." << endl;
   }
 
-  
+  // Get scgi params
+  try
+  {
+    const Setting& conf = app.lookup("scgi");
+    const string& ip = conf["ip"];
+    _scgi.set_host (ip);
+    int port = conf["port"];
+    u_short sport = port;
+    _scgi.set_port (sport);
+  }
+  catch(const SettingNotFoundException &nfex)
+  {
+    cerr << "No 'application.scgi' setting in configuration file." << endl;
+  }
+
 
   return(EXIT_SUCCESS);
 }
