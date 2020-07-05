@@ -59,8 +59,8 @@ void on_connect(int fd, short event, void *arg)
 		bzero(handler_data,BUFFSIZE);
 		char out_data[BUFFSIZE];
 
-		map<string,IScgiHandler *>::iterator it;
-		map<string,IScgiHandler *> * pHandlers = reinterpret_cast< map<string,IScgiHandler *> * >(arg);
+		map<string, IScgiHandler *>::iterator it;
+		map<string, IScgiHandler *> *pHandlers = reinterpret_cast< map<string,IScgiHandler *> * >(arg);
 
 		it = pHandlers->find( params["DOCUMENT_URI"] );
 
@@ -74,10 +74,10 @@ void on_connect(int fd, short event, void *arg)
 		headersOutBuff[0] = '\0';
 		if (it == pHandlers->end()) {
 			statusCode = 404;
-			strcpy(statusMsg,"Not Found");
+			strcpy(statusMsg, "Not Found");
 		} else {
 			strcpy(statusMsg, "Ok");
-			IScgiHandler * handler = (*it).second;
+			IScgiHandler *handler = (*it).second;
 			handler->dispatch(params, handler_data);
 			contentLenght = strlen(handler_data);
 			handler->getHeaders(headersOutBuff);
@@ -238,10 +238,10 @@ bool scgiServer::checkPid() {
 
 int scgiServer::savePid( pid_t pid )
 {
-	int fd = open(scgiServer::pidfile.c_str(),  O_WRONLY|O_CREAT);
+	int fd = open(scgiServer::pidfile.c_str(), O_WRONLY|O_CREAT, 0664);
 
 	if (!fd) {
-	  cerr << "can't create pid file " << scgiServer::pidfile << " " << strerror(errno)<<endl;
+		cerr << "can't create pid file " << scgiServer::pidfile << ' ' << strerror(errno) << endl;
 		return -1;
 	}
 
@@ -271,12 +271,12 @@ void IScgiHandler::getHeaders(char * headersOutBuff) {
 			for (it=headers.begin();it!=headers.end();it++) {
 				strcpy(p,(*it).c_str());
 				int size = (*it).size();
-				p = p + size;
+				p += size;
 				*(p++) = '\r';
 				*(p++) = '\n';
 			}
 		}
-		*p='\0';
+		*p = '\0';
 		headers.clear();
 };
 
@@ -295,7 +295,7 @@ void IScgiHandler::dispatch(RequestParamsMap& params, char *buffOut)
             const string post_data = getParam("POST_DATA", params);
             this->post(params, post_data, query_string, buffOut);
         }
-        else if (method == "GET") {
+        else if ( method == "GET" ) {
             this->get(params, query_string, buffOut);
         }
         else {

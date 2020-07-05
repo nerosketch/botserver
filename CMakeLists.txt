@@ -1,12 +1,17 @@
-cmake_minimum_required (VERSION 2.6)
+cmake_minimum_required (VERSION 2.8)
 project( botserver )
 
 set( APP_NAME botserver )
 
 set( CMAKE_CXX_STANDARD 11 )
 set( CMAKE_VERBOSE_MAKEFILE ON )
+set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-unused-result" )
 #set( CMAKE_BUILD_TYPE RELEASE )
-set( CMAKE_BUILD_TYPE DEBUG )
+#set( CMAKE_BUILD_TYPE DEBUG )
+
+if(NOT CMAKE_BUILD_TYPE)
+	set(CMAKE_BUILD_TYPE RELEASE)
+endif()
 
 aux_source_directory( ${CMAKE_CURRENT_SOURCE_DIR}/src SRC )
 aux_source_directory( ${CMAKE_CURRENT_SOURCE_DIR}/src/core SRC )

@@ -20,17 +20,17 @@ using namespace std;
 class Parser {
 	public:
 
-		int run(char * buff, RequestParamsMap *params) {
-			char * p = buff;
-			char * buff_end = buff+BUFFSIZE;
+		int run(char *buff, RequestParamsMap *params) {
+			char *p = buff;
+			char *buff_end = buff + BUFFSIZE;
 			char name[32];
 			char value[256];
 
 			while(*(++p)!=':' && p != buff_end);
 			if (p == buff_end) return -1;
 
-			strncpy(value,buff, p-buff);
-			value[p-buff]='\0';
+			strncpy(value, buff, p-buff);
+			value[p-buff] = '\0';
 			int len = atoi(value);
 //			cout<< "len=" << len << endl;
 
@@ -41,7 +41,7 @@ class Parser {
 			}
 
 			// parse params
-			char * q = name;
+			char *q = name;
 			++p;
 			int n = 0;
 			int l = 0;
@@ -50,15 +50,15 @@ class Parser {
 			while(++n < len) {
 				if (*p == '\0' && isName) {
 					q = name;
-					name[l]='\0';
+					name[l] = '\0';
 //					printf("%s\n", q);
-					q=value;
-					l=0;
+					q = value;
+					l = 0;
 					isName = false;
 				} else if (*p == '\0' && !isName) {
 					q = value;
-					value[l]='\0';
-					params->insert(pair<string,string>(string(name),string(value)));
+					value[l] = '\0';
+					params->insert(pair<string, string>(string(name), string(value)));
 					//printf("%s %s\n",name,value);
 					l=0;
 					q = name;
@@ -68,7 +68,7 @@ class Parser {
 					++q;
 					++l;
 				}
-					++p;
+				++p;
 			}
 
 			// parse POST
@@ -79,14 +79,14 @@ class Parser {
 				return -1;
 			}
 
-			const char * len_str = const_cast<char *>((*it).second.c_str());
+			const char *len_str = const_cast<char *>((*it).second.c_str());
 			len = atoi(len_str);
-			n=0;
-			p = p+2;
-			strncpy(value,p,len);
-			*(value+len) = '\0';
+			n = 0;
+			p = p + 2;
+			strncpy(value, p, len);
+			*(value + len) = '\0';
 
-			params->insert(pair<string,string>("POST_DATA",value));
+			params->insert(pair<string, string>("POST_DATA", value));
 
 			return 0;
 		}

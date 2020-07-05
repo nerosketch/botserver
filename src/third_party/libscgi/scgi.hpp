@@ -71,16 +71,16 @@ class scgiServer
 		int server_sock;
 		sockaddr_in sa;
 		string pidfile;
-		map<string, IScgiHandler * > handlers;
+		map<string, IScgiHandler* > handlers;
 
 	public:
-		bool addHandler(const char *key, IScgiHandler * handler);
+		bool addHandler(const char *key, IScgiHandler *handler);
 		int init(const char *ip_addr, u_short port);
 		int run();
 		int demonize();
 		bool checkPid();
 		int savePid(pid_t pid);
-		void setPidfile(string _pidfile){
+		void setPidfile(string _pidfile) {
 			pidfile = _pidfile;
 		};
 		void closeSock() {
