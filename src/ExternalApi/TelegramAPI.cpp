@@ -20,6 +20,10 @@ void TelegramAPI::on_get_message(const RequestParamsMap& params, const std::stri
         "\"It is a Telegram up\": true"
         "}"
     );
+
+    // Сформировать объект сообщения
+    // Найти игрока
+    // Передать сообщение игроку
 }
 void TelegramAPI::on_post_message(const RequestParamsMap& params, const std::string& post_data, const std::string& query_string, char *buffUot)
 {

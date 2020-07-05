@@ -1,10 +1,4 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/* 
  * File:   GameUser.h
  * Author: ns
  *
@@ -14,15 +8,32 @@
 #ifndef GAMEUSER_H
 #define GAMEUSER_H
 
+#include <string>
+#include <memory>
+#include "../quest/GeneralInboxGameMessage.h"
+
 class GameUser
 {
 public:
   GameUser ();
   GameUser (const GameUser& orig);
   virtual ~GameUser ();
-private:
 
+  inline std::string& getUsername()
+  {
+    return _username;
+  }
+  inline void setUsername(const std::string& uname)
+  {
+    _username = uname;
+  }
+  
+  void on_inbox_message(GeneralInboxGameMessage& msg);
+  
+private:
+  std::string _username;
+  
 };
+typedef std::shared_ptr<GameUser> spGameUser;
 
 #endif /* GAMEUSER_H */
-
