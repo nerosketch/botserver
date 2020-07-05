@@ -8,12 +8,19 @@
 #ifndef VKAPI_H
 #define VKAPI_H
 
-class VKApi
+#include <string>
+#include "BaseAPI.h"
+
+class VKApi : public IBaseAPI
 {
 public:
   VKApi ();
-  VKApi (const VKApi& orig);
+  VKApi (const VKApi& o);
   virtual ~VKApi ();
+
+  virtual void on_get_message(const RequestParamsMap& params, const std::string& query_string, char *buffUot) override;
+  virtual void on_post_message(const RequestParamsMap& params, const std::string& post_data, const std::string& query_string, char *buffUot) override;
+
 private:
 
 };

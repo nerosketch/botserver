@@ -8,6 +8,8 @@
 #include "../third_party/libscgi/scgi.hpp"
 #include "../GameConfig.h"
 #include "HttpServerScgi.h"
+#include "../ExternalApi/VKApi.h"
+#include "../ExternalApi/TelegramAPI.h"
 
 using namespace std;
 
@@ -18,19 +20,20 @@ HttpServerScgi::HttpServerScgi (const HttpServerScgi& orig) { }
 HttpServerScgi::~HttpServerScgi () { }
 
 
+template <class T>
+class TemplateApiHandler : public IScgiHandler {
+private:
+    TemplateApiHandler(const TemplateApiHandler&) {}
+    T _api;
 
-/**
-* the user callback handler
-*
-*/
-class Handler1: public IScgiHandler {
-	void dispatch(RequestParamsMap& params, char *buffUot) {
-		const string& parm = getParam("REQUEST_METHOD", params);
+public:
+    TemplateApiHandler() : _api() {}
+    virtual ~TemplateApiHandler() {}
 
-                addHeader("content-type: application/json");
+    virtual void get(const RequestParamsMap& params, const string& query_string, char *buffUot) {
 
-                /*
-                 * Example of params:
+/*
+* Example of params:
 Param: CONTENT_LENGTH [0]
 Param: CONTENT_TYPE []
 Param: DOCUMENT_ROOT [/var/www/html]
@@ -55,23 +58,14 @@ Param: SCGI [1]
 Param: SERVER_NAME [_]
 Param: SERVER_PORT [80]
 Param: SERVER_PROTOCOL [HTTP/1.1]
-                 */
+*/
 
-		// if method is POST
-		if ( parm == "POST" ) {
-			// return to WEB-client the POST data
-			strcpy(buffUot, getParam("POST_DATA", params).c_str());
-			return;
-		}
-		// or return to WEB-client the QUERY_STRING parameter
-		strcpy(buffUot, "{"
-                        "\"param\": 123"
-                        "}");
-	}
+        const string& api_content_type = _api.get_content_type_header();
+        addHeader(api_content_type);
 
-        virtual void get(RequestParamsMap& params, const string& query_string, char *buffUot){}
-        virtual void post(RequestParamsMap& params, const string& post_data, const string& query_string, char *buffUot){}
-//        virtual void put(RequestParamsMap& params, char *buffUot){}
+        _api.on_get_message (params, query_string, buffUot);
+    }
+  virtual void post(const RequestParamsMap& params, const string& post_data, const string& query_string, char *buffUot) {}
 };
 
 int HttpServerScgi::run()
@@ -94,11 +88,14 @@ int HttpServerScgi::run()
 
     //const char *userData = "user data";
 
-    auto h1 = make_shared<Handler1>();
-    //h1->setUserData( reinterpret_cast<void *>(userData));
-    // add specific handlers
-    scgi.addHandler("/post", h1.get());
-//    scgi.addHandler("/xxx",  reinterpret_cast<IScgiHandler *>(new Handler2()));
+    /*
+     * Add new api handlers these
+     */
+    TemplateApiHandler<VKApi> vk_handler;
+    TemplateApiHandler<TelegramAPI> telegram_handler;
+
+    scgi.addHandler ("/bot/vk/", &vk_handler);
+    scgi.addHandler ("/bot/telegram/", &telegram_handler);
 
     scgi.run();
 

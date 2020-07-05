@@ -27,17 +27,18 @@
 #include <err.h>
 #include <errno.h>
 #include <unistd.h>
-#include <iostream>
 
-#include <memory>
+#include <iostream>
+//#include <memory>
 #include <map>
 #include <string>
 #include <list>
 
+#include "../../global_types.h"
+
 #define BUFFSIZE 2048
 using namespace std;
 
-typedef map<string, string> RequestParamsMap;
 
 class IScgiHandler {
 	protected:
@@ -55,14 +56,14 @@ class IScgiHandler {
 		userData = userData_;
 	};
 
-	string getParam(string paramName, RequestParamsMap& params);
+	const string getParam(const string& paramName, const RequestParamsMap& params);
 	virtual ~IScgiHandler();
 
 	void getHeaders(char *outBuffer);
 
-        virtual void dispatch(RequestParamsMap& params, char *buffOut);
-        virtual void get(RequestParamsMap& params, const string& query_string, char *buffOut) = 0;
-        virtual void post(RequestParamsMap& params, const string& post_data, const string& query_string, char *buffOut) = 0;
+        virtual void dispatch(const RequestParamsMap& params, char *buffOut);
+        virtual void get(const RequestParamsMap& params, const string& query_string, char *buffOut) = 0;
+        virtual void post(const RequestParamsMap& params, const string& post_data, const string& query_string, char *buffOut) = 0;
 //        virtual void put(RequestParamsMap& params, char *buffOut) = 0;
 };
 
