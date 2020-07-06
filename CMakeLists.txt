@@ -1,4 +1,4 @@
-cmake_minimum_required (VERSION 2.8)
+cmake_minimum_required (VERSION 3.11)
 project( botserver )
 
 set( APP_NAME botserver )
@@ -45,6 +45,22 @@ if (LIBCONFIG_PLUSPLUS)
 	include_directories(${LIBCONFIG_PLUSPLUS_INCLUDE_DIRS})
 	message("Libconfig libs" ${LIBCONFIG_PLUSPLUS_LIBRARIES})
 endif()
+
+
+# Target nlohmann/json
+include(FetchContent)
+FetchContent_Declare(json
+  GIT_REPOSITORY https://github.com/ArthurSonzogni/nlohmann_json_cmake_fetchcontent
+  GIT_TAG v3.7.3)
+
+FetchContent_GetProperties(json)
+if(NOT json_POPULATED)
+  FetchContent_Populate(json)
+  add_subdirectory(${json_SOURCE_DIR} ${json_BINARY_DIR} EXCLUDE_FROM_ALL)
+  set(LIBS ${LIBS} nlohmann_json::nlohmann_json )
+endif()
+
+
 
 add_executable( ${APP_NAME} ${SRC} )
 
