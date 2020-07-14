@@ -96,59 +96,26 @@ class TelegramPhotoSize
 public:
   TelegramPhotoSize();
 
-  TelegramPhotoSize (string _file_id, int _width, int _height, int _file_size) :
-  _file_id (_file_id), _width (_width), _height (_height), _file_size (_file_size) { }
+  TelegramPhotoSize (const string& file_id, int width, int height, int file_size);
 
   TelegramPhotoSize(const TelegramPhotoSize&);
   virtual ~TelegramPhotoSize();
 
-  string
-  GetFile_id () const
-  {
-    return _file_id;
-  }
+  string GetFileId () const;
 
-  void
-  SetFile_id (string _file_id)
-  {
-    this->_file_id = _file_id;
-  }
+  void SetFileId (const string& file_id);
 
-  int
-  GetFile_size () const
-  {
-    return _file_size;
-  }
+  int GetFileSize () const;
 
-  void
-  SetFile_size (int _file_size)
-  {
-    this->_file_size = _file_size;
-  }
+  void SetFileSize (int file_size);
 
-  int
-  GetHeight () const
-  {
-    return _height;
-  }
+  int GetHeight () const;
 
-  void
-  SetHeight (int _height)
-  {
-    this->_height = _height;
-  }
+  void SetHeight (int height);
 
-  int
-  GetWidth () const
-  {
-    return _width;
-  }
+  int GetWidth () const;
 
-  void
-  SetWidth (int _width)
-  {
-    this->_width = _width;
-  }
+  void SetWidth (int _width);
 
 private:
   string _file_id;
@@ -164,95 +131,40 @@ class TelegramVideo
 public:
   TelegramVideo();
 
-  TelegramVideo (string _file_id, int _width, int _height, int _duration, spTelegramPhotoSize _thumb, string _mime_type, int _file_size) :
-  _file_id (_file_id), _width (_width), _height (_height), _duration (_duration), _thumb (_thumb), _mime_type (_mime_type), _file_size (_file_size) { }
+  TelegramVideo (const string& file_id, int width, int height, int duration,
+                 spTelegramPhotoSize thumb, const string& mime_type,
+                 int file_size);
 
   TelegramVideo(const TelegramVideo&);
   virtual ~TelegramVideo();
 
-  int
-  GetDuration () const
-  {
-    return _duration;
-  }
+  int GetDuration () const;
 
-  void
-  SetDuration (int _duration)
-  {
-    this->_duration = _duration;
-  }
+  void SetDuration (int duration);
 
-  string
-  GetFile_id () const
-  {
-    return _file_id;
-  }
+  string GetFileId () const;
 
-  void
-  SetFile_id (string _file_id)
-  {
-    this->_file_id = _file_id;
-  }
+  void SetFileId (const string& file_id);
 
-  int
-  GetFile_size () const
-  {
-    return _file_size;
-  }
+  int GetFileSize () const;
 
-  void
-  SetFile_size (int _file_size)
-  {
-    this->_file_size = _file_size;
-  }
+  void SetFileSize (int _file_size);
 
-  int
-  GetHeight () const
-  {
-    return _height;
-  }
+  int GetHeight () const;
 
-  void
-  SetHeight (int _height)
-  {
-    this->_height = _height;
-  }
+  void SetHeight (int height);
 
-  string
-  GetMime_type () const
-  {
-    return _mime_type;
-  }
+  string GetMimeType () const;
 
-  void
-  SetMime_type (string _mime_type)
-  {
-    this->_mime_type = _mime_type;
-  }
+  void SetMimeType (const string& mime_type);
 
-  spTelegramPhotoSize
-  GetThumb () const
-  {
-    return _thumb;
-  }
+  spTelegramPhotoSize GetThumb () const;
 
-  void
-  SetThumb (spTelegramPhotoSize _thumb)
-  {
-    this->_thumb = _thumb;
-  }
+  void SetThumb (spTelegramPhotoSize thumb);
 
-  int
-  GetWidth () const
-  {
-    return _width;
-  }
+  int GetWidth () const;
 
-  void
-  SetWidth (int _width)
-  {
-    this->_width = _width;
-  }
+  void SetWidth (int width);
 
 private:
   string _file_id;
@@ -271,8 +183,8 @@ class TelegramVoice
 public:
   TelegramVoice();
 
-  TelegramVoice (string _file_id, int _duration, string _mime_type, int _file_size) :
-  _file_id (_file_id), _duration (_duration), _mime_type (_mime_type), _file_size (_file_size) { }
+  TelegramVoice (const string& file_id, int duration, const string& mime_type, int file_size) :
+  _file_id (file_id), _duration (duration), _mime_type (mime_type), _file_size (file_size) { }
 
   TelegramVoice(const TelegramVoice&);
   virtual ~TelegramVoice();
@@ -296,9 +208,9 @@ public:
   }
 
   void
-  SetFile_id (string _file_id)
+  SetFile_id (const string& file_id)
   {
-    this->_file_id = _file_id;
+    _file_id = file_id;
   }
 
   int
@@ -320,9 +232,9 @@ public:
   }
 
   void
-  SetMime_type (string _mime_type)
+  SetMime_type (const string& mime_type)
   {
-    this->_mime_type = _mime_type;
+    _mime_type = mime_type;
   }
 
 private:
@@ -340,8 +252,8 @@ class TelegramContact
 public:
   TelegramContact();
 
-  TelegramContact (string _phone_number, string _first_name, string _last_name, int _user_id) :
-  _phone_number (_phone_number), _first_name (_first_name), _last_name (_last_name), _user_id (_user_id) { }
+  TelegramContact (const string& phone_number, const string& first_name, const string& last_name, int user_id) :
+  _phone_number (phone_number), _first_name (first_name), _last_name (last_name), _user_id (user_id) { }
 
   TelegramContact(const TelegramContact&);
   virtual ~TelegramContact();
@@ -353,9 +265,9 @@ public:
   }
 
   void
-  SetFirst_name (string _first_name)
+  SetFirst_name (const string& first_name)
   {
-    this->_first_name = _first_name;
+    _first_name = first_name;
   }
 
   string
@@ -365,9 +277,9 @@ public:
   }
 
   void
-  SetLast_name (string _last_name)
+  SetLast_name (const string& last_name)
   {
-    this->_last_name = _last_name;
+    _last_name = last_name;
   }
 
   string
@@ -377,9 +289,9 @@ public:
   }
 
   void
-  SetPhone_number (string _phone_number)
+  SetPhone_number (const string& phone_number)
   {
-    this->_phone_number = _phone_number;
+    _phone_number = phone_number;
   }
 
   int
@@ -450,8 +362,8 @@ class TelegramVenue
 public:
   TelegramVenue();
 
-  TelegramVenue (spTelegramLocation _location, string _title, string _address, string _foursquare_id) :
-  _location (_location), _title (_title), _address (_address), _foursquare_id (_foursquare_id) { }
+  TelegramVenue (spTelegramLocation location, const string& title, const string& address, const string& foursquare_id) :
+  _location (location), _title (title), _address (address), _foursquare_id (foursquare_id) { }
 
   TelegramVenue(const TelegramVenue&);
   virtual ~TelegramVenue();
@@ -463,9 +375,9 @@ public:
   }
 
   void
-  SetAddress (string _address)
+  SetAddress (const string& address)
   {
-    this->_address = _address;
+    _address = address;
   }
 
   string
@@ -475,9 +387,9 @@ public:
   }
 
   void
-  SetFoursquare_id (string _foursquare_id)
+  SetFoursquare_id (const string& foursquare_id)
   {
-    this->_foursquare_id = _foursquare_id;
+    _foursquare_id = foursquare_id;
   }
 
   spTelegramLocation
@@ -499,7 +411,7 @@ public:
   }
 
   void
-  SetTitle (string _title)
+  SetTitle (const string& _title)
   {
     this->_title = _title;
   }
@@ -560,7 +472,7 @@ class TelegramSticker
 public:
   TelegramSticker();
 
-  TelegramSticker (string _file_id, int _width, int _height, spTelegramPhotoSize _thumb, int _file_size) :
+  TelegramSticker (const string& _file_id, int _width, int _height, spTelegramPhotoSize _thumb, int _file_size) :
   _file_id (_file_id), _width (_width), _height (_height), _thumb (_thumb), _file_size (_file_size) { }
 
   TelegramSticker(const TelegramSticker&);
@@ -573,7 +485,7 @@ public:
   }
 
   void
-  SetFile_id (string _file_id)
+  SetFile_id (const string& _file_id)
   {
     this->_file_id = _file_id;
   }
@@ -640,7 +552,7 @@ class TelegramAudio
 public:
   TelegramAudio();
 
-  TelegramAudio (string _file_id, int _duration, string _performer, string _title, string _mime_type, int _file_size) :
+  TelegramAudio (const string& _file_id, int _duration, const string& _performer, const string& _title, const string& _mime_type, int _file_size) :
   _file_id (_file_id), _duration (_duration), _performer (_performer), _title (_title), _mime_type (_mime_type), _file_size (_file_size) { }
 
   TelegramAudio(const TelegramAudio&);
@@ -664,7 +576,7 @@ public:
   }
 
   void
-  SetFile_id (string _file_id)
+  SetFile_id (const string& _file_id)
   {
     this->_file_id = _file_id;
   }
@@ -688,7 +600,7 @@ public:
   }
 
   void
-  SetMime_type (string _mime_type)
+  SetMime_type (const string& _mime_type)
   {
     this->_mime_type = _mime_type;
   }
@@ -700,7 +612,7 @@ public:
   }
 
   void
-  SetPerformer (string _performer)
+  SetPerformer (const string& _performer)
   {
     this->_performer = _performer;
   }
@@ -712,7 +624,7 @@ public:
   }
 
   void
-  SetTitle (string _title)
+  SetTitle (const string& _title)
   {
     this->_title = _title;
   }
@@ -746,7 +658,7 @@ public:
   }
 
   void
-  SetFile_id (string _file_id)
+  SetFile_id (const string& _file_id)
   {
     this->_file_id = _file_id;
   }
@@ -758,7 +670,7 @@ public:
   }
 
   void
-  SetFile_name (string _file_name)
+  SetFile_name (const string& _file_name)
   {
     this->_file_name = _file_name;
   }
@@ -782,7 +694,7 @@ public:
   }
 
   void
-  SetMime_type (string _mime_type)
+  SetMime_type (const string& _mime_type)
   {
     this->_mime_type = _mime_type;
   }
@@ -819,7 +731,7 @@ class TelegramChat
 public:
   TelegramChat();
 
-  TelegramChat (int id, TelegramChatType _chat_type, string _title, string _username, string _first_name, string _last_name, bool _all_members_are_administrators) :
+  TelegramChat (int id, TelegramChatType _chat_type, const string& _title, const string& _username, const string& _first_name, const string& _last_name, bool _all_members_are_administrators) :
   id (id), _chat_type (_chat_type), _title (_title), _username (_username), _first_name (_first_name), _last_name (_last_name), _all_members_are_administrators (_all_members_are_administrators) { }
 
   TelegramChat(const TelegramChat&);
@@ -856,7 +768,7 @@ public:
   }
 
   void
-  SetFirst_name (string _first_name)
+  SetFirst_name (const string& _first_name)
   {
     this->_first_name = _first_name;
   }
@@ -868,7 +780,7 @@ public:
   }
 
   void
-  SetLast_name (string _last_name)
+  SetLast_name (const string& _last_name)
   {
     this->_last_name = _last_name;
   }
@@ -880,7 +792,7 @@ public:
   }
 
   void
-  SetTitle (string _title)
+  SetTitle (const string& _title)
   {
     this->_title = _title;
   }
@@ -892,7 +804,7 @@ public:
   }
 
   void
-  SetUsername (string _username)
+  SetUsername (const string& _username)
   {
     this->_username = _username;
   }
@@ -927,7 +839,7 @@ class TelegramUser
 public:
   TelegramUser();
 
-  TelegramUser (int id, string first_name, string last_name, string username) :
+  TelegramUser (int id, const string& first_name, const string& last_name, const string& username) :
   id (id), first_name (first_name), last_name (last_name), username (username) { }
 
   TelegramUser(const TelegramUser&);
@@ -941,7 +853,7 @@ public:
   }
 
   void
-  SetFirst_name (string first_name)
+  SetFirst_name (const string& first_name)
   {
     this->first_name = first_name;
   }
@@ -965,7 +877,7 @@ public:
   }
 
   void
-  SetLast_name (string last_name)
+  SetLast_name (const string& last_name)
   {
     this->last_name = last_name;
   }
@@ -977,7 +889,7 @@ public:
   }
 
   void
-  SetUsername (string username)
+  SetUsername (const string& username)
   {
     this->username = username;
   }
@@ -1003,7 +915,7 @@ class TelegramCallbackQuery
 public:
   TelegramCallbackQuery();
 
-  TelegramCallbackQuery (string id, spTelegramUser from, spTelegramMessage message, string inline_message_id, string data) :
+  TelegramCallbackQuery (const string& id, spTelegramUser from, spTelegramMessage message, const string& inline_message_id, const string& data) :
   _id (id), _from (from), _message (message), _inline_message_id (inline_message_id), _data (data) { }
 
   TelegramCallbackQuery(const TelegramCallbackQuery&);
@@ -1016,7 +928,7 @@ public:
   }
 
   void
-  SetData (string _data)
+  SetData (const string& _data)
   {
     this->_data = _data;
   }
@@ -1040,7 +952,7 @@ public:
   }
 
   void
-  SetId (string _id)
+  SetId (const string& _id)
   {
     this->_id = _id;
   }
@@ -1052,7 +964,7 @@ public:
   }
 
   void
-  SetInline_message_id (string _inline_message_id)
+  SetInline_message_id (const string& _inline_message_id)
   {
     this->_inline_message_id = _inline_message_id;
   }
@@ -1083,71 +995,32 @@ class TelegramChosenInlineResult
 public:
   TelegramChosenInlineResult();
 
-  TelegramChosenInlineResult (string _result_id, spTelegramUser _from, spTelegramLocation _location, string _inline_message_id, string _query) :
-  _result_id (_result_id), _from (_from), _location (_location), _inline_message_id (_inline_message_id), _query (_query) { }
+  TelegramChosenInlineResult (const string& result_id, spTelegramUser from,
+                              spTelegramLocation location,
+                              const string& inline_message_id, const string& query);
 
   TelegramChosenInlineResult(const TelegramChosenInlineResult&);
   virtual ~TelegramChosenInlineResult();
 
-  spTelegramUser
-  GetFrom () const
-  {
-    return _from;
-  }
+  spTelegramUser GetFrom () const;
 
-  void
-  SetFrom (spTelegramUser _from)
-  {
-    this->_from = _from;
-  }
+  void SetFrom (spTelegramUser from);
 
-  string
-  GetInline_message_id () const
-  {
-    return _inline_message_id;
-  }
+  string GetInlineMessageId () const;
 
-  void
-  SetInline_message_id (string _inline_message_id)
-  {
-    this->_inline_message_id = _inline_message_id;
-  }
+  void SetInlineMessageId (const string& inline_message_id);
 
-  spTelegramLocation
-  GetLocation () const
-  {
-    return _location;
-  }
+  spTelegramLocation GetLocation () const;
 
-  void
-  SetLocation (spTelegramLocation _location)
-  {
-    this->_location = _location;
-  }
+  void SetLocation (spTelegramLocation location);
 
-  string
-  GetQuery () const
-  {
-    return _query;
-  }
+  string GetQuery () const;
 
-  void
-  SetQuery (string _query)
-  {
-    this->_query = _query;
-  }
+  void SetQuery (const string& query);
 
-  string
-  GetResult_id () const
-  {
-    return _result_id;
-  }
+  string GetResultId () const;
 
-  void
-  SetResult_id (string _result_id)
-  {
-    this->_result_id = _result_id;
-  }
+  void SetResultId (const string& result_id);
 
 private:
   string _result_id;
@@ -1163,79 +1036,39 @@ class TelegramInlineQuery
 public:
   TelegramInlineQuery();
 
-  TelegramInlineQuery (string _id, spTelegramUser _from, spTelegramLocation _location, string _query, string _offset) :
-  _id (_id), _from (_from), _location (_location), _query (_query), _offset (_offset) { }
+  TelegramInlineQuery (const string& id, spTelegramUser from,
+                       spTelegramLocation location,
+                       const string& query, const string& offset);
 
   TelegramInlineQuery(const TelegramInlineQuery&);
   virtual ~TelegramInlineQuery();
-  
+
+  spTelegramUser GetFrom () const;
+
+  void SetFrom (spTelegramUser from);
+
+  string GetId () const;
+
+  void SetId (const string& id);
+
+  spTelegramLocation GetLocation () const;
+
+  void SetLocation (spTelegramLocation location);
+
+  string GetOffset () const;
+
+  void SetOffset (const string& offset);
+
+  string GetQuery () const;
+
+  void SetQuery (const string& query);
+
 private:
   string _id;
   spTelegramUser _from;
   spTelegramLocation _location;
   string _query;
   string _offset;
-
-  spTelegramUser
-  GetFrom () const
-  {
-    return _from;
-  }
-
-  void
-  SetFrom (spTelegramUser _from)
-  {
-    this->_from = _from;
-  }
-
-  string
-  GetId () const
-  {
-    return _id;
-  }
-
-  void
-  SetId (string _id)
-  {
-    this->_id = _id;
-  }
-
-  spTelegramLocation
-  GetLocation () const
-  {
-    return _location;
-  }
-
-  void
-  SetLocation (spTelegramLocation _location)
-  {
-    this->_location = _location;
-  }
-
-  string
-  GetOffset () const
-  {
-    return _offset;
-  }
-
-  void
-  SetOffset (string _offset)
-  {
-    this->_offset = _offset;
-  }
-
-  string
-  GetQuery () const
-  {
-    return _query;
-  }
-
-  void
-  SetQuery (string _query)
-  {
-    this->_query = _query;
-  }
-
 };
 
 
@@ -1245,15 +1078,11 @@ class TelegramMessageEntity
 public:
   TelegramMessageEntity();
 
-  TelegramMessageEntity (string _type, int _offset, int _length, string _url) :
+  TelegramMessageEntity (const string& _type, int _offset, int _length, const string& _url) :
   _type (_type), _offset (_offset), _length (_length), _url (_url) { }
 
   TelegramMessageEntity(const TelegramMessageEntity&);
   virtual ~TelegramMessageEntity();
-  
-private:
-  string _type;
-  int _offset;
 
   int
   GetLength () const
@@ -1279,30 +1108,33 @@ private:
     this->_offset = _offset;
   }
 
-  string
+  string&
   GetType () const
   {
     return _type;
   }
 
   void
-  SetType (string _type)
+  SetType (const string& _type)
   {
     this->_type = _type;
   }
 
-  string
+  string&
   GetUrl () const
   {
     return _url;
   }
 
   void
-  SetUrl (string _url)
+  SetUrl (const string& url)
   {
-    this->_url = _url;
+    _url = _url;
   }
 
+private:
+  string _type;
+  int _offset;
   int _length;
   string _url;
 };
@@ -1312,347 +1144,133 @@ class TelegramMessage
 public:
   TelegramMessage();
 
-  TelegramMessage (int _message_id, spTelegramUser _from, time_t _date, spTelegramChat _chat, spTelegramUser _forward_from, time_t _forward_date, string _text, vector<TelegramMessageEntity> _entities, spTelegramAudio _audio, spTelegramDocument _document, spVectorTelegramPhotoSize _photo, spTelegramSticker _sticker, spTelegramVideo _video, spTelegramVoice _voice, string _caption, spTelegramContact _contact, spTelegramLocation _location, spTelegramVenue _venue, spTelegramUser _new_chat_member, spTelegramUser _left_chat_member, string _new_chat_title, spVectorTelegramPhotoSize _new_chat_photo, bool _delete_chat_photo, bool _group_chat_created, bool _supergroup_chat_created, bool _channel_chat_created, int _migrate_to_chat_id, int _migrate_from_chat_id) :
-  _message_id (_message_id), _from (_from), _date (_date), _chat (_chat), _forward_from (_forward_from), _forward_date (_forward_date), _text (_text), _entities (_entities), _audio (_audio), _document (_document), _photo (_photo), _sticker (_sticker), _video (_video), _voice (_voice), _caption (_caption), _contact (_contact), _location (_location), _venue (_venue), _new_chat_member (_new_chat_member), _left_chat_member (_left_chat_member), _new_chat_title (_new_chat_title), _new_chat_photo (_new_chat_photo), _delete_chat_photo (_delete_chat_photo), _group_chat_created (_group_chat_created), _supergroup_chat_created (_supergroup_chat_created), _channel_chat_created (_channel_chat_created), _migrate_to_chat_id (_migrate_to_chat_id), _migrate_from_chat_id (_migrate_from_chat_id) { }
+  TelegramMessage (int message_id, spTelegramUser from, time_t date, spTelegramChat chat,
+                   spTelegramUser forward_from, time_t forward_date, const string& text,
+                   const vector<TelegramMessageEntity>& entities, spTelegramAudio audio,
+                   spTelegramDocument document, spVectorTelegramPhotoSize photo,
+                   spTelegramSticker sticker, spTelegramVideo video,
+                   spTelegramVoice voice, const string& caption, spTelegramContact contact,
+                   spTelegramLocation location, spTelegramVenue venue,
+                   spTelegramUser new_chat_member, spTelegramUser left_chat_member,
+                   const string& new_chat_title, spVectorTelegramPhotoSize new_chat_photo,
+                   bool delete_chat_photo, bool group_chat_created,
+                   bool supergroup_chat_created, bool channel_chat_created,
+                   int migrate_to_chat_id, int migrate_from_chat_id);
 
-  TelegramMessage(const TelegramMessage&);
+  TelegramMessage(const TelegramMessage& o);
   virtual ~TelegramMessage();
-  
-  spTelegramAudio
-  GetAudio () const
-  {
-    return _audio;
-  }
 
-  void
-  SetAudio (spTelegramAudio _audio)
-  {
-    this->_audio = _audio;
-  }
+  spTelegramAudio GetAudio () const;
 
-  string
-  GetCaption () const
-  {
-    return _caption;
-  }
+  void SetAudio (spTelegramAudio audio);
 
-  void
-  SetCaption (string _caption)
-  {
-    this->_caption = _caption;
-  }
+  string GetCaption () const;
 
-  bool
-  IsChannel_chat_created () const
-  {
-    return _channel_chat_created;
-  }
+  void SetCaption (const string& caption);
 
-  void
-  SetChannel_chat_created (bool _channel_chat_created)
-  {
-    this->_channel_chat_created = _channel_chat_created;
-  }
+  bool IsChannelChatCreated () const;
 
-  spTelegramChat
-  GetChat () const
-  {
-    return _chat;
-  }
+  void SetChannelChatCreated (bool channel_chat_created);
 
-  void
-  SetChat (spTelegramChat _chat)
-  {
-    this->_chat = _chat;
-  }
+  spTelegramChat GetChat () const;
 
-  spTelegramContact
-  GetContact () const
-  {
-    return _contact;
-  }
+  void SetChat (spTelegramChat _chat);
 
-  void
-  SetContact (spTelegramContact _contact)
-  {
-    this->_contact = _contact;
-  }
+  spTelegramContact GetContact () const;
 
-  time_t
-  GetDate () const
-  {
-    return _date;
-  }
+  void SetContact (spTelegramContact contact);
 
-  void
-  SetDate (time_t _date)
-  {
-    this->_date = _date;
-  }
+  time_t GetDate () const;
 
-  bool
-  IsDelete_chat_photo () const
-  {
-    return _delete_chat_photo;
-  }
+  void SetDate (time_t date);
 
-  void
-  SetDelete_chat_photo (bool _delete_chat_photo)
-  {
-    this->_delete_chat_photo = _delete_chat_photo;
-  }
+  bool IsDeleteChatPhoto () const;
 
-  spTelegramDocument
-  GetDocument () const
-  {
-    return _document;
-  }
+  void SetDeleteChatPhoto (bool delete_chat_photo);
 
-  void
-  SetDocument (spTelegramDocument _document)
-  {
-    this->_document = _document;
-  }
+  spTelegramDocument GetDocument () const;
 
-  vector<TelegramMessageEntity>
-  GetEntities () const
-  {
-    return _entities;
-  }
+  void SetDocument (spTelegramDocument document);
 
-  void
-  SetEntities (vector<TelegramMessageEntity> _entities)
-  {
-    this->_entities = _entities;
-  }
+  vector<TelegramMessageEntity> GetEntities () const;
 
-  time_t
-  GetForward_date () const
-  {
-    return _forward_date;
-  }
+  void SetEntities (vector<TelegramMessageEntity> entities);
 
-  void
-  SetForward_date (time_t _forward_date)
-  {
-    this->_forward_date = _forward_date;
-  }
+  time_t GetForwardDate () const;
 
-  spTelegramUser
-  GetForward_from () const
-  {
-    return _forward_from;
-  }
+  void SetForwardDate (time_t forward_date);
 
-  void
-  SetForward_from (spTelegramUser _forward_from)
-  {
-    this->_forward_from = _forward_from;
-  }
+  spTelegramUser GetForwardFrom () const;
 
-  spTelegramUser
-  GetFrom () const
-  {
-    return _from;
-  }
+  void SetForwardFrom (spTelegramUser forward_from);
 
-  void
-  SetFrom (spTelegramUser _from)
-  {
-    this->_from = _from;
-  }
+  spTelegramUser GetFrom () const;
 
-  bool
-  IsGroup_chat_created () const
-  {
-    return _group_chat_created;
-  }
+  void SetFrom (spTelegramUser from);
 
-  void
-  SetGroup_chat_created (bool _group_chat_created)
-  {
-    this->_group_chat_created = _group_chat_created;
-  }
+  bool IsGroupChatCreated () const;
 
-  spTelegramUser
-  GetLeft_chat_member () const
-  {
-    return _left_chat_member;
-  }
+  void SetGroupChatCreated (bool group_chat_created);
 
-  void
-  SetLeft_chat_member (spTelegramUser _left_chat_member)
-  {
-    this->_left_chat_member = _left_chat_member;
-  }
+  spTelegramUser GetLeftChatMember () const;
 
-  spTelegramLocation
-  GetLocation () const
-  {
-    return _location;
-  }
+  void SetLeftChatMember (spTelegramUser left_chat_member);
 
-  void
-  SetLocation (spTelegramLocation _location)
-  {
-    this->_location = _location;
-  }
+  spTelegramLocation GetLocation () const;
 
-  int
-  GetMessage_id () const
-  {
-    return _message_id;
-  }
+  void SetLocation (spTelegramLocation location);
 
-  void
-  SetMessage_id (int _message_id)
-  {
-    this->_message_id = _message_id;
-  }
+  int GetMessageId () const;
 
-  int
-  GetMigrate_from_chat_id () const
-  {
-    return _migrate_from_chat_id;
-  }
+  void SetMessageId (int message_id);
 
-  void
-  SetMigrate_from_chat_id (int _migrate_from_chat_id)
-  {
-    this->_migrate_from_chat_id = _migrate_from_chat_id;
-  }
+  int GetMigrateFromChatId () const;
 
-  int
-  GetMigrate_to_chat_id () const
-  {
-    return _migrate_to_chat_id;
-  }
+  void SetMigrateFromChatId (int migrate_from_chat_id);
 
-  void
-  SetMigrate_to_chat_id (int _migrate_to_chat_id)
-  {
-    this->_migrate_to_chat_id = _migrate_to_chat_id;
-  }
+  int GetMigrateToChatId () const;
 
-  spTelegramUser
-  GetNew_chat_member () const
-  {
-    return _new_chat_member;
-  }
+  void SetMigrateToChatId (int migrate_to_chat_id);
 
-  void
-  SetNew_chat_member (spTelegramUser _new_chat_member)
-  {
-    this->_new_chat_member = _new_chat_member;
-  }
+  spTelegramUser GetNewChatMember () const;
 
-  spVectorTelegramPhotoSize
-  GetNew_chat_photo () const
-  {
-    return _new_chat_photo;
-  }
+  void SetNewChatMember (spTelegramUser new_chat_member);
 
-  void
-  SetNew_chat_photo (spVectorTelegramPhotoSize _new_chat_photo)
-  {
-    this->_new_chat_photo = _new_chat_photo;
-  }
+  spVectorTelegramPhotoSize GetNewChatPhoto () const;
 
-  string
-  GetNew_chat_title () const
-  {
-    return _new_chat_title;
-  }
+  void SetNewChatPhoto (spVectorTelegramPhotoSize new_chat_photo);
 
-  void
-  SetNew_chat_title (string _new_chat_title)
-  {
-    this->_new_chat_title = _new_chat_title;
-  }
+  string GetNewChatTitle () const;
 
-  spVectorTelegramPhotoSize
-  GetPhoto () const
-  {
-    return _photo;
-  }
+  void SetNewChatTitle (const string& new_chat_title);
 
-  void
-  SetPhoto (spVectorTelegramPhotoSize _photo)
-  {
-    this->_photo = _photo;
-  }
+  spVectorTelegramPhotoSize GetPhoto () const;
 
-  spTelegramSticker
-  GetSticker () const
-  {
-    return _sticker;
-  }
+  void SetPhoto (spVectorTelegramPhotoSize photo);
 
-  void
-  SetSticker (spTelegramSticker _sticker)
-  {
-    this->_sticker = _sticker;
-  }
+  spTelegramSticker GetSticker () const;
 
-  bool
-  IsSupergroup_chat_created () const
-  {
-    return _supergroup_chat_created;
-  }
+  void SetSticker (spTelegramSticker sticker);
 
-  void
-  SetSupergroup_chat_created (bool _supergroup_chat_created)
-  {
-    this->_supergroup_chat_created = _supergroup_chat_created;
-  }
+  bool IsSupergroupChatCreated () const;
 
-  string
-  GetText () const
-  {
-    return _text;
-  }
+  void SetSupergroupChatCreated (bool supergroup_chat_created);
 
-  void
-  SetText (string _text)
-  {
-    this->_text = _text;
-  }
+  string GetText () const;
 
-  spTelegramVenue
-  GetVenue () const
-  {
-    return _venue;
-  }
+  void SetText (const string& text);
 
-  void
-  SetVenue (spTelegramVenue _venue)
-  {
-    this->_venue = _venue;
-  }
+  spTelegramVenue GetVenue () const;
 
-  spTelegramVideo
-  GetVideo () const
-  {
-    return _video;
-  }
+  void SetVenue (spTelegramVenue venue);
 
-  void
-  SetVideo (spTelegramVideo _video)
-  {
-    this->_video = _video;
-  }
+  spTelegramVideo GetVideo () const;
 
-  spTelegramVoice
-  GetVoice () const
-  {
-    return _voice;
-  }
+  void SetVideo (spTelegramVideo video);
 
-  void
-  SetVoice (spTelegramVoice _voice)
-  {
-    this->_voice = _voice;
-  }
+  spTelegramVoice GetVoice () const;
+
+  void SetVoice (spTelegramVoice voice);
 
 private:
   int _message_id;
@@ -1691,12 +1309,11 @@ class TelegramWebhookUpdate
 public:
   TelegramWebhookUpdate();
 
-  TelegramWebhookUpdate (uint32_t _update_id, spTelegramMessage _message, spTelegramInlineQuery _inline_query, spTelegramChosenInlineResult _chosen_inline_result, spTelegramCallbackQuery _callback_query) :
-  _update_id (_update_id), _message (_message), _inline_query (_inline_query), _chosen_inline_result (_chosen_inline_result), _callback_query (_callback_query) { }
+  TelegramWebhookUpdate (uint32_t update_id, spTelegramMessage message, spTelegramInlineQuery inline_query,
+                         spTelegramChosenInlineResult chosen_inline_result, spTelegramCallbackQuery callback_query);
 
   TelegramWebhookUpdate(const TelegramWebhookUpdate&);
   virtual ~TelegramWebhookUpdate();
-
 
   spTelegramMessage
   GetMessage () const
@@ -1704,59 +1321,23 @@ public:
     return _message;
   }
 
-  void
-  SetMessage (spTelegramMessage _message)
-  {
-    this->_message = _message;
-  }
+  void SetMessage (spTelegramMessage message);
 
-  uint32_t
-  GetUpdate_id () const
-  {
-    return _update_id;
-  }
+  uint32_t GetUpdateId () const;
 
-  void
-  SetUpdate_id (uint32_t _update_id)
-  {
-    this->_update_id = _update_id;
-  }
+  void SetUpdateId (uint32_t _update_id);
 
-  spTelegramCallbackQuery
-  GetCallback_query () const
-  {
-    return _callback_query;
-  }
+  spTelegramCallbackQuery GetCallbackQuery () const;
 
-  void
-  SetCallback_query (spTelegramCallbackQuery callback_query)
-  {
-    _callback_query = callback_query;
-  }
+  void SetCallbackQuery (spTelegramCallbackQuery callback_query);
 
-  spTelegramChosenInlineResult
-  GetChosen_inline_result () const
-  {
-    return _chosen_inline_result;
-  }
+  spTelegramChosenInlineResult GetChosenInlineResult () const;
 
-  void
-  SetChosen_inline_result (spTelegramChosenInlineResult chosen_inline_result)
-  {
-    _chosen_inline_result = chosen_inline_result;
-  }
+  void SetChosenInlineResult (spTelegramChosenInlineResult chosen_inline_result);
 
-  spTelegramInlineQuery
-  GetInline_query () const
-  {
-    return _inline_query;
-  }
+  spTelegramInlineQuery GetInlineQuery () const;
 
-  void
-  SetInline_query (spTelegramInlineQuery inline_query)
-  {
-    _inline_query = inline_query;
-  }
+  void SetInlineQuery (spTelegramInlineQuery inline_query);
 
 private:
   uint32_t _update_id;
@@ -1779,7 +1360,7 @@ public:
   virtual void on_get_message(const RequestParamsMap& params, const string& query_string, char *buffUot) override;
   virtual void on_post_message(const RequestParamsMap& params, const string& post_data, const string& query_string, char *buffUot) override;
 
-  int setWebhook(const string& url);
+  virtual int setWebhook(const string& url) override;
 };
 
 #endif /* TELEGRAMAPI_H */

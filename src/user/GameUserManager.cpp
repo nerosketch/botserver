@@ -16,3 +16,9 @@ GameUserManager::GameUserManager (const GameUserManager& orig) { }
 
 GameUserManager::~GameUserManager () { }
 
+
+GameUserManager& GameUserManager::getInstance()
+{
+    static GameUserManager _inst;
+    return _inst;
+}

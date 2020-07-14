@@ -21,6 +21,8 @@ protected:
   virtual void on_get_message(const RequestParamsMap& params, const std::string& query_string, char *buffUot) = 0;
   virtual void on_post_message(const RequestParamsMap& params, const std::string& post_data, const std::string& query_string, char *buffUot) = 0;
 
+  virtual int setWebhook(const std::string& url) = 0;
+
 public:
 
   IBaseAPI();

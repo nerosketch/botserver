@@ -66,8 +66,6 @@ private:
 class GameConfig
 {
 public:
-  GameConfig ();
-  virtual ~GameConfig ();
 
   int load_config(const char* fname);
 
@@ -80,14 +78,17 @@ public:
     return _scgi;
   }
 
-  
+  static GameConfig& getInstance();
+
 private:
+  GameConfig ();
   GameConfig (const GameConfig& o);
+  virtual ~GameConfig ();
 
   VkConfig _vk;
   ScgiConfig _scgi;
 };
 
-extern GameConfig game_config;
+extern GameConfig& game_config;
 
 #endif /* GAMECONFIG_H */

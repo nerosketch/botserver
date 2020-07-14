@@ -10,7 +10,7 @@
 
 #include <string>
 #include <memory>
-#include "../quest/GeneralInboxGameMessage.h"
+#include "../quest/GameInboxMessage.h"
 
 class GameUser
 {
@@ -27,9 +27,9 @@ public:
   {
     _username = uname;
   }
-  
-  void on_inbox_message(GeneralInboxGameMessage& msg);
-  
+
+  void on_inbox_message(GameInboxMessage& msg);
+
 private:
   std::string _username;
   

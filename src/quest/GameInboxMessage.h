@@ -13,18 +13,16 @@
 class GameInboxMessage {
 public:
     GameInboxMessage(const std::string& msg);
-    GameInboxMessage(const GameInboxMessage& orig);
+    GameInboxMessage(const GameInboxMessage& o);
     virtual ~GameInboxMessage();
 
-    inline void setMessage(const std::string& msg)
-    {
-        _msg = msg;
-    }
-    inline std::string& getMessage()
-    {
-        return _msg;
-    }
-    
+    void setMessage(const std::string& msg);
+    std::string& getMessage();
+
+    bool operator== (const GameInboxMessage& r) const;
+    bool operator!= (const GameInboxMessage& r) const;
+
+
 private:
     std::string _msg;
 };

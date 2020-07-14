@@ -17,9 +17,6 @@
 class GameUserManager
 {
 public:
-  GameUserManager ();
-  GameUserManager (const GameUserManager&);
-  virtual ~GameUserManager ();
 
   inline void addUser(spGameUser user)
   {
@@ -34,7 +31,13 @@ public:
     _users_table.clear ();
   }
 
+  static GameUserManager& getInstance();
+
 private:
+  GameUserManager ();
+  GameUserManager (const GameUserManager&);
+  virtual ~GameUserManager ();
+
   static std::unordered_map<std::string, spGameUser> _users_table;
 };
 

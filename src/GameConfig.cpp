@@ -15,7 +15,7 @@ using namespace std;
 using namespace libconfig;
 
 
-GameConfig game_config;
+GameConfig& game_config = GameConfig::getInstance ();
 
 
 VkConfig::VkConfig () { }
@@ -103,4 +103,10 @@ int GameConfig::load_config(const char* fname)
 
 
   return(EXIT_SUCCESS);
+}
+
+GameConfig& GameConfig::getInstance()
+{
+    static GameConfig _inst;
+    return _inst;
 }
