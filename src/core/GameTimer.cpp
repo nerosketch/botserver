@@ -7,9 +7,15 @@
 
 #include "GameTimer.h"
 
-GameTimer::GameTimer () { }
+GameTimer::GameTimer()
+{
+}
 
-GameTimer::GameTimer (const GameTimer& orig) { }
+GameTimer::GameTimer(const GameTimer& orig)
+{
+}
 
-GameTimer::~GameTimer () { }
+GameTimer::~GameTimer()
+{
+}
 

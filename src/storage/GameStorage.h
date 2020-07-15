@@ -8,12 +8,14 @@
 #ifndef GAMESTORAGE_H
 #define GAMESTORAGE_H
 
-class GameStorage
-{
+class GameStorage {
 public:
-  GameStorage ();
-  GameStorage (const GameStorage& orig);
-  virtual ~GameStorage ();
+    GameStorage();
+
+    GameStorage(const GameStorage& orig);
+
+    virtual ~GameStorage();
+
 private:
 
 };

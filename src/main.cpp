@@ -18,7 +18,7 @@
 
 
 
-int main (int argc, char** argv)
+int main(int argc, char** argv)
 {
     // game_config is defined in "HttpServerScgi.h"
     game_config.load_config("config-example.conf");

@@ -8,12 +8,14 @@
 #ifndef FILESTORAGE_H
 #define FILESTORAGE_H
 
-class FileStorage
-{
+class FileStorage {
 public:
-  FileStorage ();
-  FileStorage (const FileStorage& orig);
-  virtual ~FileStorage ();
+    FileStorage();
+
+    FileStorage(const FileStorage& orig);
+
+    virtual ~FileStorage();
+
 private:
 
 };

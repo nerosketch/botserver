@@ -7,9 +7,15 @@
 
 #include "FileStorage.h"
 
-FileStorage::FileStorage () { }
+FileStorage::FileStorage()
+{
+}
 
-FileStorage::FileStorage (const FileStorage& orig) { }
+FileStorage::FileStorage(const FileStorage& orig)
+{
+}
 
-FileStorage::~FileStorage () { }
+FileStorage::~FileStorage()
+{
+}
 

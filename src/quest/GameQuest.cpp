@@ -7,9 +7,15 @@
 
 #include "GameQuest.h"
 
-GameQuest::GameQuest () { }
+GameQuest::GameQuest()
+{
+}
 
-GameQuest::GameQuest (const GameQuest& orig) { }
+GameQuest::GameQuest(const GameQuest& orig)
+{
+}
 
-GameQuest::~GameQuest () { }
+GameQuest::~GameQuest()
+{
+}
 

@@ -11,25 +11,33 @@
 
 using namespace std;
 
-VKApi::VKApi () { }
+VKApi::VKApi()
+{
+}
 
-VKApi::VKApi (const VKApi& o) { }
+VKApi::VKApi(const VKApi& o)
+{
+}
 
-VKApi::~VKApi () { }
+VKApi::~VKApi()
+{
+}
 
-void VKApi::on_get_message(const RequestParamsMap& params, const string& query_string, char *buffUot)
+void VKApi::on_get_message(const RequestParamsMap& params, const string& query_string, char* buffUot)
 {
     strcpy(buffUot, "{"
-        "\"It is a VK up\": true"
-        "}"
+                    "\"It is a VK up\": true"
+                    "}"
     );
 }
-void VKApi::on_post_message(const RequestParamsMap& params, const string& post_data, const string& query_string, char *buffUot)
+
+void VKApi::on_post_message(const RequestParamsMap& params, const string& post_data, const string& query_string,
+        char* buffUot)
 {
-  
+
 }
 
 int VKApi::setWebhook(const string& url)
 {
-  return 0;
+    return 0;
 }

@@ -11,82 +11,89 @@
 #include <string>
 
 
-class VkConfig
-{
+class VkConfig {
 public:
-  VkConfig ();
-  virtual ~VkConfig ();
-  
-  void set_api_key(const std::string& key)
-  {
-    api_key = key;
-  }
-  const std::string& get_api_key() const
-  {
-    return api_key;
-  }
-private:
-  VkConfig (const VkConfig&);
+    VkConfig();
 
-  std::string api_key;
+    virtual ~VkConfig();
+
+    void set_api_key(const std::string& key)
+    {
+        api_key = key;
+    }
+
+    const std::string& get_api_key() const
+    {
+        return api_key;
+    }
+
+private:
+    VkConfig(const VkConfig&);
+
+    std::string api_key;
 
 };
 
-class ScgiConfig
-{
+class ScgiConfig {
 public:
-  ScgiConfig();
-  virtual ~ScgiConfig();
+    ScgiConfig();
 
-  const std::string& get_host() const
-  {
-    return host;
-  }
-  void set_host(const std::string& _host)
-  {
-    host = _host;
-  }
-  const u_short get_port() const
-  {
-    return port;
-  }
-  void set_port(u_short _port)
-  {
-    port = _port;
-  }
-  
+    virtual ~ScgiConfig();
+
+    const std::string& get_host() const
+    {
+        return host;
+    }
+
+    void set_host(const std::string& _host)
+    {
+        host = _host;
+    }
+
+    const u_short get_port() const
+    {
+        return port;
+    }
+
+    void set_port(u_short _port)
+    {
+        port = _port;
+    }
+
 private:
-  ScgiConfig (const ScgiConfig&);
+    ScgiConfig(const ScgiConfig&);
 
-  std::string host;
-  u_short port;
+    std::string host;
+    u_short port;
 };
 
 
-class GameConfig
-{
+class GameConfig {
 public:
 
-  int load_config(const char* fname);
+    int load_config(const char* fname);
 
-  const VkConfig& get_vk_config() const
-  {
-    return _vk;
-  }
-  const ScgiConfig& get_scgi_config() const
-  {
-    return _scgi;
-  }
+    const VkConfig& get_vk_config() const
+    {
+        return _vk;
+    }
 
-  static GameConfig& getInstance();
+    const ScgiConfig& get_scgi_config() const
+    {
+        return _scgi;
+    }
+
+    static GameConfig& getInstance();
 
 private:
-  GameConfig ();
-  GameConfig (const GameConfig& o);
-  virtual ~GameConfig ();
+    GameConfig();
 
-  VkConfig _vk;
-  ScgiConfig _scgi;
+    GameConfig(const GameConfig& o);
+
+    virtual ~GameConfig();
+
+    VkConfig _vk;
+    ScgiConfig _scgi;
 };
 
 extern GameConfig& game_config;

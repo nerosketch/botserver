@@ -15,39 +15,41 @@
 
 
 class SingleDialog;
+
 typedef std::shared_ptr<SingleDialog> spSingleDialog;
 
 
-class GameButton
-{
+class GameButton {
 public:
-  GameButton ();
-  GameButton (const GameButton& orig);
-  virtual ~GameButton ();
+    GameButton();
 
-  void onClick();
+    GameButton(const GameButton& orig);
+
+    virtual ~GameButton();
+
+    void onClick();
 
 private:
-  spSingleDialog target_dialog;
-  std::string button_text;
-  Color color;
+    spSingleDialog target_dialog;
+    std::string button_text;
+    Color color;
 };
+
 typedef std::shared_ptr<GameButton> spGameButton;
 typedef std::vector<spGameButton> GameButtons;
 
 
-
-
-class SingleDialog
-{
+class SingleDialog {
 public:
-  SingleDialog ();
-  SingleDialog (const SingleDialog& orig);
-  virtual ~SingleDialog ();
+    SingleDialog();
+
+    SingleDialog(const SingleDialog& orig);
+
+    virtual ~SingleDialog();
 
 
 private:
-  GameButtons buttons;
+    GameButtons buttons;
 };
 
 #endif /* SINGLEDIALOG_H */

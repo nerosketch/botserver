@@ -8,14 +8,16 @@
 #ifndef HTTPSERVERSCGI_H
 #define HTTPSERVERSCGI_H
 
-class HttpServerScgi
-{
+class HttpServerScgi {
 public:
-  HttpServerScgi ();
-  HttpServerScgi (const HttpServerScgi& orig);
-  virtual ~HttpServerScgi ();
-  
-  int run();
+    HttpServerScgi();
+
+    HttpServerScgi(const HttpServerScgi& orig);
+
+    virtual ~HttpServerScgi();
+
+    int run();
+
 private:
 
 };

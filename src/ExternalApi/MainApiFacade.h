@@ -8,12 +8,14 @@
 #ifndef MAINAPIFACADE_H
 #define MAINAPIFACADE_H
 
-class MainApiFacade
-{
+class MainApiFacade {
 public:
-  MainApiFacade ();
-  MainApiFacade (const MainApiFacade& orig);
-  virtual ~MainApiFacade ();
+    MainApiFacade();
+
+    MainApiFacade(const MainApiFacade& orig);
+
+    virtual ~MainApiFacade();
+
 private:
 
 };

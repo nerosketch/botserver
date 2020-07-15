@@ -8,12 +8,14 @@
 #ifndef GAMETIMER_H
 #define GAMETIMER_H
 
-class GameTimer
-{
+class GameTimer {
 public:
-  GameTimer ();
-  GameTimer (const GameTimer& orig);
-  virtual ~GameTimer ();
+    GameTimer();
+
+    GameTimer(const GameTimer& orig);
+
+    virtual ~GameTimer();
+
 private:
 
 };

@@ -7,9 +7,15 @@
 
 #include "MainApiFacade.h"
 
-MainApiFacade::MainApiFacade () { }
+MainApiFacade::MainApiFacade()
+{
+}
 
-MainApiFacade::MainApiFacade (const MainApiFacade& orig) { }
+MainApiFacade::MainApiFacade(const MainApiFacade& orig)
+{
+}
 
-MainApiFacade::~MainApiFacade () { }
+MainApiFacade::~MainApiFacade()
+{
+}
 

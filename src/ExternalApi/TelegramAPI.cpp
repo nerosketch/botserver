@@ -17,22 +17,28 @@ using nlohmann::json;
 using namespace std;
 
 
-TelegramAPI::TelegramAPI () { }
+TelegramAPI::TelegramAPI()
+{
+}
 
-TelegramAPI::TelegramAPI (const TelegramAPI& o) { }
+TelegramAPI::TelegramAPI(const TelegramAPI& o)
+{
+}
 
-TelegramAPI::~TelegramAPI () { }
+TelegramAPI::~TelegramAPI()
+{
+}
 
 
 void TelegramAPI::on_get_message(const RequestParamsMap& params,
-        const string& query_string, char *buffUot)
+        const string& query_string, char* buffUot)
 {
     // По идее get запросы telegram не шлёт через web hook.
 }
 
 
 void TelegramAPI::on_post_message(const RequestParamsMap& params,
-        const string& post_data, const string& query_string, char *buffUot)
+        const string& post_data, const string& query_string, char* buffUot)
 {
     // Сформировать объект сообщения
     // Передать сообщение в глобальную точку входа бота
@@ -64,9 +70,8 @@ void TelegramAPI::on_post_message(const RequestParamsMap& params,
     bool msg_channel_chat_created = false;
     int msg_migrate_to_chat_id = 0;
     int msg_migrate_from_chat_id = 0;
-    
-    
-    
+
+
     spTelegramUser msg_left_chat_member = make_shared<TelegramUser>(заполнить параметры);
     spTelegramUser msg_new_chat_member = make_shared<TelegramUser>(заполнить параметры);
 
@@ -121,824 +126,1007 @@ void TelegramAPI::on_post_message(const RequestParamsMap& params,
     GameInboxMessage msg("User telegram game message");
 
     string result = global_entrypoint_logic(msg);
-    strcpy( buffUot, result.c_str() );
+    strcpy(buffUot, result.c_str());
 }
 
 
 int TelegramAPI::setWebhook(const string& url)
 {
-  json j;
-  j["pi"] = 3.141;
-  cout << j << endl;
-  return 0;
+    json j;
+    j["pi"] = 3.141;
+    cout << j << endl;
+    return 0;
 }
 
 
-TelegramPhotoSize::TelegramPhotoSize () { }
-
-TelegramPhotoSize::TelegramPhotoSize (const string& file_id, int width,
-        int height, int file_size) :
-    _file_id (file_id), _width (width), _height (height),
-    _file_size (file_size) { }
-
-
-TelegramPhotoSize::TelegramPhotoSize (const TelegramPhotoSize& o) :
-    _file_id (o._file_id), _width (o._width), _height (o._height),
-    _file_size (o._file_size) { }
-
-
-TelegramPhotoSize::~TelegramPhotoSize () { }
-
-
-string TelegramPhotoSize::GetFileId () const
+TelegramPhotoSize::TelegramPhotoSize()
 {
-  return _file_id;
 }
 
-void TelegramPhotoSize::SetFileId (const string& file_id)
+TelegramPhotoSize::TelegramPhotoSize(const string& file_id, int width,
+        int height, int file_size)
+        :
+        _file_id(file_id), _width(width), _height(height),
+        _file_size(file_size)
 {
-    _file_id = file_id;
 }
 
-int TelegramPhotoSize::GetFileSize () const
+
+TelegramPhotoSize::TelegramPhotoSize(const TelegramPhotoSize& o)
+        :
+        _file_id(o._file_id), _width(o._width), _height(o._height),
+        _file_size(o._file_size)
 {
-    return _file_size;
 }
 
-void TelegramPhotoSize::SetFileSize (int file_size)
+
+TelegramPhotoSize::~TelegramPhotoSize()
 {
-    _file_size = file_size;
-}
-
-int TelegramPhotoSize::GetHeight () const
-{
-    return _height;
-}
-
-void TelegramPhotoSize::SetHeight (int height)
-{
-    _height = height;
-}
-
-int TelegramPhotoSize::GetWidth () const
-{
-    return _width;
-}
-
-void TelegramPhotoSize::SetWidth (int width)
-{
-    _width = width;
 }
 
 
-
-
-
-
-TelegramVideo::TelegramVideo () { }
-
-TelegramVideo::TelegramVideo (const string& file_id, int width, int height,
-        int duration, spTelegramPhotoSize thumb, const string& mime_type,
-        int file_size) :
-    _file_id (file_id), _width (width), _height (height),
-    _duration (duration), _thumb (thumb), _mime_type (mime_type),
-    _file_size (file_size) { }
-
-
-TelegramVideo::TelegramVideo (const TelegramVideo& o) :
-    _file_id (o._file_id), _width (o._width), _height (o._height),
-    _duration (o._duration), _thumb (o._thumb), _mime_type (o._mime_type),
-    _file_size (o._file_size) { }
-
-TelegramVideo::~TelegramVideo () { }
-
-
-int TelegramVideo::GetDuration () const
-{
-    return _duration;
-}
-
-void TelegramVideo::SetDuration (int duration)
-{
-    _duration = duration;
-}
-
-string TelegramVideo::GetFileId () const
+string TelegramPhotoSize::GetFileId() const
 {
     return _file_id;
 }
 
-void TelegramVideo::SetFileId (const string& file_id)
+void TelegramPhotoSize::SetFileId(const string& file_id)
 {
     _file_id = file_id;
 }
 
-int TelegramVideo::GetFileSize () const
+int TelegramPhotoSize::GetFileSize() const
 {
     return _file_size;
 }
 
-void TelegramVideo::SetFileSize (int file_size)
+void TelegramPhotoSize::SetFileSize(int file_size)
 {
     _file_size = file_size;
 }
 
-int TelegramVideo::GetHeight () const
+int TelegramPhotoSize::GetHeight() const
 {
     return _height;
 }
 
-void TelegramVideo::SetHeight (int height)
+void TelegramPhotoSize::SetHeight(int height)
 {
     _height = height;
 }
 
-string TelegramVideo::GetMimeType () const
-{
-    return _mime_type;
-}
-
-void TelegramVideo::SetMimeType (const string& mime_type)
-{
-    _mime_type = mime_type;
-}
-
-spTelegramPhotoSize TelegramVideo::GetThumb () const
-{
-    return _thumb;
-}
-
-void TelegramVideo::SetThumb (spTelegramPhotoSize thumb)
-{
-    _thumb = thumb;
-}
-
-int TelegramVideo::GetWidth () const
+int TelegramPhotoSize::GetWidth() const
 {
     return _width;
 }
 
-void TelegramVideo::SetWidth (int width)
+void TelegramPhotoSize::SetWidth(int width)
 {
     _width = width;
 }
 
 
+TelegramVideo::TelegramVideo()
+{
+}
+
+TelegramVideo::TelegramVideo(const string& file_id, int width, int height,
+        int duration, spTelegramPhotoSize thumb, const string& mime_type,
+        int file_size)
+        :
+        _file_id(file_id), _width(width), _height(height),
+        _duration(duration), _thumb(thumb), _mime_type(mime_type),
+        _file_size(file_size)
+{
+}
+
+
+TelegramVideo::TelegramVideo(const TelegramVideo& o)
+        :
+        _file_id(o._file_id), _width(o._width), _height(o._height),
+        _duration(o._duration), _thumb(o._thumb), _mime_type(o._mime_type),
+        _file_size(o._file_size)
+{
+}
+
+TelegramVideo::~TelegramVideo()
+{
+}
+
+
+int TelegramVideo::GetDuration() const
+{
+    return _duration;
+}
+
+void TelegramVideo::SetDuration(int duration)
+{
+    _duration = duration;
+}
+
+string TelegramVideo::GetFileId() const
+{
+    return _file_id;
+}
+
+void TelegramVideo::SetFileId(const string& file_id)
+{
+    _file_id = file_id;
+}
+
+int TelegramVideo::GetFileSize() const
+{
+    return _file_size;
+}
+
+void TelegramVideo::SetFileSize(int file_size)
+{
+    _file_size = file_size;
+}
+
+int TelegramVideo::GetHeight() const
+{
+    return _height;
+}
+
+void TelegramVideo::SetHeight(int height)
+{
+    _height = height;
+}
+
+const string& TelegramVideo::GetMimeType() const
+{
+    return _mime_type;
+}
+
+void TelegramVideo::SetMimeType(const string& mime_type)
+{
+    _mime_type = mime_type;
+}
+
+spTelegramPhotoSize TelegramVideo::GetThumb() const
+{
+    return _thumb;
+}
+
+void TelegramVideo::SetThumb(spTelegramPhotoSize thumb)
+{
+    _thumb = thumb;
+}
+
+int TelegramVideo::GetWidth() const
+{
+    return _width;
+}
+
+void TelegramVideo::SetWidth(int width)
+{
+    _width = width;
+}
+
+
+TelegramVoice::TelegramVoice()
+{
+}
+
+TelegramVoice::TelegramVoice(const TelegramVoice& o)
+{
+}
+
+TelegramVoice::~TelegramVoice()
+{
+}
+
+int
+TelegramVoice::GetDuration() const
+{
+    return _duration;
+}
+
+void
+TelegramVoice::SetDuration(int duration)
+{
+    _duration = duration;
+}
+
+string
+TelegramVoice::GetFileId() const
+{
+    return _file_id;
+}
+
+void
+TelegramVoice::SetFileId(const string& file_id)
+{
+    _file_id = file_id;
+}
+
+int
+TelegramVoice::GetFileSize() const
+{
+    return _file_size;
+}
+
+void
+TelegramVoice::SetFileSize(int file_size)
+{
+    _file_size = file_size;
+}
+
+string
+TelegramVoice::GetMimeType() const
+{
+    return _mime_type;
+}
+
+void
+TelegramVoice::SetMimeType(const string& mime_type)
+{
+    _mime_type = mime_type;
+}
+
+
+
+TelegramContact::TelegramContact()
+{
+}
+
+TelegramContact::TelegramContact(const TelegramContact& o)
+{
+}
+
+TelegramContact::~TelegramContact()
+{
+}
+
+
+const string&
+TelegramContact::GetFirstName() const
+{
+    return _first_name;
+}
+
+void
+TelegramContact::SetFirstName(const string& first_name)
+{
+    _first_name = first_name;
+}
+
+const string&
+TelegramContact::GetLastName() const
+{
+    return _last_name;
+}
+
+void
+TelegramContact::SetLastName(const string& last_name)
+{
+    _last_name = last_name;
+}
+
+const string&
+TelegramContact::GetPhoneNumber() const
+{
+    return _phone_number;
+}
 
+void
+TelegramContact::SetPhoneNumber(const string& phone_number)
+{
+    _phone_number = phone_number;
+}
+
+int
+TelegramContact::GetUserId() const
+{
+    return _user_id;
+}
 
+void
+TelegramContact::SetUserId(int user_id)
+{
+    _user_id = user_id;
+}
 
 
-TelegramVoice::TelegramVoice () { }
 
-TelegramVoice::TelegramVoice (const TelegramVoice& o) { }
+TelegramLocation::TelegramLocation()
+{
+}
 
-TelegramVoice::~TelegramVoice () { }
+TelegramLocation::TelegramLocation(const TelegramLocation& o)
+{
+}
 
+TelegramLocation::~TelegramLocation()
+{
+}
 
 
+TelegramVenue::TelegramVenue()
+{
+}
 
-TelegramContact::TelegramContact () { }
+TelegramVenue::TelegramVenue(const TelegramVenue& o)
+{
+}
 
-TelegramContact::TelegramContact (const TelegramContact& o) { }
+TelegramVenue::~TelegramVenue()
+{
+}
 
-TelegramContact::~TelegramContact () { }
 
+TelegramUserProfilePhotos::TelegramUserProfilePhotos()
+{
+}
 
+TelegramUserProfilePhotos::TelegramUserProfilePhotos(const TelegramUserProfilePhotos& o)
+{
+}
 
+TelegramUserProfilePhotos::~TelegramUserProfilePhotos()
+{
+}
 
-TelegramLocation::TelegramLocation () { }
 
-TelegramLocation::TelegramLocation (const TelegramLocation& o) { }
+TelegramSticker::TelegramSticker()
+{
+}
 
-TelegramLocation::~TelegramLocation () { }
+TelegramSticker::TelegramSticker(const TelegramSticker& o)
+{
+}
 
+TelegramSticker::~TelegramSticker()
+{
+}
 
 
+TelegramAudio::TelegramAudio()
+{
+}
 
-TelegramVenue::TelegramVenue () { }
+TelegramAudio::TelegramAudio(const TelegramAudio& o)
+{
+}
 
-TelegramVenue::TelegramVenue (const TelegramVenue& o) { }
+TelegramAudio::~TelegramAudio()
+{
+}
 
-TelegramVenue::~TelegramVenue () { }
 
+TelegramDocument::TelegramDocument()
+{
+}
 
+TelegramDocument::TelegramDocument(const TelegramDocument& o)
+{
+}
 
+TelegramDocument::~TelegramDocument()
+{
+}
 
-TelegramUserProfilePhotos::TelegramUserProfilePhotos () { }
 
-TelegramUserProfilePhotos::TelegramUserProfilePhotos (const TelegramUserProfilePhotos& o) { }
+TelegramChat::TelegramChat()
+{
+}
 
-TelegramUserProfilePhotos::~TelegramUserProfilePhotos () { }
+TelegramChat::TelegramChat(const TelegramChat& o)
+{
+}
 
+TelegramChat::~TelegramChat()
+{
+}
 
 
+TelegramUser::TelegramUser()
+{
+}
 
-TelegramSticker::TelegramSticker () { }
+TelegramUser::TelegramUser(const TelegramUser& o)
+{
+}
 
-TelegramSticker::TelegramSticker (const TelegramSticker& o) { }
+TelegramUser::~TelegramUser()
+{
+}
 
-TelegramSticker::~TelegramSticker () { }
 
+TelegramCallbackQuery::TelegramCallbackQuery()
+{
+}
 
+TelegramCallbackQuery::TelegramCallbackQuery(const TelegramCallbackQuery& o)
+{
+}
 
+TelegramCallbackQuery::~TelegramCallbackQuery()
+{
+}
 
-TelegramAudio::TelegramAudio () { }
 
-TelegramAudio::TelegramAudio (const TelegramAudio& o) { }
+TelegramChosenInlineResult::TelegramChosenInlineResult()
+{
+}
 
-TelegramAudio::~TelegramAudio () { }
 
-
-
-
-TelegramDocument::TelegramDocument () { }
-
-TelegramDocument::TelegramDocument (const TelegramDocument& o) { }
-
-TelegramDocument::~TelegramDocument () { }
-
-
-
-
-TelegramChat::TelegramChat () { }
-
-TelegramChat::TelegramChat (const TelegramChat& o) { }
-
-TelegramChat::~TelegramChat () { }
-
-
-
-
-TelegramUser::TelegramUser () { }
-
-TelegramUser::TelegramUser (const TelegramUser& o) { }
-
-TelegramUser::~TelegramUser () { }
-
-
-
-
-TelegramCallbackQuery::TelegramCallbackQuery () { }
-
-TelegramCallbackQuery::TelegramCallbackQuery (const TelegramCallbackQuery& o) { }
-
-TelegramCallbackQuery::~TelegramCallbackQuery () { }
-
-
-
-
-TelegramChosenInlineResult::TelegramChosenInlineResult () { }
-
-
-TelegramChosenInlineResult::TelegramChosenInlineResult (const string& result_id,
+TelegramChosenInlineResult::TelegramChosenInlineResult(const string& result_id,
         spTelegramUser from,
         spTelegramLocation location,
-        string inline_message_id, string query):
-    _result_id (result_id),
-    _from (from),
-    _location (location),
-    _inline_message_id (inline_message_id),
-    _query (query) { }
+        string inline_message_id, string query)
+        :
+        _result_id(result_id),
+        _from(from),
+        _location(location),
+        _inline_message_id(inline_message_id),
+        _query(query)
+{
+}
 
 
-TelegramChosenInlineResult::TelegramChosenInlineResult (const TelegramChosenInlineResult& o):
-    _result_id (o._result_id),
-    _from (o._from),
-    _location (o._location),
-    _inline_message_id (o._inline_message_id),
-    _query (o._query) { }
+TelegramChosenInlineResult::TelegramChosenInlineResult(const TelegramChosenInlineResult& o)
+        :
+        _result_id(o._result_id),
+        _from(o._from),
+        _location(o._location),
+        _inline_message_id(o._inline_message_id),
+        _query(o._query)
+{
+}
 
 
-TelegramChosenInlineResult::~TelegramChosenInlineResult () { }
+TelegramChosenInlineResult::~TelegramChosenInlineResult()
+{
+}
 
 
-
-spTelegramUser TelegramChosenInlineResult::GetFrom () const
+spTelegramUser TelegramChosenInlineResult::GetFrom() const
 {
     return _from;
 }
 
-void TelegramChosenInlineResult::SetFrom (spTelegramUser from)
+void TelegramChosenInlineResult::SetFrom(spTelegramUser from)
 {
     _from = from;
 }
 
-string TelegramChosenInlineResult::GetInlineMessageId () const
+string TelegramChosenInlineResult::GetInlineMessageId() const
 {
     return _inline_message_id;
 }
 
-void TelegramChosenInlineResult::SetInlineMessageId (const string& inline_message_id)
+void TelegramChosenInlineResult::SetInlineMessageId(const string& inline_message_id)
 {
     _inline_message_id = inline_message_id;
 }
 
-spTelegramLocation TelegramChosenInlineResult::GetLocation () const
+spTelegramLocation TelegramChosenInlineResult::GetLocation() const
 {
     return _location;
 }
 
-void TelegramChosenInlineResult::SetLocation (spTelegramLocation location)
+void TelegramChosenInlineResult::SetLocation(spTelegramLocation location)
 {
     _location = location;
 }
 
-string TelegramChosenInlineResult::GetQuery () const
+string TelegramChosenInlineResult::GetQuery() const
 {
     return _query;
 }
 
-void TelegramChosenInlineResult::SetQuery (const string& query)
+void TelegramChosenInlineResult::SetQuery(const string& query)
 {
     _query = query;
 }
 
-string TelegramChosenInlineResult::GetResultId () const
+string TelegramChosenInlineResult::GetResultId() const
 {
     return _result_id;
 }
 
-void TelegramChosenInlineResult::SetResultId (const string& result_id)
+void TelegramChosenInlineResult::SetResultId(const string& result_id)
 {
     _result_id = result_id;
 }
 
 
+TelegramInlineQuery::TelegramInlineQuery()
+{
+}
 
 
+TelegramInlineQuery::TelegramInlineQuery(const string& id, spTelegramUser from,
+        spTelegramLocation location, const string& query, const string& offset)
+        :
+        _id(id), _from(from), _location(location), _query(query), _offset(offset)
+{
+}
 
 
-TelegramInlineQuery::TelegramInlineQuery () { }
+TelegramInlineQuery::TelegramInlineQuery(const TelegramInlineQuery& o)
+        :
+        _id(o._id), _from(o._from), _location(o._location),
+        _query(o._query), _offset(o._offset)
+{
+}
 
 
-TelegramInlineQuery::TelegramInlineQuery (const string& id, spTelegramUser from,
-        spTelegramLocation location, const string& query, const string& offset) :
-  _id (id), _from (from), _location (location), _query (query), _offset (offset) { }
+TelegramInlineQuery::~TelegramInlineQuery()
+{
+}
 
 
-TelegramInlineQuery::TelegramInlineQuery (const TelegramInlineQuery& o) :
-        _id (o._id), _from (o._from), _location (o._location),
-        _query (o._query), _offset (o._offset) { }
-
-
-TelegramInlineQuery::~TelegramInlineQuery () { }
-
-
-
-spTelegramUser TelegramInlineQuery::GetFrom () const
+spTelegramUser TelegramInlineQuery::GetFrom() const
 {
     return _from;
 }
 
-void TelegramInlineQuery::SetFrom (spTelegramUser from)
+void TelegramInlineQuery::SetFrom(spTelegramUser from)
 {
     _from = from;
 }
 
-string TelegramInlineQuery::GetId () const
+string TelegramInlineQuery::GetId() const
 {
     return _id;
 }
 
-void TelegramInlineQuery::SetId (const string& id)
+void TelegramInlineQuery::SetId(const string& id)
 {
     _id = id;
 }
 
-spTelegramLocation TelegramInlineQuery::GetLocation () const
+spTelegramLocation TelegramInlineQuery::GetLocation() const
 {
     return _location;
 }
 
-void TelegramInlineQuery::SetLocation (spTelegramLocation location)
+void TelegramInlineQuery::SetLocation(spTelegramLocation location)
 {
     _location = location;
 }
 
-string TelegramInlineQuery::GetOffset () const
+string TelegramInlineQuery::GetOffset() const
 {
     return _offset;
 }
 
-void TelegramInlineQuery::SetOffset (const string& offset)
+void TelegramInlineQuery::SetOffset(const string& offset)
 {
     _offset = offset;
 }
 
-string TelegramInlineQuery::GetQuery () const
+string TelegramInlineQuery::GetQuery() const
 {
     return _query;
 }
 
-void TelegramInlineQuery::SetQuery (const string& query)
+void TelegramInlineQuery::SetQuery(const string& query)
 {
     _query = query;
 }
 
 
+TelegramMessageEntity::TelegramMessageEntity()
+{
+}
+
+TelegramMessageEntity::TelegramMessageEntity(const TelegramMessageEntity& o)
+{
+}
+
+TelegramMessageEntity::~TelegramMessageEntity()
+{
+}
 
 
+TelegramMessage::TelegramMessage()
+{
+}
+
+TelegramMessage::TelegramMessage(int message_id, spTelegramUser from, time_t date, spTelegramChat chat,
+        spTelegramUser forward_from, time_t forward_date, const string& text,
+        const vector<TelegramMessageEntity>& entities, spTelegramAudio audio,
+        spTelegramDocument document, spVectorTelegramPhotoSize photo,
+        spTelegramSticker sticker, spTelegramVideo video,
+        spTelegramVoice voice, const string& caption, spTelegramContact contact,
+        spTelegramLocation location, spTelegramVenue venue,
+        spTelegramUser new_chat_member, spTelegramUser left_chat_member,
+        const string& new_chat_title, spVectorTelegramPhotoSize new_chat_photo,
+        bool delete_chat_photo, bool group_chat_created,
+        bool supergroup_chat_created, bool channel_chat_created,
+        int migrate_to_chat_id, int migrate_from_chat_id)
+        :
+        _message_id(message_id), _from(from), _date(date), _chat(chat), _forward_from(forward_from),
+        _forward_date(forward_date), _text(text), _entities(entities),
+        _audio(audio), _document(document), _photo(photo), _sticker(sticker),
+        _video(video), _voice(voice), _caption(caption), _contact(contact),
+        _location(location), _venue(venue), _new_chat_member(new_chat_member),
+        _left_chat_member(left_chat_member), _new_chat_title(new_chat_title),
+        _new_chat_photo(new_chat_photo), _delete_chat_photo(delete_chat_photo),
+        _group_chat_created(group_chat_created),
+        _supergroup_chat_created(supergroup_chat_created),
+        _channel_chat_created(channel_chat_created), _migrate_to_chat_id(migrate_to_chat_id),
+        _migrate_from_chat_id(migrate_from_chat_id)
+{
+}
+
+TelegramMessage::TelegramMessage(const TelegramMessage& o)
+        :
+        _message_id(o._message_id), _from(o._from), _date(o._date),
+        _chat(o._chat), _forward_from(o._forward_from),
+        _forward_date(o._forward_date), _text(o._text), _entities(o._entities),
+        _audio(o._audio), _document(o._document), _photo(o._photo), _sticker(o._sticker),
+        _video(o._video), _voice(o._voice), _caption(o._caption), _contact(o._contact),
+        _location(o._location), _venue(o._venue), _new_chat_member(o._new_chat_member),
+        _left_chat_member(o._left_chat_member), _new_chat_title(o._new_chat_title),
+        _new_chat_photo(o._new_chat_photo), _delete_chat_photo(o._delete_chat_photo),
+        _group_chat_created(o._group_chat_created),
+        _supergroup_chat_created(o._supergroup_chat_created),
+        _channel_chat_created(o._channel_chat_created), _migrate_to_chat_id(o._migrate_to_chat_id),
+        _migrate_from_chat_id(o._migrate_from_chat_id)
+{
+}
 
 
-TelegramMessageEntity::TelegramMessageEntity () { }
-
-TelegramMessageEntity::TelegramMessageEntity (const TelegramMessageEntity& o) { }
-
-TelegramMessageEntity::~TelegramMessageEntity () { }
+TelegramMessage::~TelegramMessage()
+{
+}
 
 
-
-
-TelegramMessage::TelegramMessage () { }
-
-TelegramMessage::TelegramMessage (int message_id, spTelegramUser from, time_t date, spTelegramChat chat,
-                   spTelegramUser forward_from, time_t forward_date, const string& text,
-                   const vector<TelegramMessageEntity>& entities, spTelegramAudio audio,
-                   spTelegramDocument document, spVectorTelegramPhotoSize photo,
-                   spTelegramSticker sticker, spTelegramVideo video,
-                   spTelegramVoice voice, const string& caption, spTelegramContact contact,
-                   spTelegramLocation location, spTelegramVenue venue,
-                   spTelegramUser new_chat_member, spTelegramUser left_chat_member,
-                   const string& new_chat_title, spVectorTelegramPhotoSize new_chat_photo,
-                   bool delete_chat_photo, bool group_chat_created,
-                   bool supergroup_chat_created, bool channel_chat_created,
-                   int migrate_to_chat_id, int migrate_from_chat_id) :
-        _message_id (message_id), _from (from), _date (date), _chat (chat), _forward_from (forward_from),
-        _forward_date (forward_date), _text (text), _entities (entities),
-        _audio (audio), _document (document), _photo (photo), _sticker (sticker),
-        _video (video), _voice (voice), _caption (caption), _contact (contact),
-        _location (location), _venue (venue), _new_chat_member (new_chat_member),
-        _left_chat_member (left_chat_member), _new_chat_title (new_chat_title),
-        _new_chat_photo (new_chat_photo), _delete_chat_photo (delete_chat_photo),
-        _group_chat_created (group_chat_created),
-        _supergroup_chat_created (supergroup_chat_created),
-        _channel_chat_created (channel_chat_created), _migrate_to_chat_id (migrate_to_chat_id),
-        _migrate_from_chat_id (migrate_from_chat_id) { }
-
-TelegramMessage::TelegramMessage (const TelegramMessage& o) :
-        _message_id (o._message_id), _from (o._from), _date (o._date),
-        _chat (o._chat), _forward_from (o._forward_from),
-        _forward_date (o._forward_date), _text (o._text), _entities (o._entities),
-        _audio (o._audio), _document (o._document), _photo (o._photo), _sticker (o._sticker),
-        _video (o._video), _voice (o._voice), _caption (o._caption), _contact (o._contact),
-        _location (o._location), _venue (o._venue), _new_chat_member (o._new_chat_member),
-        _left_chat_member (o._left_chat_member), _new_chat_title (o._new_chat_title),
-        _new_chat_photo (o._new_chat_photo), _delete_chat_photo (o._delete_chat_photo),
-        _group_chat_created (o._group_chat_created),
-        _supergroup_chat_created (o._supergroup_chat_created),
-        _channel_chat_created (o._channel_chat_created), _migrate_to_chat_id (o._migrate_to_chat_id),
-        _migrate_from_chat_id (o._migrate_from_chat_id) { }
-
-
-
-TelegramMessage::~TelegramMessage () { }
-
-
-spTelegramAudio TelegramMessage::GetAudio () const
+spTelegramAudio TelegramMessage::GetAudio() const
 {
     return _audio;
 }
 
-void TelegramMessage::SetAudio (spTelegramAudio audio)
+void TelegramMessage::SetAudio(spTelegramAudio audio)
 {
     _audio = audio;
 }
 
-string TelegramMessage::GetCaption () const
+string TelegramMessage::GetCaption() const
 {
     return _caption;
 }
 
-void TelegramMessage::SetCaption (const string& caption)
+void TelegramMessage::SetCaption(const string& caption)
 {
     _caption = caption;
 }
 
-bool TelegramMessage::IsChannelChatCreated () const
+bool TelegramMessage::IsChannelChatCreated() const
 {
     return _channel_chat_created;
 }
 
-void TelegramMessage::SetChannelChatCreated (bool channel_chat_created)
+void TelegramMessage::SetChannelChatCreated(bool channel_chat_created)
 {
     _channel_chat_created = channel_chat_created;
 }
 
-spTelegramChat TelegramMessage::GetChat () const
+spTelegramChat TelegramMessage::GetChat() const
 {
     return _chat;
 }
 
-void TelegramMessage::SetChat (spTelegramChat chat)
+void TelegramMessage::SetChat(spTelegramChat chat)
 {
     _chat = chat;
 }
 
-spTelegramContact TelegramMessage::GetContact () const
+spTelegramContact TelegramMessage::GetContact() const
 {
     return _contact;
 }
 
-void TelegramMessage::SetContact (spTelegramContact contact)
+void TelegramMessage::SetContact(spTelegramContact contact)
 {
     _contact = contact;
 }
 
-time_t TelegramMessage::GetDate () const
+time_t TelegramMessage::GetDate() const
 {
     return _date;
 }
 
-void TelegramMessage::SetDate (time_t date)
+void TelegramMessage::SetDate(time_t date)
 {
     _date = date;
 }
 
-bool TelegramMessage::IsDeleteChatPhoto () const
+bool TelegramMessage::IsDeleteChatPhoto() const
 {
     return _delete_chat_photo;
 }
 
-void TelegramMessage::SetDeleteChatPhoto (bool delete_chat_photo)
+void TelegramMessage::SetDeleteChatPhoto(bool delete_chat_photo)
 {
     _delete_chat_photo = delete_chat_photo;
 }
 
-spTelegramDocument TelegramMessage::GetDocument () const
+spTelegramDocument TelegramMessage::GetDocument() const
 {
     return _document;
 }
 
-void TelegramMessage::SetDocument (spTelegramDocument document)
+void TelegramMessage::SetDocument(spTelegramDocument document)
 {
     _document = document;
 }
 
-vector<TelegramMessageEntity> TelegramMessage::GetEntities () const
+vector<TelegramMessageEntity> TelegramMessage::GetEntities() const
 {
     return _entities;
 }
 
-void TelegramMessage::SetEntities (vector<TelegramMessageEntity> entities)
+void TelegramMessage::SetEntities(vector<TelegramMessageEntity> entities)
 {
     _entities = entities;
 }
 
-time_t TelegramMessage::GetForwardDate () const
+time_t TelegramMessage::GetForwardDate() const
 {
     return _forward_date;
 }
 
-void TelegramMessage::SetForwardDate (time_t forward_date)
+void TelegramMessage::SetForwardDate(time_t forward_date)
 {
     _forward_date = forward_date;
 }
 
-spTelegramUser TelegramMessage::GetForwardFrom () const
+spTelegramUser TelegramMessage::GetForwardFrom() const
 {
     return _forward_from;
 }
 
-void TelegramMessage::SetForwardFrom (spTelegramUser forward_from)
+void TelegramMessage::SetForwardFrom(spTelegramUser forward_from)
 {
     _forward_from = forward_from;
 }
 
-spTelegramUser TelegramMessage::GetFrom () const
+spTelegramUser TelegramMessage::GetFrom() const
 {
     return _from;
 }
 
-void TelegramMessage::SetFrom (spTelegramUser from)
+void TelegramMessage::SetFrom(spTelegramUser from)
 {
     _from = from;
 }
 
-bool TelegramMessage::IsGroupChatCreated () const
+bool TelegramMessage::IsGroupChatCreated() const
 {
     return _group_chat_created;
 }
 
-void TelegramMessage::SetGroupChatCreated (bool group_chat_created)
+void TelegramMessage::SetGroupChatCreated(bool group_chat_created)
 {
     _group_chat_created = group_chat_created;
 }
 
-spTelegramUser TelegramMessage::GetLeftChatMember () const
+spTelegramUser TelegramMessage::GetLeftChatMember() const
 {
     return _left_chat_member;
 }
 
-void TelegramMessage::SetLeftChatMember (spTelegramUser left_chat_member)
+void TelegramMessage::SetLeftChatMember(spTelegramUser left_chat_member)
 {
     _left_chat_member = left_chat_member;
 }
 
-spTelegramLocation TelegramMessage::GetLocation () const
+spTelegramLocation TelegramMessage::GetLocation() const
 {
     return _location;
 }
 
-void TelegramMessage::SetLocation (spTelegramLocation location)
+void TelegramMessage::SetLocation(spTelegramLocation location)
 {
     _location = location;
 }
 
-int TelegramMessage::GetMessageId () const
+int TelegramMessage::GetMessageId() const
 {
-  return _message_id;
+    return _message_id;
 }
 
-void TelegramMessage::SetMessageId (int message_id)
+void TelegramMessage::SetMessageId(int message_id)
 {
     _message_id = message_id;
 }
 
-int TelegramMessage::GetMigrateFromChatId () const
+int TelegramMessage::GetMigrateFromChatId() const
 {
     return _migrate_from_chat_id;
 }
 
-void TelegramMessage::SetMigrateFromChatId (int migrate_from_chat_id)
+void TelegramMessage::SetMigrateFromChatId(int migrate_from_chat_id)
 {
     _migrate_from_chat_id = migrate_from_chat_id;
 }
 
-int TelegramMessage::GetMigrateToChatId () const
+int TelegramMessage::GetMigrateToChatId() const
 {
     return _migrate_to_chat_id;
 }
 
-void TelegramMessage::SetMigrateToChatId (int migrate_to_chat_id)
+void TelegramMessage::SetMigrateToChatId(int migrate_to_chat_id)
 {
     _migrate_to_chat_id = migrate_to_chat_id;
 }
 
-spTelegramUser TelegramMessage::GetNewChatMember () const
+spTelegramUser TelegramMessage::GetNewChatMember() const
 {
     return _new_chat_member;
 }
 
-void TelegramMessage::SetNewChatMember (spTelegramUser new_chat_member)
+void TelegramMessage::SetNewChatMember(spTelegramUser new_chat_member)
 {
     _new_chat_member = new_chat_member;
 }
 
-spVectorTelegramPhotoSize TelegramMessage::GetNewChatPhoto () const
+spVectorTelegramPhotoSize TelegramMessage::GetNewChatPhoto() const
 {
     return _new_chat_photo;
 }
 
-void TelegramMessage::SetNewChatPhoto (spVectorTelegramPhotoSize new_chat_photo)
+void TelegramMessage::SetNewChatPhoto(spVectorTelegramPhotoSize new_chat_photo)
 {
     _new_chat_photo = new_chat_photo;
 }
 
-string TelegramMessage::GetNewChatTitle () const
+string TelegramMessage::GetNewChatTitle() const
 {
     return _new_chat_title;
 }
 
-void TelegramMessage::SetNewChatTitle (const string& new_chat_title)
+void TelegramMessage::SetNewChatTitle(const string& new_chat_title)
 {
     _new_chat_title = new_chat_title;
 }
 
-spVectorTelegramPhotoSize TelegramMessage::GetPhoto () const
+spVectorTelegramPhotoSize TelegramMessage::GetPhoto() const
 {
-  return _photo;
+    return _photo;
 }
 
-void TelegramMessage::SetPhoto (spVectorTelegramPhotoSize photo)
+void TelegramMessage::SetPhoto(spVectorTelegramPhotoSize photo)
 {
     _photo = photo;
 }
 
-spTelegramSticker TelegramMessage::GetSticker () const
+spTelegramSticker TelegramMessage::GetSticker() const
 {
     return _sticker;
 }
 
-void TelegramMessage::SetSticker (spTelegramSticker sticker)
+void TelegramMessage::SetSticker(spTelegramSticker sticker)
 {
     _sticker = sticker;
 }
 
-bool TelegramMessage::IsSupergroupChatCreated () const
+bool TelegramMessage::IsSupergroupChatCreated() const
 {
     return _supergroup_chat_created;
 }
 
-void TelegramMessage::SetSupergroupChatCreated (bool supergroup_chat_created)
+void TelegramMessage::SetSupergroupChatCreated(bool supergroup_chat_created)
 {
     _supergroup_chat_created = supergroup_chat_created;
 }
 
-string TelegramMessage::GetText () const
+string TelegramMessage::GetText() const
 {
     return _text;
 }
 
-void TelegramMessage::SetText (const string& text)
+void TelegramMessage::SetText(const string& text)
 {
     _text = text;
 }
 
-spTelegramVenue TelegramMessage::GetVenue () const
+spTelegramVenue TelegramMessage::GetVenue() const
 {
-  return _venue;
+    return _venue;
 }
 
-void TelegramMessage::SetVenue (spTelegramVenue venue)
+void TelegramMessage::SetVenue(spTelegramVenue venue)
 {
     _venue = venue;
 }
 
-spTelegramVideo TelegramMessage::GetVideo () const
+spTelegramVideo TelegramMessage::GetVideo() const
 {
     return _video;
 }
 
-void TelegramMessage::SetVideo (spTelegramVideo video)
+void TelegramMessage::SetVideo(spTelegramVideo video)
 {
     _video = video;
 }
 
-spTelegramVoice TelegramMessage::GetVoice () const
+spTelegramVoice TelegramMessage::GetVoice() const
 {
     return _voice;
 }
 
-void TelegramMessage::SetVoice (spTelegramVoice voice)
+void TelegramMessage::SetVoice(spTelegramVoice voice)
 {
     _voice = voice;
 }
 
 
+TelegramWebhookUpdate::TelegramWebhookUpdate()
+{
+}
 
+TelegramWebhookUpdate::TelegramWebhookUpdate(const TelegramWebhookUpdate& o)
+{
+}
 
+TelegramWebhookUpdate::~TelegramWebhookUpdate()
+{
+}
 
-TelegramWebhookUpdate::TelegramWebhookUpdate () { }
+TelegramWebhookUpdate::TelegramWebhookUpdate(uint32_t update_id,
+        spTelegramMessage message,
+        spTelegramInlineQuery inline_query,
+        spTelegramChosenInlineResult chosen_inline_result,
+        spTelegramCallbackQuery callback_query)
+        :
+        _update_id(update_id), _message(message), _inline_query(inline_query),
+        _chosen_inline_result(chosen_inline_result), _callback_query(callback_query)
+{
+}
 
-TelegramWebhookUpdate::TelegramWebhookUpdate (const TelegramWebhookUpdate& o) { }
-
-TelegramWebhookUpdate::~TelegramWebhookUpdate () { }
-
-TelegramWebhookUpdate::TelegramWebhookUpdate (uint32_t update_id,
-                                              spTelegramMessage message,
-                                              spTelegramInlineQuery inline_query,
-                                              spTelegramChosenInlineResult chosen_inline_result,
-                                              spTelegramCallbackQuery callback_query) :
-  _update_id (update_id), _message (message), _inline_query (inline_query),
-  _chosen_inline_result (chosen_inline_result), _callback_query (callback_query)
-{ }
-
-spTelegramMessage TelegramWebhookUpdate::GetMessage () const
-  {
+spTelegramMessage TelegramWebhookUpdate::GetMessage() const
+{
     return _message;
-  }
+}
 
-void TelegramWebhookUpdate::SetMessage (spTelegramMessage message)
+void TelegramWebhookUpdate::SetMessage(spTelegramMessage message)
 {
     _message = message;
 }
 
-uint32_t TelegramWebhookUpdate::GetUpdateId () const
+uint32_t TelegramWebhookUpdate::GetUpdateId() const
 {
     return _update_id;
 }
 
-void TelegramWebhookUpdate::SetUpdateId (uint32_t update_id)
+void TelegramWebhookUpdate::SetUpdateId(uint32_t update_id)
 {
     _update_id = update_id;
 }
 
-spTelegramCallbackQuery TelegramWebhookUpdate::GetCallbackQuery () const
+spTelegramCallbackQuery TelegramWebhookUpdate::GetCallbackQuery() const
 {
     return _callback_query;
 }
 
-void TelegramWebhookUpdate::SetCallbackQuery (spTelegramCallbackQuery callback_query)
+void TelegramWebhookUpdate::SetCallbackQuery(spTelegramCallbackQuery callback_query)
 {
     _callback_query = callback_query;
 }
 
-spTelegramChosenInlineResult TelegramWebhookUpdate::GetChosenInlineResult () const
+spTelegramChosenInlineResult TelegramWebhookUpdate::GetChosenInlineResult() const
 {
     return _chosen_inline_result;
 }
 
-void TelegramWebhookUpdate::SetChosenInlineResult (spTelegramChosenInlineResult chosen_inline_result)
+void TelegramWebhookUpdate::SetChosenInlineResult(spTelegramChosenInlineResult chosen_inline_result)
 {
     _chosen_inline_result = chosen_inline_result;
 }
 
-spTelegramInlineQuery TelegramWebhookUpdate::GetInlineQuery () const
+spTelegramInlineQuery TelegramWebhookUpdate::GetInlineQuery() const
 {
     return _inline_query;
 }
 
-void TelegramWebhookUpdate::SetInlineQuery (spTelegramInlineQuery inline_query)
+void TelegramWebhookUpdate::SetInlineQuery(spTelegramInlineQuery inline_query)
 {
     _inline_query = inline_query;
 }

@@ -7,9 +7,15 @@
 
 #include "GameStorage.h"
 
-GameStorage::GameStorage () { }
+GameStorage::GameStorage()
+{
+}
 
-GameStorage::GameStorage (const GameStorage& orig) { }
+GameStorage::GameStorage(const GameStorage& orig)
+{
+}
 
-GameStorage::~GameStorage () { }
+GameStorage::~GameStorage()
+{
+}
 

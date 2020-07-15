@@ -13,24 +13,40 @@
 
 using namespace std;
 
-HttpServerScgi::HttpServerScgi () { }
+HttpServerScgi::HttpServerScgi()
+{
+}
 
-HttpServerScgi::HttpServerScgi (const HttpServerScgi& orig) { }
+HttpServerScgi::HttpServerScgi(const HttpServerScgi& orig)
+{
+}
 
-HttpServerScgi::~HttpServerScgi () { }
+HttpServerScgi::~HttpServerScgi()
+{
+}
 
 
-template <class T>
+template<class T>
 class TemplateApiHandler : public IScgiHandler {
 private:
-    TemplateApiHandler(const TemplateApiHandler&) {}
+    TemplateApiHandler(const TemplateApiHandler&)
+    {
+    }
+
     T _api;
 
 public:
-    TemplateApiHandler() : _api() {}
-    virtual ~TemplateApiHandler() {}
+    TemplateApiHandler()
+            :_api()
+    {
+    }
 
-    virtual void get(const RequestParamsMap& params, const string& query_string, char *buffUot) {
+    virtual ~TemplateApiHandler()
+    {
+    }
+
+    virtual void get(const RequestParamsMap& params, const string& query_string, char* buffUot)
+    {
 
 /*
 * Example of params:
@@ -63,28 +79,30 @@ Param: SERVER_PROTOCOL [HTTP/1.1]
         const string& api_content_type = _api.get_content_type_header();
         addHeader(api_content_type);
 
-        _api.on_get_message (params, query_string, buffUot);
+        _api.on_get_message(params, query_string, buffUot);
     }
-  virtual void post(const RequestParamsMap& params, const string& post_data, const string& query_string, char *buffUot) {}
+
+    virtual void
+    post(const RequestParamsMap& params, const string& post_data, const string& query_string, char* buffUot)
+    {
+    }
 };
 
 int HttpServerScgi::run()
 {
     scgiServer scgi;
 
-    if (scgi.checkPid())
-      {
+    if (scgi.checkPid()) {
         cerr << "the pid file exist or daemon already started\n" << endl;
         return 1;
-      }
+    }
 
     // initialize server, bind and listen socket
-    const ScgiConfig &scgi_conf = game_config.get_scgi_config ();
-    if (scgi.init(scgi_conf.get_host().c_str(), scgi_conf.get_port ()) )
-      {
+    const ScgiConfig& scgi_conf = game_config.get_scgi_config();
+    if (scgi.init(scgi_conf.get_host().c_str(), scgi_conf.get_port())) {
         cerr << "server stopped\n";
         return 1;
-      }
+    }
 
     //const char *userData = "user data";
 
@@ -94,8 +112,8 @@ int HttpServerScgi::run()
     TemplateApiHandler<VKApi> vk_handler;
     TemplateApiHandler<TelegramAPI> telegram_handler;
 
-    scgi.addHandler ("/bot/vk/", &vk_handler);
-    scgi.addHandler ("/bot/telegram/", &telegram_handler);
+    scgi.addHandler("/bot/vk/", &vk_handler);
+    scgi.addHandler("/bot/telegram/", &telegram_handler);
 
     scgi.run();
 

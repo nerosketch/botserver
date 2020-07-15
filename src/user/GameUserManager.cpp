@@ -10,11 +10,17 @@
 
 std::unordered_map<std::string, spGameUser> GameUserManager::_users_table;
 
-GameUserManager::GameUserManager () { }
+GameUserManager::GameUserManager()
+{
+}
 
-GameUserManager::GameUserManager (const GameUserManager& orig) { }
+GameUserManager::GameUserManager(const GameUserManager& orig)
+{
+}
 
-GameUserManager::~GameUserManager () { }
+GameUserManager::~GameUserManager()
+{
+}
 
 
 GameUserManager& GameUserManager::getInstance()

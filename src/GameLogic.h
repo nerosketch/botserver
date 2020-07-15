@@ -15,5 +15,4 @@
 std::string global_entrypoint_logic(GameInboxMessage& msg);
 
 
-
 #endif /* GAMELOGIC_H */

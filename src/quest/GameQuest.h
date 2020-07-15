@@ -8,12 +8,14 @@
 #ifndef GAMEQUEST_H
 #define GAMEQUEST_H
 
-class GameQuest
-{
+class GameQuest {
 public:
-  GameQuest ();
-  GameQuest (const GameQuest& orig);
-  virtual ~GameQuest ();
+    GameQuest();
+
+    GameQuest(const GameQuest& orig);
+
+    virtual ~GameQuest();
+
 private:
 
 };

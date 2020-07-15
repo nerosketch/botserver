@@ -13,32 +13,34 @@
 #include "GameUser.h"
 
 
-
-class GameUserManager
-{
+class GameUserManager {
 public:
 
-  inline void addUser(spGameUser user)
-  {
-    _users_table[user->getUsername ()] = user;
-  }
-  inline spGameUser getUser(const std::string& uname)
-  {
-    return _users_table[uname];
-  }
-  inline void clearAll()
-  {
-    _users_table.clear ();
-  }
+    inline void addUser(spGameUser user)
+    {
+        _users_table[user->getUsername()] = user;
+    }
 
-  static GameUserManager& getInstance();
+    inline spGameUser getUser(const std::string& uname)
+    {
+        return _users_table[uname];
+    }
+
+    inline void clearAll()
+    {
+        _users_table.clear();
+    }
+
+    static GameUserManager& getInstance();
 
 private:
-  GameUserManager ();
-  GameUserManager (const GameUserManager&);
-  virtual ~GameUserManager ();
+    GameUserManager();
 
-  static std::unordered_map<std::string, spGameUser> _users_table;
+    GameUserManager(const GameUserManager&);
+
+    virtual ~GameUserManager();
+
+    static std::unordered_map<std::string, spGameUser> _users_table;
 };
 
 #endif /* GAMEUSERMANAGER_H */
