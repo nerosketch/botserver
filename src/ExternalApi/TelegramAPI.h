@@ -11,6 +11,7 @@
 #include <string>
 #include <memory>
 #include <ctime>
+#include <utility>
 #include <vector>
 #include "BaseAPI.h"
 
@@ -119,7 +120,7 @@ public:
 
     virtual ~TelegramPhotoSize();
 
-    string GetFileId() const;
+    const string& GetFileId() const;
 
     void SetFileId(const string& file_id);
 
@@ -159,7 +160,7 @@ public:
 
     void SetDuration(int duration);
 
-    string GetFileId() const;
+    const string& GetFileId() const;
 
     void SetFileId(const string& file_id);
 
@@ -171,7 +172,7 @@ public:
 
     void SetHeight(int height);
 
-    string GetMimeType() const;
+    const string& GetMimeType() const;
 
     void SetMimeType(const string& mime_type);
 
@@ -214,7 +215,7 @@ public:
     void
     SetDuration(int duration);
 
-    string
+    const string&
     GetFileId() const;
 
     void
@@ -344,7 +345,7 @@ public:
 
     virtual ~TelegramVenue();
 
-    string
+    const string&
     GetAddress() const
     {
         return _address;
@@ -356,7 +357,7 @@ public:
         _address = address;
     }
 
-    string
+    const string&
     GetFoursquare_id() const
     {
         return _foursquare_id;
@@ -380,7 +381,7 @@ public:
         _location = location;
     }
 
-    string
+    const string&
     GetTitle() const
     {
         return _title;
@@ -423,7 +424,7 @@ public:
     void
     SetPhotos(spVectorTelegramPhotoSize photos)
     {
-        _photos = photos;
+        _photos = std::move(photos);
     }
 
     int
@@ -458,7 +459,7 @@ public:
 
     virtual ~TelegramSticker();
 
-    string
+    const string&
     GetFile_id() const
     {
         return _file_id;
@@ -503,7 +504,7 @@ public:
     void
     SetThumb(spTelegramPhotoSize thumb)
     {
-        _thumb = thumb;
+        _thumb = std::move(thumb);
     }
 
     int
@@ -555,7 +556,7 @@ public:
         _duration = duration;
     }
 
-    string
+    const string&
     GetFile_id() const
     {
         return _file_id;
@@ -579,7 +580,7 @@ public:
         _file_size = file_size;
     }
 
-    string
+    const string&
     GetMime_type() const
     {
         return _mime_type;
@@ -591,7 +592,7 @@ public:
         _mime_type = mime_type;
     }
 
-    string
+    const string&
     GetPerformer() const
     {
         return _performer;
@@ -603,7 +604,7 @@ public:
         _performer = performer;
     }
 
-    string
+    const string&
     GetTitle() const
     {
         return _title;
@@ -640,7 +641,7 @@ public:
 
     virtual ~TelegramDocument();
 
-    string
+    const string&
     GetFile_id() const
     {
         return _file_id;
@@ -652,7 +653,7 @@ public:
         _file_id = file_id;
     }
 
-    string
+    const string&
     GetFile_name() const
     {
         return _file_name;
@@ -676,7 +677,7 @@ public:
         _file_size = file_size;
     }
 
-    string
+    const string&
     GetMime_type() const
     {
         return _mime_type;
@@ -697,7 +698,7 @@ public:
     void
     SetThumb(spTelegramPhotoSize thumb)
     {
-        _thumb = thumb;
+        _thumb = std::move(thumb);
     }
 
 private:
@@ -756,7 +757,7 @@ public:
         _chat_type = chat_type;
     }
 
-    string
+    const string&
     GetFirst_name() const
     {
         return _first_name;
@@ -768,7 +769,7 @@ public:
         _first_name = first_name;
     }
 
-    string
+    const string&
     GetLast_name() const
     {
         return _last_name;
@@ -780,7 +781,7 @@ public:
         _last_name = last_name;
     }
 
-    string
+    const string&
     GetTitle() const
     {
         return _title;
@@ -792,7 +793,7 @@ public:
         _title = title;
     }
 
-    string
+    const string&
     GetUsername() const
     {
         return _username;
@@ -843,7 +844,7 @@ public:
     virtual ~TelegramUser();
 
 
-    string
+    const string&
     GetFirst_name() const
     {
         return _first_name;
@@ -867,7 +868,7 @@ public:
         _id = id;
     }
 
-    string
+    const string&
     GetLast_name() const
     {
         return _last_name;
@@ -879,7 +880,7 @@ public:
         _last_name = last_name;
     }
 
-    string
+    const string&
     GetUsername() const
     {
         return _username;
@@ -922,7 +923,7 @@ public:
 
     virtual ~TelegramCallbackQuery();
 
-    string
+    const string&
     GetData() const
     {
         return _data;
@@ -946,7 +947,7 @@ public:
         _from = from;
     }
 
-    string
+    const string&
     GetId() const
     {
         return _id;
@@ -958,7 +959,7 @@ public:
         _id = id;
     }
 
-    string
+    const string&
     GetInline_message_id() const
     {
         return _inline_message_id;
@@ -1007,7 +1008,7 @@ public:
 
     void SetFrom(spTelegramUser from);
 
-    string GetInlineMessageId() const;
+    const string& GetInlineMessageId() const;
 
     void SetInlineMessageId(const string& inline_message_id);
 
@@ -1015,11 +1016,11 @@ public:
 
     void SetLocation(spTelegramLocation location);
 
-    string GetQuery() const;
+    const string& GetQuery() const;
 
     void SetQuery(const string& query);
 
-    string GetResultId() const;
+    const string& GetResultId() const;
 
     void SetResultId(const string& result_id);
 
@@ -1048,7 +1049,7 @@ public:
 
     void SetFrom(spTelegramUser from);
 
-    string GetId() const;
+    const string& GetId() const;
 
     void SetId(const string& id);
 
@@ -1056,11 +1057,11 @@ public:
 
     void SetLocation(spTelegramLocation location);
 
-    string GetOffset() const;
+    const string& GetOffset() const;
 
     void SetOffset(const string& offset);
 
-    string GetQuery() const;
+    const string& GetQuery() const;
 
     void SetQuery(const string& query);
 
@@ -1077,9 +1078,9 @@ class TelegramMessageEntity {
 public:
     TelegramMessageEntity();
 
-    TelegramMessageEntity(const string& type, int offset, int length, const string& url)
+    TelegramMessageEntity(string  type, int offset, int length, string  url)
             :
-            _type(type), _offset(offset), _length(length), _url(url)
+            _type(std::move(type)), _offset(offset), _length(length), _url(std::move(url))
     {
     }
 
@@ -1094,9 +1095,9 @@ public:
     }
 
     void
-    SetLength(int _length)
+    SetLength(int length)
     {
-        this->_length = _length;
+        _length = length;
     }
 
     int
@@ -1167,7 +1168,7 @@ public:
 
     void SetAudio(spTelegramAudio audio);
 
-    string GetCaption() const;
+    const string& GetCaption() const;
 
     void SetCaption(const string& caption);
 
@@ -1243,23 +1244,23 @@ public:
 
     void SetNewChatPhoto(spVectorTelegramPhotoSize new_chat_photo);
 
-    string GetNewChatTitle() const;
+    const string& GetNewChatTitle() const;
 
     void SetNewChatTitle(const string& new_chat_title);
 
     spVectorTelegramPhotoSize GetPhoto() const;
 
-    void SetPhoto(spVectorTelegramPhotoSize photo);
+    void SetPhoto(const spVectorTelegramPhotoSize& photo);
 
     spTelegramSticker GetSticker() const;
 
-    void SetSticker(spTelegramSticker sticker);
+    void SetSticker(const spTelegramSticker& sticker);
 
     bool IsSupergroupChatCreated() const;
 
     void SetSupergroupChatCreated(bool supergroup_chat_created);
 
-    string GetText() const;
+    const string& GetText() const;
 
     void SetText(const string& text);
 
@@ -1318,11 +1319,7 @@ public:
 
     virtual ~TelegramWebhookUpdate();
 
-    spTelegramMessage
-    GetMessage() const
-    {
-        return _message;
-    }
+    spTelegramMessage GetMessage() const;
 
     void SetMessage(spTelegramMessage message);
 
@@ -1343,7 +1340,7 @@ public:
     void SetInlineQuery(spTelegramInlineQuery inline_query);
 
 private:
-    uint32_t _update_id;
+    uint32_t _update_id{};
 
     spTelegramMessage _message;
     spTelegramInlineQuery _inline_query;
@@ -1358,14 +1355,14 @@ public:
 
     TelegramAPI(const TelegramAPI& orig);
 
-    virtual ~TelegramAPI();
+    ~TelegramAPI() override;
 
-    virtual void on_get_message(const RequestParamsMap& params, const string& query_string, char* buffUot) override;
+    void on_get_message(const RequestParamsMap& params, const string& query_string, char* buffUot) override;
 
-    virtual void on_post_message(const RequestParamsMap& params, const string& post_data, const string& query_string,
+    void on_post_message(const RequestParamsMap& params, const string& post_data, const string& query_string,
             char* buffUot) override;
 
-    virtual int setWebhook(const string& url) override;
+    int setWebhook(const string& url) override;
 };
 
 #endif /* TELEGRAMAPI_H */

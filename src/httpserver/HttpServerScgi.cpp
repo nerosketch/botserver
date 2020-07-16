@@ -14,38 +14,30 @@
 using namespace std;
 
 HttpServerScgi::HttpServerScgi()
-{
-}
+= default;
 
 HttpServerScgi::HttpServerScgi(const HttpServerScgi& orig)
-{
-}
+= default;
 
 HttpServerScgi::~HttpServerScgi()
-{
-}
+= default;
 
 
-template<class T>
 class TemplateApiHandler : public IScgiHandler {
 private:
-    TemplateApiHandler(const TemplateApiHandler&)
-    {
-    }
+    TemplateApiHandler(const TemplateApiHandler&) = default;
 
-    T _api;
+    IBaseAPI *p_api;
 
 public:
-    TemplateApiHandler()
-            :_api()
+    explicit TemplateApiHandler(IBaseAPI *papi)
+            :p_api(papi)
     {
     }
 
-    virtual ~TemplateApiHandler()
-    {
-    }
+    ~TemplateApiHandler() override = default;
 
-    virtual void get(const RequestParamsMap& params, const string& query_string, char* buffUot)
+    void get(const RequestParamsMap& params, const string& query_string, char* buffUot) final
     {
 
 /*
@@ -76,10 +68,14 @@ Param: SERVER_PORT [80]
 Param: SERVER_PROTOCOL [HTTP/1.1]
 */
 
-        const string& api_content_type = _api.get_content_type_header();
+        if (p_api == nullptr)
+        {
+            return;
+        }
+        const string& api_content_type = p_api->get_content_type_header();
         addHeader(api_content_type);
 
-        _api.on_get_message(params, query_string, buffUot);
+        p_api->on_get_message(params, query_string, buffUot);
     }
 
     virtual void
@@ -109,8 +105,10 @@ int HttpServerScgi::run()
     /*
      * Add new api handlers these
      */
-    TemplateApiHandler<VKApi> vk_handler;
-    TemplateApiHandler<TelegramAPI> telegram_handler;
+    VKApi vkapi;
+    TemplateApiHandler vk_handler(&vkapi);
+    TelegramAPI tlapi;
+    TemplateApiHandler telegram_handler(&tlapi);
 
     scgi.addHandler("/bot/vk/", &vk_handler);
     scgi.addHandler("/bot/telegram/", &telegram_handler);

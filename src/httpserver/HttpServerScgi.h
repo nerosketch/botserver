@@ -16,7 +16,7 @@ public:
 
     virtual ~HttpServerScgi();
 
-    int run();
+    static int run();
 
 private:
 

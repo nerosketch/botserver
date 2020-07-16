@@ -72,7 +72,7 @@ void TelegramAPI::on_post_message(const RequestParamsMap& params,
     int msg_migrate_from_chat_id = 0;
 
 
-    spTelegramUser msg_left_chat_member = make_shared<TelegramUser>(заполнить параметры);
+    /*spTelegramUser msg_left_chat_member = make_shared<TelegramUser>(заполнить параметры);
     spTelegramUser msg_new_chat_member = make_shared<TelegramUser>(заполнить параметры);
 
     spTelegramVenue msg_venue = make_shared<TelegramVenue>(заполнить параметры);
@@ -126,7 +126,7 @@ void TelegramAPI::on_post_message(const RequestParamsMap& params,
     GameInboxMessage msg("User telegram game message");
 
     string result = global_entrypoint_logic(msg);
-    strcpy(buffUot, result.c_str());
+    strcpy(buffUot, result.c_str());*/
 }
 
 
@@ -165,7 +165,7 @@ TelegramPhotoSize::~TelegramPhotoSize()
 }
 
 
-string TelegramPhotoSize::GetFileId() const
+const string& TelegramPhotoSize::GetFileId() const
 {
     return _file_id;
 }
@@ -244,7 +244,7 @@ void TelegramVideo::SetDuration(int duration)
     _duration = duration;
 }
 
-string TelegramVideo::GetFileId() const
+const string& TelegramVideo::GetFileId() const
 {
     return _file_id;
 }
@@ -329,7 +329,7 @@ TelegramVoice::SetDuration(int duration)
     _duration = duration;
 }
 
-string
+const string&
 TelegramVoice::GetFileId() const
 {
     return _file_id;
@@ -353,7 +353,7 @@ TelegramVoice::SetFileSize(int file_size)
     _file_size = file_size;
 }
 
-string
+const string&
 TelegramVoice::GetMimeType() const
 {
     return _mime_type;
@@ -549,7 +549,7 @@ TelegramChosenInlineResult::TelegramChosenInlineResult()
 TelegramChosenInlineResult::TelegramChosenInlineResult(const string& result_id,
         spTelegramUser from,
         spTelegramLocation location,
-        string inline_message_id, string query)
+                                                       const string& inline_message_id, const string& query)
         :
         _result_id(result_id),
         _from(from),
@@ -586,7 +586,7 @@ void TelegramChosenInlineResult::SetFrom(spTelegramUser from)
     _from = from;
 }
 
-string TelegramChosenInlineResult::GetInlineMessageId() const
+const string& TelegramChosenInlineResult::GetInlineMessageId() const
 {
     return _inline_message_id;
 }
@@ -606,7 +606,7 @@ void TelegramChosenInlineResult::SetLocation(spTelegramLocation location)
     _location = location;
 }
 
-string TelegramChosenInlineResult::GetQuery() const
+const string& TelegramChosenInlineResult::GetQuery() const
 {
     return _query;
 }
@@ -616,7 +616,7 @@ void TelegramChosenInlineResult::SetQuery(const string& query)
     _query = query;
 }
 
-string TelegramChosenInlineResult::GetResultId() const
+const string& TelegramChosenInlineResult::GetResultId() const
 {
     return _result_id;
 }
@@ -658,7 +658,7 @@ void TelegramInlineQuery::SetFrom(spTelegramUser from)
     _from = from;
 }
 
-string TelegramInlineQuery::GetId() const
+const string& TelegramInlineQuery::GetId() const
 {
     return _id;
 }
@@ -678,7 +678,7 @@ void TelegramInlineQuery::SetLocation(spTelegramLocation location)
     _location = location;
 }
 
-string TelegramInlineQuery::GetOffset() const
+const string& TelegramInlineQuery::GetOffset() const
 {
     return _offset;
 }
@@ -688,7 +688,7 @@ void TelegramInlineQuery::SetOffset(const string& offset)
     _offset = offset;
 }
 
-string TelegramInlineQuery::GetQuery() const
+const string& TelegramInlineQuery::GetQuery() const
 {
     return _query;
 }
@@ -759,7 +759,7 @@ void TelegramMessage::SetAudio(spTelegramAudio audio)
     _audio = audio;
 }
 
-string TelegramMessage::GetCaption() const
+const string& TelegramMessage::GetCaption() const
 {
     return _caption;
 }
@@ -949,7 +949,7 @@ void TelegramMessage::SetNewChatPhoto(spVectorTelegramPhotoSize new_chat_photo)
     _new_chat_photo = new_chat_photo;
 }
 
-string TelegramMessage::GetNewChatTitle() const
+const string& TelegramMessage::GetNewChatTitle() const
 {
     return _new_chat_title;
 }
@@ -964,7 +964,7 @@ spVectorTelegramPhotoSize TelegramMessage::GetPhoto() const
     return _photo;
 }
 
-void TelegramMessage::SetPhoto(spVectorTelegramPhotoSize photo)
+void TelegramMessage::SetPhoto(const spVectorTelegramPhotoSize& photo)
 {
     _photo = photo;
 }
@@ -974,7 +974,7 @@ spTelegramSticker TelegramMessage::GetSticker() const
     return _sticker;
 }
 
-void TelegramMessage::SetSticker(spTelegramSticker sticker)
+void TelegramMessage::SetSticker(const spTelegramSticker& sticker)
 {
     _sticker = sticker;
 }
@@ -989,7 +989,7 @@ void TelegramMessage::SetSupergroupChatCreated(bool supergroup_chat_created)
     _supergroup_chat_created = supergroup_chat_created;
 }
 
-string TelegramMessage::GetText() const
+const string& TelegramMessage::GetText() const
 {
     return _text;
 }
@@ -1006,7 +1006,7 @@ spTelegramVenue TelegramMessage::GetVenue() const
 
 void TelegramMessage::SetVenue(spTelegramVenue venue)
 {
-    _venue = venue;
+    _venue = std::move(venue);
 }
 
 spTelegramVideo TelegramMessage::GetVideo() const
@@ -1016,7 +1016,7 @@ spTelegramVideo TelegramMessage::GetVideo() const
 
 void TelegramMessage::SetVideo(spTelegramVideo video)
 {
-    _video = video;
+    _video = std::move(video);
 }
 
 spTelegramVoice TelegramMessage::GetVoice() const
@@ -1026,21 +1026,19 @@ spTelegramVoice TelegramMessage::GetVoice() const
 
 void TelegramMessage::SetVoice(spTelegramVoice voice)
 {
-    _voice = voice;
+    _voice = std::move(voice);
 }
 
 
 TelegramWebhookUpdate::TelegramWebhookUpdate()
-{
-}
+= default;
 
 TelegramWebhookUpdate::TelegramWebhookUpdate(const TelegramWebhookUpdate& o)
 {
 }
 
 TelegramWebhookUpdate::~TelegramWebhookUpdate()
-{
-}
+= default;
 
 TelegramWebhookUpdate::TelegramWebhookUpdate(uint32_t update_id,
         spTelegramMessage message,
@@ -1048,8 +1046,11 @@ TelegramWebhookUpdate::TelegramWebhookUpdate(uint32_t update_id,
         spTelegramChosenInlineResult chosen_inline_result,
         spTelegramCallbackQuery callback_query)
         :
-        _update_id(update_id), _message(message), _inline_query(inline_query),
-        _chosen_inline_result(chosen_inline_result), _callback_query(callback_query)
+        _update_id(update_id),
+        _message(std::move(message)),
+        _inline_query(std::move(inline_query)),
+        _chosen_inline_result(std::move(chosen_inline_result)),
+        _callback_query(std::move(callback_query))
 {
 }
 
@@ -1060,7 +1061,7 @@ spTelegramMessage TelegramWebhookUpdate::GetMessage() const
 
 void TelegramWebhookUpdate::SetMessage(spTelegramMessage message)
 {
-    _message = message;
+    _message = std::move(message);
 }
 
 uint32_t TelegramWebhookUpdate::GetUpdateId() const
@@ -1080,7 +1081,7 @@ spTelegramCallbackQuery TelegramWebhookUpdate::GetCallbackQuery() const
 
 void TelegramWebhookUpdate::SetCallbackQuery(spTelegramCallbackQuery callback_query)
 {
-    _callback_query = callback_query;
+    _callback_query = std::move(callback_query);
 }
 
 spTelegramChosenInlineResult TelegramWebhookUpdate::GetChosenInlineResult() const
@@ -1090,7 +1091,7 @@ spTelegramChosenInlineResult TelegramWebhookUpdate::GetChosenInlineResult() cons
 
 void TelegramWebhookUpdate::SetChosenInlineResult(spTelegramChosenInlineResult chosen_inline_result)
 {
-    _chosen_inline_result = chosen_inline_result;
+    _chosen_inline_result = std::move(chosen_inline_result);
 }
 
 spTelegramInlineQuery TelegramWebhookUpdate::GetInlineQuery() const
@@ -1100,5 +1101,5 @@ spTelegramInlineQuery TelegramWebhookUpdate::GetInlineQuery() const
 
 void TelegramWebhookUpdate::SetInlineQuery(spTelegramInlineQuery inline_query)
 {
-    _inline_query = inline_query;
+    _inline_query = std::move(inline_query);
 }
