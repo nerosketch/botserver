@@ -12,7 +12,7 @@ class MainApiFacade {
 public:
     MainApiFacade();
 
-    MainApiFacade(const MainApiFacade& orig);
+    MainApiFacade(const MainApiFacade& o);
 
     virtual ~MainApiFacade();
 

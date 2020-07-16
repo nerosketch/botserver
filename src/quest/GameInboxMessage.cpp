@@ -11,16 +11,8 @@ GameInboxMessage::GameInboxMessage(const std::string& msg)
         :_msg(msg)
 {
 }
-
-GameInboxMessage::GameInboxMessage(const GameInboxMessage& o)
-        :
-        _msg(o._msg)
-{
-}
-
-GameInboxMessage::~GameInboxMessage()
-{
-}
+GameInboxMessage::GameInboxMessage(const GameInboxMessage& o) = default;
+GameInboxMessage::~GameInboxMessage() = default;
 
 void GameInboxMessage::setMessage(const std::string& msg)
 {

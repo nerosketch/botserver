@@ -1,17 +1,9 @@
 #include "BaseAPI.h"
 
 
-IBaseAPI::IBaseAPI()
-{
-}
+IBaseAPI::IBaseAPI()= default;
 
-IBaseAPI::IBaseAPI(const IBaseAPI& o)
-{
-}
-
-IBaseAPI::~IBaseAPI()
-{
-}
+IBaseAPI::~IBaseAPI()= default;
 
 const std::string& IBaseAPI::get_content_type_header()
 {

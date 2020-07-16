@@ -29,8 +29,6 @@ public:
 
     IBaseAPI();
 
-    IBaseAPI(const IBaseAPI& o);
-
     virtual ~IBaseAPI();
 
     virtual const std::string& get_content_type_header();

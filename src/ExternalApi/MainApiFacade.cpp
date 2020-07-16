@@ -7,15 +7,8 @@
 
 #include "MainApiFacade.h"
 
-MainApiFacade::MainApiFacade()
-{
-}
+MainApiFacade::MainApiFacade() = default;
 
-MainApiFacade::MainApiFacade(const MainApiFacade& orig)
-{
-}
+MainApiFacade::MainApiFacade(const MainApiFacade& o) = default;
 
-MainApiFacade::~MainApiFacade()
-{
-}
-
+MainApiFacade::~MainApiFacade() = default;

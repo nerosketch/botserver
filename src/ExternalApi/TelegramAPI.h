@@ -292,7 +292,7 @@ public:
 
     TelegramLocation(float _longitude, float latitude)
             :
-            _longitude(_longitude), latitude(latitude)
+            _longitude(_longitude), _latitude(latitude)
     {
     }
 
@@ -307,26 +307,26 @@ public:
     }
 
     void
-    SetLongitude(float _longitude)
+    SetLongitude(float longitude)
     {
-        this->_longitude = _longitude;
+        _longitude = longitude;
     }
 
     float
     GetLatitude() const
     {
-        return latitude;
+        return _latitude;
     }
 
     void
     SetLatitude(float latitude)
     {
-        this->latitude = latitude;
+        _latitude = latitude;
     }
 
 private:
     float _longitude;
-    float latitude;
+    float _latitude;
 };
 
 
@@ -334,7 +334,7 @@ class TelegramVenue {
 public:
     TelegramVenue();
 
-    TelegramVenue(spTelegramLocation location, const string& title, const string& address, const string& foursquare_id)
+    TelegramVenue(const spTelegramLocation& location, const string& title, const string& address, const string& foursquare_id)
             :
             _location(location), _title(title), _address(address), _foursquare_id(foursquare_id)
     {
@@ -375,9 +375,9 @@ public:
     }
 
     void
-    SetLocation(spTelegramLocation _location)
+    SetLocation(const spTelegramLocation& location)
     {
-        this->_location = _location;
+        _location = location;
     }
 
     string
@@ -387,9 +387,9 @@ public:
     }
 
     void
-    SetTitle(const string& _title)
+    SetTitle(const string& title)
     {
-        this->_title = _title;
+        _title = title;
     }
 
 private:
@@ -404,7 +404,7 @@ class TelegramUserProfilePhotos {
 public:
     TelegramUserProfilePhotos();
 
-    TelegramUserProfilePhotos(int total_count, spVectorTelegramPhotoSize photos)
+    TelegramUserProfilePhotos(int total_count, const spVectorTelegramPhotoSize& photos)
             :
             _total_count(total_count), _photos(photos)
     {
@@ -421,9 +421,9 @@ public:
     }
 
     void
-    SetPhotos(spVectorTelegramPhotoSize _photos)
+    SetPhotos(spVectorTelegramPhotoSize photos)
     {
-        this->_photos = _photos;
+        _photos = photos;
     }
 
     int
@@ -433,9 +433,9 @@ public:
     }
 
     void
-    SetTotal_count(int _total_count)
+    SetTotal_count(int total_count)
     {
-        this->_total_count = _total_count;
+        _total_count = total_count;
     }
 
 private:
@@ -448,9 +448,9 @@ class TelegramSticker {
 public:
     TelegramSticker();
 
-    TelegramSticker(const string& _file_id, int _width, int _height, spTelegramPhotoSize _thumb, int _file_size)
+    TelegramSticker(const string& file_id, int width, int height, const spTelegramPhotoSize& thumb, int file_size)
             :
-            _file_id(_file_id), _width(_width), _height(_height), _thumb(_thumb), _file_size(_file_size)
+            _file_id(file_id), _width(width), _height(height), _thumb(thumb), _file_size(file_size)
     {
     }
 
@@ -465,9 +465,9 @@ public:
     }
 
     void
-    SetFile_id(const string& _file_id)
+    SetFile_id(const string& file_id)
     {
-        this->_file_id = _file_id;
+        _file_id = file_id;
     }
 
     int
@@ -477,9 +477,9 @@ public:
     }
 
     void
-    SetFile_size(int _file_size)
+    SetFile_size(int file_size)
     {
-        this->_file_size = _file_size;
+        _file_size = file_size;
     }
 
     int
@@ -489,9 +489,9 @@ public:
     }
 
     void
-    SetHeight(int _height)
+    SetHeight(int height)
     {
-        this->_height = _height;
+        _height = height;
     }
 
     spTelegramPhotoSize
@@ -501,9 +501,9 @@ public:
     }
 
     void
-    SetThumb(spTelegramPhotoSize _thumb)
+    SetThumb(spTelegramPhotoSize thumb)
     {
-        this->_thumb = _thumb;
+        _thumb = thumb;
     }
 
     int
@@ -513,9 +513,9 @@ public:
     }
 
     void
-    SetWidth(int _width)
+    SetWidth(int width)
     {
-        this->_width = _width;
+        _width = width;
     }
 
 private:
@@ -531,11 +531,11 @@ class TelegramAudio {
 public:
     TelegramAudio();
 
-    TelegramAudio(const string& _file_id, int _duration, const string& _performer, const string& _title,
-            const string& _mime_type, int _file_size)
+    TelegramAudio(const string& file_id, int duration, const string& performer, const string& title,
+            const string& mime_type, int file_size)
             :
-            _file_id(_file_id), _duration(_duration), _performer(_performer), _title(_title), _mime_type(_mime_type),
-            _file_size(_file_size)
+            _file_id(file_id), _duration(duration), _performer(performer), _title(title), _mime_type(mime_type),
+            _file_size(file_size)
     {
     }
 
@@ -550,9 +550,9 @@ public:
     }
 
     void
-    SetDuration(int _duration)
+    SetDuration(int duration)
     {
-        this->_duration = _duration;
+        _duration = duration;
     }
 
     string
@@ -562,9 +562,9 @@ public:
     }
 
     void
-    SetFile_id(const string& _file_id)
+    SetFile_id(const string& file_id)
     {
-        this->_file_id = _file_id;
+        _file_id = file_id;
     }
 
     int
@@ -574,9 +574,9 @@ public:
     }
 
     void
-    SetFile_size(int _file_size)
+    SetFile_size(int file_size)
     {
-        this->_file_size = _file_size;
+        _file_size = file_size;
     }
 
     string
@@ -586,9 +586,9 @@ public:
     }
 
     void
-    SetMime_type(const string& _mime_type)
+    SetMime_type(const string& mime_type)
     {
-        this->_mime_type = _mime_type;
+        _mime_type = mime_type;
     }
 
     string
@@ -598,9 +598,9 @@ public:
     }
 
     void
-    SetPerformer(const string& _performer)
+    SetPerformer(const string& performer)
     {
-        this->_performer = _performer;
+        _performer = performer;
     }
 
     string
@@ -610,9 +610,9 @@ public:
     }
 
     void
-    SetTitle(const string& _title)
+    SetTitle(const string& title)
     {
-        this->_title = _title;
+        _title = title;
     }
 
 private:
@@ -629,7 +629,7 @@ class TelegramDocument {
 public:
     TelegramDocument();
 
-    TelegramDocument(const string& file_id, spTelegramPhotoSize thumb, const string& file_name, const string& mime_type,
+    TelegramDocument(const string& file_id, const spTelegramPhotoSize& thumb, const string& file_name, const string& mime_type,
             int file_size)
             :
             _file_id(file_id), _thumb(thumb), _file_name(file_name), _mime_type(mime_type), _file_size(file_size)
@@ -647,9 +647,9 @@ public:
     }
 
     void
-    SetFile_id(const string& _file_id)
+    SetFile_id(const string& file_id)
     {
-        this->_file_id = _file_id;
+        _file_id = file_id;
     }
 
     string
@@ -659,9 +659,9 @@ public:
     }
 
     void
-    SetFile_name(const string& _file_name)
+    SetFile_name(const string& file_name)
     {
-        this->_file_name = _file_name;
+        _file_name = file_name;
     }
 
     int
@@ -671,9 +671,9 @@ public:
     }
 
     void
-    SetFile_size(int _file_size)
+    SetFile_size(int file_size)
     {
-        this->_file_size = _file_size;
+        _file_size = file_size;
     }
 
     string
@@ -683,9 +683,9 @@ public:
     }
 
     void
-    SetMime_type(const string& _mime_type)
+    SetMime_type(const string& mime_type)
     {
-        this->_mime_type = _mime_type;
+        _mime_type = mime_type;
     }
 
     spTelegramPhotoSize
@@ -695,9 +695,9 @@ public:
     }
 
     void
-    SetThumb(spTelegramPhotoSize _thumb)
+    SetThumb(spTelegramPhotoSize thumb)
     {
-        this->_thumb = _thumb;
+        _thumb = thumb;
     }
 
 private:
@@ -720,11 +720,11 @@ class TelegramChat {
 public:
     TelegramChat();
 
-    TelegramChat(int id, TelegramChatType _chat_type, const string& _title, const string& _username,
-            const string& _first_name, const string& _last_name, bool _all_members_are_administrators)
+    TelegramChat(int id, TelegramChatType chat_type, const string& title, const string& username,
+            const string& first_name, const string& last_name, bool all_members_are_administrators)
             :
-            id(id), _chat_type(_chat_type), _title(_title), _username(_username), _first_name(_first_name),
-            _last_name(_last_name), _all_members_are_administrators(_all_members_are_administrators)
+            _id(id), _chat_type(chat_type), _title(title), _username(username), _first_name(first_name),
+            _last_name(last_name), _all_members_are_administrators(all_members_are_administrators)
     {
     }
 
@@ -739,9 +739,9 @@ public:
     }
 
     void
-    SetAll_members_are_administrators(bool _all_members_are_administrators)
+    SetAll_members_are_administrators(bool all_members_are_administrators)
     {
-        this->_all_members_are_administrators = _all_members_are_administrators;
+        _all_members_are_administrators = all_members_are_administrators;
     }
 
     TelegramChatType
@@ -751,9 +751,9 @@ public:
     }
 
     void
-    SetChat_type(TelegramChatType _chat_type)
+    SetChat_type(TelegramChatType chat_type)
     {
-        this->_chat_type = _chat_type;
+        _chat_type = chat_type;
     }
 
     string
@@ -763,9 +763,9 @@ public:
     }
 
     void
-    SetFirst_name(const string& _first_name)
+    SetFirst_name(const string& first_name)
     {
-        this->_first_name = _first_name;
+        _first_name = first_name;
     }
 
     string
@@ -775,9 +775,9 @@ public:
     }
 
     void
-    SetLast_name(const string& _last_name)
+    SetLast_name(const string& last_name)
     {
-        this->_last_name = _last_name;
+        _last_name = last_name;
     }
 
     string
@@ -787,9 +787,9 @@ public:
     }
 
     void
-    SetTitle(const string& _title)
+    SetTitle(const string& title)
     {
-        this->_title = _title;
+        _title = title;
     }
 
     string
@@ -799,26 +799,26 @@ public:
     }
 
     void
-    SetUsername(const string& _username)
+    SetUsername(const string& username)
     {
-        this->_username = _username;
+        _username = username;
     }
 
     int
     GetId() const
     {
-        return id;
+        return _id;
     }
 
     void
     SetId(int id)
     {
-        this->id = id;
+        _id = id;
     }
 
 private:
     // Уникальный идентификатор пользователя или бота
-    int id;
+    int _id;
     TelegramChatType _chat_type;
     string _title;
     string _username;
@@ -834,7 +834,7 @@ public:
 
     TelegramUser(int id, const string& first_name, const string& last_name, const string& username)
             :
-            id(id), first_name(first_name), last_name(last_name), username(username)
+            _id(id), _first_name(first_name), _last_name(last_name), _username(username)
     {
     }
 
@@ -846,64 +846,64 @@ public:
     string
     GetFirst_name() const
     {
-        return first_name;
+        return _first_name;
     }
 
     void
     SetFirst_name(const string& first_name)
     {
-        this->first_name = first_name;
+        _first_name = first_name;
     }
 
     int
     GetId() const
     {
-        return id;
+        return _id;
     }
 
     void
     SetId(int id)
     {
-        this->id = id;
+        _id = id;
     }
 
     string
     GetLast_name() const
     {
-        return last_name;
+        return _last_name;
     }
 
     void
     SetLast_name(const string& last_name)
     {
-        this->last_name = last_name;
+        _last_name = last_name;
     }
 
     string
     GetUsername() const
     {
-        return username;
+        return _username;
     }
 
     void
     SetUsername(const string& username)
     {
-        this->username = username;
+        _username = username;
     }
 
 
 private:
     // Уникальный идентификатор пользователя или бота
-    int id;
+    int _id;
 
     // Имя бота или пользователя
-    string first_name;
+    string _first_name;
 
     // Опционально. Фамилия бота или пользователя
-    string last_name;
+    string _last_name;
 
     // Опционально. Username пользователя или бота
-    string username;
+    string _username;
 };
 
 
@@ -929,9 +929,9 @@ public:
     }
 
     void
-    SetData(const string& _data)
+    SetData(const string& data)
     {
-        this->_data = _data;
+        _data = data;
     }
 
     spTelegramUser
@@ -941,9 +941,9 @@ public:
     }
 
     void
-    SetFrom(spTelegramUser _from)
+    SetFrom(spTelegramUser from)
     {
-        this->_from = _from;
+        _from = from;
     }
 
     string
@@ -953,9 +953,9 @@ public:
     }
 
     void
-    SetId(const string& _id)
+    SetId(const string& id)
     {
-        this->_id = _id;
+        _id = id;
     }
 
     string
@@ -965,7 +965,7 @@ public:
     }
 
     void
-    SetInline_message_id(const string& _inline_message_id)
+    SetInlineMessageId(const string& _inline_message_id)
     {
         this->_inline_message_id = _inline_message_id;
     }
@@ -1077,9 +1077,9 @@ class TelegramMessageEntity {
 public:
     TelegramMessageEntity();
 
-    TelegramMessageEntity(const string& _type, int _offset, int _length, const string& _url)
+    TelegramMessageEntity(const string& type, int offset, int length, const string& url)
             :
-            _type(_type), _offset(_offset), _length(_length), _url(_url)
+            _type(type), _offset(offset), _length(length), _url(url)
     {
     }
 
@@ -1106,24 +1106,24 @@ public:
     }
 
     void
-    SetOffset(int _offset)
+    SetOffset(int offset)
     {
-        this->_offset = _offset;
+        _offset = offset;
     }
 
-    string&
+    const string&
     GetType() const
     {
         return _type;
     }
 
     void
-    SetType(const string& _type)
+    SetType(const string& type)
     {
-        this->_type = _type;
+        _type = type;
     }
 
-    string&
+    const string&
     GetUrl() const
     {
         return _url;
@@ -1132,7 +1132,7 @@ public:
     void
     SetUrl(const string& url)
     {
-        _url = _url;
+        _url = url;
     }
 
 private:

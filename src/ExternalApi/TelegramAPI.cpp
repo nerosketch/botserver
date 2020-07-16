@@ -430,17 +430,11 @@ TelegramContact::SetUserId(int user_id)
 
 
 
-TelegramLocation::TelegramLocation()
-{
-}
+TelegramLocation::TelegramLocation() = default;
 
-TelegramLocation::TelegramLocation(const TelegramLocation& o)
-{
-}
+TelegramLocation::TelegramLocation(const TelegramLocation& o) = default;
 
-TelegramLocation::~TelegramLocation()
-{
-}
+TelegramLocation::~TelegramLocation() = default;
 
 
 TelegramVenue::TelegramVenue()
@@ -646,12 +640,7 @@ TelegramInlineQuery::TelegramInlineQuery(const string& id, spTelegramUser from,
 }
 
 
-TelegramInlineQuery::TelegramInlineQuery(const TelegramInlineQuery& o)
-        :
-        _id(o._id), _from(o._from), _location(o._location),
-        _query(o._query), _offset(o._offset)
-{
-}
+TelegramInlineQuery::TelegramInlineQuery(const TelegramInlineQuery& o) = default;
 
 
 TelegramInlineQuery::~TelegramInlineQuery()
@@ -714,9 +703,7 @@ TelegramMessageEntity::TelegramMessageEntity()
 {
 }
 
-TelegramMessageEntity::TelegramMessageEntity(const TelegramMessageEntity& o)
-{
-}
+TelegramMessageEntity::TelegramMessageEntity(const TelegramMessageEntity& o) = default;
 
 TelegramMessageEntity::~TelegramMessageEntity()
 {
@@ -754,22 +741,7 @@ TelegramMessage::TelegramMessage(int message_id, spTelegramUser from, time_t dat
 {
 }
 
-TelegramMessage::TelegramMessage(const TelegramMessage& o)
-        :
-        _message_id(o._message_id), _from(o._from), _date(o._date),
-        _chat(o._chat), _forward_from(o._forward_from),
-        _forward_date(o._forward_date), _text(o._text), _entities(o._entities),
-        _audio(o._audio), _document(o._document), _photo(o._photo), _sticker(o._sticker),
-        _video(o._video), _voice(o._voice), _caption(o._caption), _contact(o._contact),
-        _location(o._location), _venue(o._venue), _new_chat_member(o._new_chat_member),
-        _left_chat_member(o._left_chat_member), _new_chat_title(o._new_chat_title),
-        _new_chat_photo(o._new_chat_photo), _delete_chat_photo(o._delete_chat_photo),
-        _group_chat_created(o._group_chat_created),
-        _supergroup_chat_created(o._supergroup_chat_created),
-        _channel_chat_created(o._channel_chat_created), _migrate_to_chat_id(o._migrate_to_chat_id),
-        _migrate_from_chat_id(o._migrate_from_chat_id)
-{
-}
+TelegramMessage::TelegramMessage(const TelegramMessage& o) = default;
 
 
 TelegramMessage::~TelegramMessage()

@@ -7,30 +7,25 @@
 
 #include "SingleDialog.h"
 
-SingleDialog::SingleDialog()
+SingleDialog::SingleDialog() :
+        buttons()
 {
 }
 
-SingleDialog::SingleDialog(const SingleDialog& orig)
+SingleDialog::SingleDialog(const SingleDialog& o) = default;
+
+SingleDialog::~SingleDialog() = default;
+
+
+GameButton::GameButton() :
+        target_dialog(), button_text(), color()
 {
 }
 
-SingleDialog::~SingleDialog()
-{
-}
+GameButton::GameButton(const GameButton& o) = default;
 
+GameButton::~GameButton() = default;
 
-GameButton::GameButton()
-{
-}
-
-GameButton::GameButton(const GameButton& orig)
-{
-}
-
-GameButton::~GameButton()
-{
-}
 
 void GameButton::onClick()
 {

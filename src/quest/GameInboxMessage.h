@@ -12,7 +12,7 @@
 
 class GameInboxMessage {
 public:
-    GameInboxMessage(const std::string& msg);
+    explicit GameInboxMessage(const std::string& msg);
 
     GameInboxMessage(const GameInboxMessage& o);
 

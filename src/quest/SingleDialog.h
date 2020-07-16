@@ -23,7 +23,7 @@ class GameButton {
 public:
     GameButton();
 
-    GameButton(const GameButton& orig);
+    GameButton(const GameButton& o);
 
     virtual ~GameButton();
 
@@ -43,7 +43,7 @@ class SingleDialog {
 public:
     SingleDialog();
 
-    SingleDialog(const SingleDialog& orig);
+    SingleDialog(const SingleDialog& o);
 
     virtual ~SingleDialog();
 
