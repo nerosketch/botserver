@@ -8,13 +8,18 @@
 #ifndef FILESTORAGE_H
 #define FILESTORAGE_H
 
-class FileStorage {
+#include "BaseStorage.h"
+
+class FileStorage : public BaseStorage {
 public:
     FileStorage();
 
-    FileStorage(const FileStorage& orig);
+    FileStorage(const FileStorage& o);
 
-    virtual ~FileStorage();
+    ~FileStorage() override;
+
+    std::istream getWriteStream() override;
+    std::ostream getReadStream() override;
 
 private:
 

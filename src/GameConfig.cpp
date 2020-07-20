@@ -8,6 +8,7 @@
 #include <iostream>
 #include <iomanip>
 #include <cstdlib>
+#include <map>
 #include <libconfig.h++>
 #include "GameConfig.h"
 
@@ -19,42 +20,35 @@ GameConfig& game_config = GameConfig::getInstance();
 
 
 VkConfig::VkConfig()
-{
-}
+= default;
 
 VkConfig::VkConfig(const VkConfig& o)
-{
-}
+= default;
 
 VkConfig::~VkConfig()
-{
-}
+= default;
 
 
 ScgiConfig::ScgiConfig()
-{
-}
+= default;
 
 ScgiConfig::ScgiConfig(const ScgiConfig& o)
 {
 }
 
 ScgiConfig::~ScgiConfig()
-{
-}
+= default;
 
 
 GameConfig::GameConfig()
-{
-}
+= default;
 
 GameConfig::GameConfig(const GameConfig& o)
 {
 }
 
 GameConfig::~GameConfig()
-{
-}
+= default;
 
 int GameConfig::load_config(const char* fname)
 {
@@ -108,6 +102,29 @@ int GameConfig::load_config(const char* fname)
         cerr << "No 'application.scgi' setting in configuration file." << endl;
     }
 
+    // Get storage params
+    try {
+        const Setting& conf = app.lookup("storage");
+        const string& store_type = conf["type"];
+
+        const map<string, StorageConfigType> storage_types_map = {
+                {"file", StorageConfigType::FILE},
+        };
+
+        const auto storage_types_map_it = storage_types_map.find(store_type);
+        if (storage_types_map_it == storage_types_map.end())
+        {
+            // Set default storage type
+            _storage_config.set_type(StorageConfigType::FILE);
+        } else
+        {
+            auto storage_type = storage_types_map_it->second;
+            _storage_config.set_type(storage_type);
+        }
+    }
+    catch (const SettingNotFoundException& nfex) {
+        cerr << "No 'application.scgi' setting in configuration file." << endl;
+    }
 
     return (EXIT_SUCCESS);
 }

@@ -12,6 +12,7 @@
 #include <memory>
 #include <string>
 #include "../global_types.h"
+#include "../core/BaseSerializedObject.h"
 
 
 class SingleDialog;
@@ -39,14 +40,16 @@ typedef std::shared_ptr<GameButton> spGameButton;
 typedef std::vector<spGameButton> GameButtons;
 
 
-class SingleDialog {
+class SingleDialog : public BaseSerializedObject {
 public:
     SingleDialog();
 
     SingleDialog(const SingleDialog& o);
 
-    virtual ~SingleDialog();
+    ~SingleDialog() override;
 
+    void SerializeMe(std::istream& in) override;
+    void DeserializeMe(std::ostream& out) override;
 
 private:
     GameButtons buttons;

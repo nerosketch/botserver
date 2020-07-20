@@ -8,16 +8,27 @@
 #ifndef GAMESTORAGE_H
 #define GAMESTORAGE_H
 
-class GameStorage {
+#include "BaseStorage.h"
+
+enum class StorageConfigType
+{
+    FILE
+};
+
+class GameStorage : public BaseStorage {
 public:
-    GameStorage();
+    explicit GameStorage(StorageConfigType type);
 
-    GameStorage(const GameStorage& orig);
+    GameStorage(const GameStorage& o);
 
-    virtual ~GameStorage();
+    ~GameStorage() override;
+
+    std::istream getWriteStream() override;
+    std::ostream getReadStream() override;
+
 
 private:
-
+    StorageConfigType _type;
 };
 
 #endif /* GAMESTORAGE_H */

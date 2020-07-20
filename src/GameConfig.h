@@ -9,6 +9,7 @@
 #define GAMECONFIG_H
 
 #include <string>
+#include "storage/GameStorage.h"
 
 
 class VkConfig {
@@ -50,7 +51,7 @@ public:
         host = _host;
     }
 
-    const u_short get_port() const
+    u_short get_port() const
     {
         return port;
     }
@@ -64,7 +65,31 @@ private:
     ScgiConfig(const ScgiConfig&);
 
     std::string host;
-    u_short port;
+    u_short port{};
+};
+
+
+class StorageConfig {
+public:
+    StorageConfig() : _type(StorageConfigType::FILE) {}
+
+    virtual ~StorageConfig() = default;
+
+    inline void set_type(const StorageConfigType& type)
+    {
+        _type = type;
+    }
+
+    inline const StorageConfigType& get_type() const
+    {
+        return _type;
+    }
+
+private:
+    StorageConfig(const StorageConfig&) = default;
+
+    StorageConfigType _type;
+//    std::string _type;
 };
 
 
@@ -72,6 +97,8 @@ class GameConfig {
 public:
 
     int load_config(const char* fname);
+
+    static GameConfig& getInstance();
 
     const VkConfig& get_vk_config() const
     {
@@ -83,7 +110,10 @@ public:
         return _scgi;
     }
 
-    static GameConfig& getInstance();
+    const StorageConfig& get_storage_config() const
+    {
+        return _storage_config;
+    };
 
 private:
     GameConfig();
@@ -94,6 +124,7 @@ private:
 
     VkConfig _vk;
     ScgiConfig _scgi;
+    StorageConfig _storage_config;
 };
 
 extern GameConfig& game_config;

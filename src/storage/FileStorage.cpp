@@ -8,14 +8,20 @@
 #include "FileStorage.h"
 
 FileStorage::FileStorage()
-{
-}
+= default;
 
 FileStorage::FileStorage(const FileStorage& orig)
-{
-}
+= default;
 
 FileStorage::~FileStorage()
+= default;
+
+std::istream FileStorage::getWriteStream()
 {
+    return <#initializer#>;
 }
 
+std::ostream FileStorage::getReadStream()
+{
+    return <#initializer#>;
+}

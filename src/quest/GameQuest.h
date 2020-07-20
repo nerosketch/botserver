@@ -12,17 +12,23 @@
 #include <unordered_map>
 #include <utility>
 #include "SingleDialog.h"
+#include "../core/BaseSerializedObject.h"
 
 using namespace std;
 
-class GameQuest {
+class GameQuest;
+typedef shared_ptr<GameQuest> spGameQuest;
+
+class GameQuest : public BaseSerializedObject {
 public:
     GameQuest();
     GameQuest(const string& title, const string& description, const string& first_dialog_name = "start");
-
     GameQuest(const GameQuest& o);
 
-    virtual ~GameQuest();
+    static spGameQuest makeGameQuest();
+    static spGameQuest makeGameQuest(const string& title, const string& description, const string& first_dialog_name = "start");
+
+    ~GameQuest() override;
 
     inline spSingleDialog findDialog(const string& name)
     {
@@ -37,13 +43,18 @@ public:
         _dialogs.clear();
     }
 
+    // Get entry point to quest
+    spSingleDialog& getFirstDialog();
+
+    void SerializeMe(std::istream& in) override;
+    void DeserializeMe(std::ostream& out) override;
+
 private:
     string _title;
     string _description;
     string _first_dialog;
     unordered_map<string, spSingleDialog> _dialogs;
 };
-typedef shared_ptr<GameQuest> spGameQuest;
 
 
 #endif /* GAMEQUEST_H */
