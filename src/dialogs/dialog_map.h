@@ -5,8 +5,8 @@
 #include <map>
 #include <memory>
 
-
-class BaseCreatorInterface {
+class BaseCreatorInterface
+{
 public:
   virtual spBaseDialogInterface createInst() = 0;
 };

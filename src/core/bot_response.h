@@ -1,7 +1,6 @@
 #ifndef BotResponse_H
 #define BotResponse_H
 
-
 #include "../core/preprocessors.h"
 #include "button.h"
 #include <string>
@@ -9,20 +8,19 @@
 
 using namespace std;
 
-
 DECLARE_SMART(BotResponse, spBotResponse);
 
-class BotResponse {
+class BotResponse
+{
 public:
   BotResponse();
-  BotResponse(const BotResponse&);
+  BotResponse(const BotResponse &);
   virtual ~BotResponse();
 
   string Text;
-	vector<Button> Buttons;
+  vector<Button> Buttons;
 
 private:
-
 };
 
 #endif /* BotResponse_H */

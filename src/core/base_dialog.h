@@ -11,19 +11,49 @@ using namespace std;
 
 DECLARE_SMART(BaseDialogInterface, spBaseDialogInterface);
 
-class BaseDialogInterface {
+class BaseDialogInterface
+{
 public:
   BaseDialogInterface();
-  BaseDialogInterface(const BaseDialogInterface&);
+  BaseDialogInterface(const BaseDialogInterface &);
   virtual ~BaseDialogInterface();
 
-  string name;
-	uint16_t dialogType;
-  string message;
+  string GetName() const
+  {
+    return name;
+  }
 
-  virtual spBotResponse HandleMessage(spClient& client, spUserInboxMessage& msg) = 0;
+  void SetName(string name)
+  {
+    name = name;
+  }
+
+  uint16_t GetDialogType() const
+  {
+    return dialogType;
+  }
+
+  void SetDialogType(uint16_t dialogType)
+  {
+    dialogType = dialogType;
+  }
+
+  string GetMessage() const
+  {
+    return message;
+  }
+
+  void SetMessage(string message)
+  {
+    message = message;
+  }
+
+  virtual spBotResponse HandleMessage(spClient &client, spUserInboxMessage &msg) = 0;
 
 private:
+  string name;
+  uint16_t dialogType;
+  string message;
 
 };
 

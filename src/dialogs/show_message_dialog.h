@@ -6,15 +6,16 @@
 
 DECLARE_SMART(ShowMessageDialog, spShowMessageDialog);
 
-class ShowMessageDialog : public BaseDialogInterface {
+class ShowMessageDialog : public BaseDialogInterface
+{
 public:
   ShowMessageDialog();
-  ShowMessageDialog(const ShowMessageDialog&);
+  ShowMessageDialog(const ShowMessageDialog &);
   virtual ~ShowMessageDialog();
 
-  spBotResponse HandleMessage(spClient& client, spUserInboxMessage& msg) override;
-private:
+  spBotResponse HandleMessage(spClient &client, spUserInboxMessage &msg) override;
 
+private:
 };
 
 #endif /* ShowMessageDialog_H */

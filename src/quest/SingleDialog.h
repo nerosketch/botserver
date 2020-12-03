@@ -14,17 +14,16 @@
 #include "../global_types.h"
 #include "../core/BaseSerializedObject.h"
 
-
 class SingleDialog;
 
 typedef std::shared_ptr<SingleDialog> spSingleDialog;
 
-
-class GameButton {
+class GameButton
+{
 public:
     GameButton();
 
-    GameButton(const GameButton& o);
+    GameButton(const GameButton &o);
 
     virtual ~GameButton();
 
@@ -39,17 +38,17 @@ private:
 typedef std::shared_ptr<GameButton> spGameButton;
 typedef std::vector<spGameButton> GameButtons;
 
-
-class SingleDialog : public BaseSerializedObject {
+class SingleDialog : public BaseSerializedObject
+{
 public:
     SingleDialog();
 
-    SingleDialog(const SingleDialog& o);
+    SingleDialog(const SingleDialog &o);
 
     ~SingleDialog() override;
 
-    void SerializeMe(std::istream& in) override;
-    void DeserializeMe(std::ostream& out) override;
+    void SerializeMe(std::istream &in) override;
+    void DeserializeMe(std::ostream &out) override;
 
 private:
     GameButtons buttons;

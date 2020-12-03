@@ -10,22 +10,22 @@
 
 #include <string>
 
-class GameInboxMessage {
+class GameInboxMessage
+{
 public:
-    explicit GameInboxMessage(const std::string& msg);
+    explicit GameInboxMessage(const std::string &msg);
 
-    GameInboxMessage(const GameInboxMessage& o);
+    GameInboxMessage(const GameInboxMessage &o);
 
     virtual ~GameInboxMessage();
 
-    void setMessage(const std::string& msg);
+    void setMessage(const std::string &msg);
 
-    std::string& getMessage();
+    std::string &getMessage();
 
-    bool operator==(const GameInboxMessage& r) const;
+    bool operator==(const GameInboxMessage &r) const;
 
-    bool operator!=(const GameInboxMessage& r) const;
-
+    bool operator!=(const GameInboxMessage &r) const;
 
 private:
     std::string _msg;

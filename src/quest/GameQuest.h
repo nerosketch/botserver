@@ -19,22 +19,23 @@ using namespace std;
 class GameQuest;
 typedef shared_ptr<GameQuest> spGameQuest;
 
-class GameQuest : public BaseSerializedObject {
+class GameQuest : public BaseSerializedObject
+{
 public:
     GameQuest();
-    GameQuest(const string& title, const string& description, const string& first_dialog_name = "start");
-    GameQuest(const GameQuest& o);
+    GameQuest(const string &title, const string &description, const string &first_dialog_name = "start");
+    GameQuest(const GameQuest &o);
 
     static spGameQuest makeGameQuest();
-    static spGameQuest makeGameQuest(const string& title, const string& description, const string& first_dialog_name = "start");
+    static spGameQuest makeGameQuest(const string &title, const string &description, const string &first_dialog_name = "start");
 
     ~GameQuest() override;
 
-    inline spSingleDialog findDialog(const string& name)
+    inline spSingleDialog findDialog(const string &name)
     {
         return _dialogs[name];
     }
-    inline void addDialog(const string& name, const spSingleDialog& dialog)
+    inline void addDialog(const string &name, const spSingleDialog &dialog)
     {
         _dialogs[name] = dialog;
     }
@@ -44,10 +45,10 @@ public:
     }
 
     // Get entry point to quest
-    spSingleDialog& getFirstDialog();
+    spSingleDialog &getFirstDialog();
 
-    void SerializeMe(std::istream& in) override;
-    void DeserializeMe(std::ostream& out) override;
+    void SerializeMe(std::istream &in) override;
+    void DeserializeMe(std::ostream &out) override;
 
 private:
     string _title;
@@ -55,6 +56,5 @@ private:
     string _first_dialog;
     unordered_map<string, spSingleDialog> _dialogs;
 };
-
 
 #endif /* GAMEQUEST_H */

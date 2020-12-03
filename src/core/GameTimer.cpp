@@ -7,12 +7,8 @@
 
 #include "GameTimer.h"
 
-GameTimer::GameTimer()
-= default;
+GameTimer::GameTimer() = default;
 
-GameTimer::GameTimer(const GameTimer& orig)
-= default;
+GameTimer::GameTimer(const GameTimer &orig) = default;
 
-GameTimer::~GameTimer()
-= default;
-
+GameTimer::~GameTimer() = default;

@@ -19,7 +19,6 @@ bool BaseSerializedObject::Save()
     return true;
 }
 
-
 bool BaseSerializedObject::Load()
 {
     // TODO: deserialize and load object from storage method from config

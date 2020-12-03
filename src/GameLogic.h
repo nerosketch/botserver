@@ -11,8 +11,6 @@
 #include <string>
 #include "./quest/GameInboxMessage.h"
 
-
-std::string global_entrypoint_logic(GameInboxMessage& msg);
-
+std::string global_entrypoint_logic(GameInboxMessage &msg);
 
 #endif /* GAMELOGIC_H */

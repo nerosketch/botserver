@@ -7,14 +7,11 @@
 
 #include "FileStorage.h"
 
-FileStorage::FileStorage()
-= default;
+FileStorage::FileStorage() = default;
 
-FileStorage::FileStorage(const FileStorage& orig)
-= default;
+FileStorage::FileStorage(const FileStorage &orig) = default;
 
-FileStorage::~FileStorage()
-= default;
+FileStorage::~FileStorage() = default;
 
 std::istream FileStorage::getWriteStream()
 {

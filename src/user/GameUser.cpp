@@ -11,7 +11,7 @@ GameUser::GameUser()
 {
 }
 
-GameUser::GameUser(const GameUser& orig)
+GameUser::GameUser(const GameUser &orig)
 {
 }
 
@@ -19,7 +19,6 @@ GameUser::~GameUser()
 {
 }
 
-void GameUser::on_inbox_message(GameInboxMessage& msg)
+void GameUser::on_inbox_message(GameInboxMessage &msg)
 {
-
 }

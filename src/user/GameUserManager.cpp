@@ -7,14 +7,13 @@
 
 #include "GameUserManager.h"
 
-
 std::unordered_map<std::string, spGameUser> GameUserManager::_users_table;
 
 GameUserManager::GameUserManager()
 {
 }
 
-GameUserManager::GameUserManager(const GameUserManager& orig)
+GameUserManager::GameUserManager(const GameUserManager &orig)
 {
 }
 
@@ -22,8 +21,7 @@ GameUserManager::~GameUserManager()
 {
 }
 
-
-GameUserManager& GameUserManager::getInstance()
+GameUserManager &GameUserManager::getInstance()
 {
     static GameUserManager _inst;
     return _inst;

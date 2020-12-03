@@ -11,42 +11,42 @@
 #include <string>
 #include "storage/GameStorage.h"
 
-
-class VkConfig {
+class VkConfig
+{
 public:
     VkConfig();
 
     virtual ~VkConfig();
 
-    void set_api_key(const std::string& key)
+    void set_api_key(const std::string &key)
     {
         api_key = key;
     }
 
-    const std::string& get_api_key() const
+    const std::string &get_api_key() const
     {
         return api_key;
     }
 
 private:
-    VkConfig(const VkConfig&);
+    VkConfig(const VkConfig &);
 
     std::string api_key;
-
 };
 
-class ScgiConfig {
+class ScgiConfig
+{
 public:
     ScgiConfig();
 
     virtual ~ScgiConfig();
 
-    const std::string& get_host() const
+    const std::string &get_host() const
     {
         return host;
     }
 
-    void set_host(const std::string& _host)
+    void set_host(const std::string &_host)
     {
         host = _host;
     }
@@ -62,55 +62,54 @@ public:
     }
 
 private:
-    ScgiConfig(const ScgiConfig&);
+    ScgiConfig(const ScgiConfig &);
 
     std::string host;
     u_short port{};
 };
 
-
-class StorageConfig {
+class StorageConfig
+{
 public:
     StorageConfig() : _type(StorageConfigType::FILE) {}
 
     virtual ~StorageConfig() = default;
 
-    inline void set_type(const StorageConfigType& type)
+    inline void set_type(const StorageConfigType &type)
     {
         _type = type;
     }
 
-    inline const StorageConfigType& get_type() const
+    inline const StorageConfigType &get_type() const
     {
         return _type;
     }
 
 private:
-    StorageConfig(const StorageConfig&) = default;
+    StorageConfig(const StorageConfig &) = default;
 
     StorageConfigType _type;
-//    std::string _type;
+    //    std::string _type;
 };
 
-
-class GameConfig {
+class GameConfig
+{
 public:
+    int load_config(const char *fname);
 
-    int load_config(const char* fname);
+    static GameConfig &getInstance();
 
-    static GameConfig& getInstance();
-
-    const VkConfig& get_vk_config() const
+    const VkConfig &get_vk_config() const
     {
         return _vk;
     }
 
-    const ScgiConfig& get_scgi_config() const
+    const ScgiConfig &get_scgi_config() const
     {
         return _scgi;
     }
 
-    const StorageConfig& get_storage_config() const
+    const StorageConfig &get_storage_config() const
     {
         return _storage_config;
     };
@@ -118,7 +117,7 @@ public:
 private:
     GameConfig();
 
-    GameConfig(const GameConfig& o);
+    GameConfig(const GameConfig &o);
 
     virtual ~GameConfig();
 
@@ -127,6 +126,6 @@ private:
     StorageConfig _storage_config;
 };
 
-extern GameConfig& game_config;
+extern GameConfig &game_config;
 
 #endif /* GAMECONFIG_H */

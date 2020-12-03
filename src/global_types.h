@@ -14,12 +14,12 @@
 
 typedef std::map<std::string, std::string> RequestParamsMap;
 
-
-class Color {
+class Color
+{
 public:
     Color();
 
-    Color(const Color& o);
+    Color(const Color &o);
 
     virtual ~Color();
 
@@ -27,6 +27,4 @@ private:
     uint32_t _color;
 };
 
-
 #endif /* GLOBAL_TYPES_H */
-

@@ -10,11 +10,12 @@
 
 #include "BaseStorage.h"
 
-class FileStorage : public BaseStorage {
+class FileStorage : public BaseStorage
+{
 public:
     FileStorage();
 
-    FileStorage(const FileStorage& o);
+    FileStorage(const FileStorage &o);
 
     ~FileStorage() override;
 
@@ -22,8 +23,6 @@ public:
     std::ostream getReadStream() override;
 
 private:
-
 };
 
 #endif /* FILESTORAGE_H */
-

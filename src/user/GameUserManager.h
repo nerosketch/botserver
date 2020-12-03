@@ -12,16 +12,15 @@
 #include <string>
 #include "GameUser.h"
 
-
-class GameUserManager {
+class GameUserManager
+{
 public:
-
     inline void addUser(spGameUser user)
     {
         _users_table[user->getUsername()] = user;
     }
 
-    inline spGameUser getUser(const std::string& uname)
+    inline spGameUser getUser(const std::string &uname)
     {
         return _users_table[uname];
     }
@@ -31,12 +30,12 @@ public:
         _users_table.clear();
     }
 
-    static GameUserManager& getInstance();
+    static GameUserManager &getInstance();
 
 private:
     GameUserManager();
 
-    GameUserManager(const GameUserManager&);
+    GameUserManager(const GameUserManager &);
 
     virtual ~GameUserManager();
 

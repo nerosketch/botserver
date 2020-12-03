@@ -10,14 +10,11 @@
 
 using namespace std;
 
-
 GameStorage::GameStorage(StorageConfigType type) : _type(type) {}
 
-GameStorage::GameStorage(const GameStorage&)
-= default;
+GameStorage::GameStorage(const GameStorage &) = default;
 
-GameStorage::~GameStorage()
-= default;
+GameStorage::~GameStorage() = default;
 
 std::istream GameStorage::getWriteStream()
 {
@@ -26,7 +23,6 @@ std::istream GameStorage::getWriteStream()
         // FileStorage fs;
         // return fs.getWriteStream();
     }
-
 }
 
 std::ostream GameStorage::getReadStream()

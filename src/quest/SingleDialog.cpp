@@ -7,36 +7,31 @@
 
 #include "SingleDialog.h"
 
-SingleDialog::SingleDialog() :
-        buttons()
+SingleDialog::SingleDialog() : buttons()
 {
 }
 
-SingleDialog::SingleDialog(const SingleDialog& o) = default;
+SingleDialog::SingleDialog(const SingleDialog &o) = default;
 
 SingleDialog::~SingleDialog() = default;
 
-
-void SingleDialog::SerializeMe(std::istream& in)
+void SingleDialog::SerializeMe(std::istream &in)
 {
     // TODO: make it
 }
 
-void SingleDialog::DeserializeMe(std::ostream& out)
+void SingleDialog::DeserializeMe(std::ostream &out)
 {
     // TODO: make it
 }
 
-
-GameButton::GameButton() :
-        target_dialog(), button_text(), color()
+GameButton::GameButton() : target_dialog(), button_text(), color()
 {
 }
 
-GameButton::GameButton(const GameButton& o) = default;
+GameButton::GameButton(const GameButton &o) = default;
 
 GameButton::~GameButton() = default;
-
 
 void GameButton::onClick()
 {

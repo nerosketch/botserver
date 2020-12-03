@@ -12,29 +12,29 @@
 #include <memory>
 #include "../quest/GameInboxMessage.h"
 
-class GameUser {
+class GameUser
+{
 public:
     GameUser();
 
-    GameUser(const GameUser& orig);
+    GameUser(const GameUser &orig);
 
     virtual ~GameUser();
 
-    inline std::string& getUsername()
+    inline std::string &getUsername()
     {
         return _username;
     }
 
-    inline void setUsername(const std::string& uname)
+    inline void setUsername(const std::string &uname)
     {
         _username = uname;
     }
 
-    void on_inbox_message(GameInboxMessage& msg);
+    void on_inbox_message(GameInboxMessage &msg);
 
 private:
     std::string _username;
-
 };
 
 typedef std::shared_ptr<GameUser> spGameUser;
