@@ -15,11 +15,10 @@ endif()
 
 aux_source_directory( ${CMAKE_CURRENT_SOURCE_DIR}/src SRC )
 aux_source_directory( ${CMAKE_CURRENT_SOURCE_DIR}/src/core SRC )
-aux_source_directory( ${CMAKE_CURRENT_SOURCE_DIR}/src/ExternalApi SRC )
+aux_source_directory( ${CMAKE_CURRENT_SOURCE_DIR}/src/dialogs SRC )
 aux_source_directory( ${CMAKE_CURRENT_SOURCE_DIR}/src/quest SRC )
 aux_source_directory( ${CMAKE_CURRENT_SOURCE_DIR}/src/storage SRC )
 aux_source_directory( ${CMAKE_CURRENT_SOURCE_DIR}/src/user SRC )
-aux_source_directory( ${CMAKE_CURRENT_SOURCE_DIR}/src/httpserver SRC )
 aux_source_directory( ${CMAKE_CURRENT_SOURCE_DIR}/src/third_party SRC )
 
 set( SRC ${SRC}
@@ -29,6 +28,8 @@ set( SRC ${SRC}
 set( LIBS
 	config++
 	event )
+
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/src)
 
 find_package(CURL REQUIRED)
 if(CURL_FOUND)

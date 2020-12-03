@@ -8,4 +8,5 @@ CMakeFiles/
 build/
 dist/
 nbproject/
-grocking
+botserver
+.idea/

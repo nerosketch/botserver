@@ -18,10 +18,10 @@ FileStorage::~FileStorage()
 
 std::istream FileStorage::getWriteStream()
 {
-    return <#initializer#>;
+    // return <#initializer#>;
 }
 
 std::ostream FileStorage::getReadStream()
 {
-    return <#initializer#>;
+    // return <#initializer#>;
 }

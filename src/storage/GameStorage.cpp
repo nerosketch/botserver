@@ -23,8 +23,8 @@ std::istream GameStorage::getWriteStream()
 {
     if (_type == StorageConfigType::FILE)
     {
-        FileStorage fs;
-        return fs.getWriteStream();
+        // FileStorage fs;
+        // return fs.getWriteStream();
     }
 
 }
@@ -33,7 +33,7 @@ std::ostream GameStorage::getReadStream()
 {
     if (_type == StorageConfigType::FILE)
     {
-        FileStorage fs;
-        return fs.getReadStream();
+        // FileStorage fs;
+        // return fs.getReadStream();
     }
 }
