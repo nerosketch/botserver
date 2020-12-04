@@ -50,12 +50,12 @@ if (LIBCONFIG_PLUSPLUS)
 	message("Libconfig libs" ${LIBCONFIG_PLUSPLUS_LIBRARIES})
 endif()
 
+include(FetchContent)
 
 # Target nlohmann/json
-include(FetchContent)
 FetchContent_Declare(json
   GIT_REPOSITORY https://github.com/ArthurSonzogni/nlohmann_json_cmake_fetchcontent
-  GIT_TAG v3.7.3)
+  GIT_TAG v3.9.1)
 
 FetchContent_GetProperties(json)
 if(NOT json_POPULATED)
@@ -68,10 +68,9 @@ endif()
 
 add_executable( ${APP_NAME} ${SRC} )
 
-target_link_libraries( ${APP_NAME}
+target_link_libraries( ${APP_NAME} PRIVATE
 	${LIBS} )
 
 if (WIN32) #disable console mode for VC++
 	set_target_properties( ${APP_NAME} PROPERTIES WIN32_EXECUTABLE TRUE )
 endif(WIN32)
-

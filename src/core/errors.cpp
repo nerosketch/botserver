@@ -9,7 +9,7 @@ ErrorBase::ErrorBase(const ErrorBase &o) = default;
 
 ErrorBase::~ErrorBase() = default;
 
-spErrorBase ErrorBase::makeError(const string &msg, int err_code = 0)
+spErrorBase ErrorBase::makeError(const string &msg, int err_code)
 {
     return make_shared<ErrorBase>(msg, err_code);
 }

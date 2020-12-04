@@ -2,9 +2,11 @@
 #define UserInboxMessage_H
 
 #include <string>
+#include <nlohmann/json.hpp>
 #include "preprocessors.h"
 
 using namespace std;
+using nlohmann::json;
 
 DECLARE_SMART(UserInboxMessage, spUserInboxMessage);
 
@@ -36,9 +38,14 @@ public:
     this->text = text;
   }
 
+  static spUserInboxMessage parseFromBytes(ssize_t len, const char *data);
+
+  NLOHMANN_DEFINE_TYPE_INTRUSIVE(UserInboxMessage, uname, text)
+
 private:
   string uname;
   string text;
+
 };
 
 #endif /* UserInboxMessage_H */
