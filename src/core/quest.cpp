@@ -88,7 +88,7 @@ spBotResponse Quest::HandleMessage(spClient &client, spUserInboxMessage &msg)
         {
             // dialog not found,
             // handle unexpected dialog
-            auto& un_dlg = UnexpectedDialog.getInstance();
+            auto& un_dlg = UnexpectedDialog::getInstance();
             return un_dlg.HandleMessage(client, msg);
         }
         return entrypoint_dialog_it->HandleMessage(client, msg);

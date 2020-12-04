@@ -1,17 +1,15 @@
 #ifndef UnexpectedDialog_H
 #define UnexpectedDialog_H
 
-
 #include "preprocessors.h"
 #include "base_dialog.h"
 
-
 DECLARE_SMART(UnexpectedDialog, spUnexpectedDialog);
 
-class UnexpectedDialog : public BaseDialogInterface {
+class UnexpectedDialog : public BaseDialogInterface
+{
 public:
-  
-  static UnexpectedDialog& getInstance()
+  inline static UnexpectedDialog& getInstance()
   {
     static UnexpectedDialog singletone;
     return singletone;
@@ -21,9 +19,9 @@ public:
 
 private:
   UnexpectedDialog();
-  UnexpectedDialog(const UnexpectedDialog&);
+  UnexpectedDialog(const UnexpectedDialog &);
   virtual ~UnexpectedDialog();
-  UnexpectedDialog &operator=(const UnexpectedDialog&);
+  UnexpectedDialog &operator=(const UnexpectedDialog &);
 };
 
 #endif /* UnexpectedDialog_H */

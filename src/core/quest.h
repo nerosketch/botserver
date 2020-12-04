@@ -13,7 +13,7 @@
 #include <unordered_map>
 #include <utility>
 #include "base_dialog.h"
-#include "../core/BaseSerializedObject.h"
+#include "BaseSerializedObject.h"
 
 using namespace std;
 
@@ -29,7 +29,7 @@ public:
     static spQuest makeQuest();
     static spQuest makeQuest(const string &title, const string &description, const string &first_dialog_name = "start");
 
-    ~Quest() override;
+    virtual ~Quest();
 
     spBaseDialogInterface findDialog(const string &name);
 
