@@ -14,13 +14,34 @@ class BotResponse
 {
 public:
   BotResponse();
+  BotResponse(const string& text);
+  BotResponse(const string& text, const vector<Button>& buttons );
   BotResponse(const BotResponse &);
   virtual ~BotResponse();
 
-  string Text;
-  vector<Button> Buttons;
+  string GetText() const
+  {
+    return text;
+  }
 
-private:
+  void SetText(string text)
+  {
+    text = text;
+  }
+
+  vector<Button> GetButtons() const
+  {
+    return buttons;
+  }
+
+  void SetButtons(vector<Button> buttons)
+  {
+    buttons = buttons;
+  }
+
+protected:
+  string text;
+  vector<Button> buttons;
 };
 
 #endif /* BotResponse_H */

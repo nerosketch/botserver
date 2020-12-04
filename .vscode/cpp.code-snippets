@@ -57,5 +57,11 @@
 			"= default;",
 			""
 		]
+	},
+	"using namespace std": {
+		"prefix": "ustd",
+		"body": [
+			"using namespace std;"
+		]
 	}
 }
