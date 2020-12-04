@@ -19,6 +19,7 @@ aux_source_directory( ${CMAKE_CURRENT_SOURCE_DIR}/src/dialogs SRC )
 aux_source_directory( ${CMAKE_CURRENT_SOURCE_DIR}/src/quest SRC )
 aux_source_directory( ${CMAKE_CURRENT_SOURCE_DIR}/src/storage SRC )
 aux_source_directory( ${CMAKE_CURRENT_SOURCE_DIR}/src/user SRC )
+aux_source_directory( ${CMAKE_CURRENT_SOURCE_DIR}/src/messages SRC )
 aux_source_directory( ${CMAKE_CURRENT_SOURCE_DIR}/src/third_party SRC )
 
 set( SRC ${SRC}

@@ -1,0 +1,24 @@
+#ifndef InboxMessageHandler_H
+#define InboxMessageHandler_H
+
+#include "../core/preprocessors.h"
+#include "../core/base_message.h"
+// #include <string>
+
+using namespace std;
+
+DECLARE_SMART(InboxMessageHandler, spInboxMessageHandler);
+
+class InboxMessageHandler : public BaseMessageInterface
+{
+public:
+    InboxMessageHandler();
+    InboxMessageHandler(const InboxMessageHandler &);
+    virtual ~InboxMessageHandler();
+
+    spErrorBase onMessageHandler(spUserInboxMessage &msg) override;
+
+private:
+};
+
+#endif /* InboxMessageHandler_H */
