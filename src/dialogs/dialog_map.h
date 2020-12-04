@@ -1,9 +1,9 @@
 #if !defined(DIALOGS_MAP_H)
 #define DIALOGS_MAP_H
 
+#include <map>
 #include "../core/preprocessors.h"
 #include "../core/base_dialog.h"
-#include <map>
 
 using namespace std;
 

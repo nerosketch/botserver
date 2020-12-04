@@ -8,10 +8,10 @@
 #ifndef GAMEQUEST_H
 #define GAMEQUEST_H
 
-#include "preprocessors.h"
 #include <string>
 #include <unordered_map>
 #include <utility>
+#include "preprocessors.h"
 #include "base_dialog.h"
 #include "BaseSerializedObject.h"
 

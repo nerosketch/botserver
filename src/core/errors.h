@@ -1,8 +1,8 @@
 #ifndef ErrorBase_H
 #define ErrorBase_H
 
-#include "preprocessors.h"
 #include <string>
+#include "preprocessors.h"
 
 using namespace std;
 
@@ -12,10 +12,11 @@ class ErrorBase
 {
 public:
     ErrorBase();
-    ErrorBase(const string &msg);
     ErrorBase(const string &msg, int err_code);
     ErrorBase(const ErrorBase &);
     virtual ~ErrorBase();
+
+    static spErrorBase makeError(const string &msg, int err_code = 0);
 
 protected:
     string message_text;

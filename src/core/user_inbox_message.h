@@ -1,8 +1,8 @@
 #ifndef UserInboxMessage_H
 #define UserInboxMessage_H
 
-#include "preprocessors.h"
 #include <string>
+#include "preprocessors.h"
 
 using namespace std;
 

@@ -1,10 +1,10 @@
 #ifndef BotResponse_H
 #define BotResponse_H
 
-#include "preprocessors.h"
-#include "button.h"
 #include <string>
 #include <vector>
+#include "preprocessors.h"
+#include "button.h"
 
 using namespace std;
 

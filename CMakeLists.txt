@@ -22,13 +22,15 @@ aux_source_directory( ${CMAKE_CURRENT_SOURCE_DIR}/src/user SRC )
 aux_source_directory( ${CMAKE_CURRENT_SOURCE_DIR}/src/messages SRC )
 aux_source_directory( ${CMAKE_CURRENT_SOURCE_DIR}/src/third_party SRC )
 
-set( SRC ${SRC}
-	${CMAKE_CURRENT_SOURCE_DIR}/src/third_party/libscgi/parser.cpp
-	${CMAKE_CURRENT_SOURCE_DIR}/src/third_party/libscgi/scgiServer.cpp)
+#set( SRC ${SRC}
+#	${CMAKE_CURRENT_SOURCE_DIR}/src/third_party/libscgi/parser.cpp
+#	${CMAKE_CURRENT_SOURCE_DIR}/src/third_party/libscgi/scgiServer.cpp)
 
 set( LIBS
 	config++
-	event )
+	pthread
+	# event
+	 )
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/src)
 
