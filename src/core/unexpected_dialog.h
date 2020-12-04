@@ -2,24 +2,28 @@
 #define UnexpectedDialog_H
 
 
-#include "../core/preprocessors.h"
-#include "../core/base_dialog.h"
-#include <string>
-
-using namespace std;
+#include "preprocessors.h"
+#include "base_dialog.h"
 
 
 DECLARE_SMART(UnexpectedDialog, spUnexpectedDialog);
 
 class UnexpectedDialog : public BaseDialogInterface {
 public:
+  
+  static UnexpectedDialog& getInstance()
+  {
+    static UnexpectedDialog singletone;
+    return singletone;
+  }
+
+  spBotResponse HandleMessage(spClient &client, spUserInboxMessage &msg) override;
+
+private:
   UnexpectedDialog();
   UnexpectedDialog(const UnexpectedDialog&);
   virtual ~UnexpectedDialog();
-
-  spBotResponse HandleMessage(spClient &client, spUserInboxMessage &msg) override;
-private:
-
+  UnexpectedDialog &operator=(const UnexpectedDialog&);
 };
 
 #endif /* UnexpectedDialog_H */

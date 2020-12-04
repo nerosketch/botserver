@@ -3,7 +3,7 @@
 
 #include "../core/preprocessors.h"
 #include "../core/base_dialog.h"
-#include <map>
+#include <unordered_map>
 #include <memory>
 
 using namespace std;
@@ -16,7 +16,7 @@ public:
   virtual spBaseDialogInterface createInst() = 0;
 };
 
-extern const map<const uint16_t, spBaseDialogCreatorInterface> DialogTypeMap;
+extern const unordered_map<const uint16_t, spBaseDialogCreatorInterface> DialogTypeMap;
 
 // const auto er = DialogTypeMap.at(2);
 // auto ts = er->createInst();

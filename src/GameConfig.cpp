@@ -8,7 +8,7 @@
 #include <iostream>
 #include <iomanip>
 #include <cstdlib>
-#include <map>
+#include <unordered_map>
 #include <libconfig.h++>
 #include "GameConfig.h"
 
@@ -107,7 +107,7 @@ int GameConfig::load_config(const char *fname)
         const Setting &conf = app.lookup("storage");
         const string &store_type = conf["type"];
 
-        const map<string, StorageConfigType> storage_types_map = {
+        const unordered_map<string, StorageConfigType> storage_types_map = {
             {"file", StorageConfigType::FILE},
         };
 

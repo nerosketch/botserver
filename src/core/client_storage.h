@@ -2,7 +2,7 @@
 #define ClientStorage_H
 
 #include "client.h"
-#include <map>
+#include <unordered_map>
 #include <string>
 
 using namespace std;
@@ -26,7 +26,7 @@ private:
     virtual ~ClientStorage();
     ClientStorage &operator=(const ClientStorage &);
 
-    map<string, spClient> clients;
+    unordered_map<string, spClient> clients;
 };
 
 #endif /* ClientStorage_H */

@@ -1,7 +1,7 @@
 #ifndef Client_H
 #define Client_H
 
-#include "../core/preprocessors.h"
+#include "preprocessors.h"
 #include <string>
 
 using namespace std;

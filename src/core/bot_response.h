@@ -1,7 +1,7 @@
 #ifndef BotResponse_H
 #define BotResponse_H
 
-#include "../core/preprocessors.h"
+#include "preprocessors.h"
 #include "button.h"
 #include <string>
 #include <vector>

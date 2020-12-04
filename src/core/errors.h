@@ -1,7 +1,7 @@
 #ifndef ErrorBase_H
 #define ErrorBase_H
 
-#include "../core/preprocessors.h"
+#include "preprocessors.h"
 #include <string>
 
 using namespace std;

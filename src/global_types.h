@@ -10,9 +10,9 @@
 
 //#include <cstdint>
 #include <string>
-#include <map>
+#include <unordered_map>
 
-typedef std::map<std::string, std::string> RequestParamsMap;
+typedef std::unordered_map<std::string, std::string> RequestParamsMap;
 
 class Color
 {

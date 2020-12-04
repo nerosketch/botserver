@@ -14,7 +14,7 @@ public:
     { number, make_shared<MsgInstanceCreatorTemplate<class_name>>() }
 
 
-const map<const uint16_t, spBaseMsgCreatorInterface> MessageTypeMap = {
+const unordered_map<const uint16_t, spBaseMsgCreatorInterface> MessageTypeMap = {
   DAT_TYPE(1, InboxMessageHandler),
 //   DAT_TYPE(2, InboxMessageDialog),
   DAT_TYPE(3, UpdateQuestHandler)

@@ -19,7 +19,7 @@ public:
 
 
 
-const map<const uint16_t, shared_ptr<BaseDialogCreatorInterface>> DialogTypeMap = {
+const unordered_map<const uint16_t, shared_ptr<BaseDialogCreatorInterface>> DialogTypeMap = {
   DAT_TYPE(1, StartMessagingDialog),
   DAT_TYPE(2, InboxMessageDialog),
   DAT_TYPE(3, ShowMessageDialog)

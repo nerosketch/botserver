@@ -6,26 +6,27 @@
 #include "bot_response.h"
 #include "client.h"
 #include "user_inbox_message.h"
+#include "handler_interface.h"
 
 using namespace std;
 
 DECLARE_SMART(BaseDialogInterface, spBaseDialogInterface);
 
-class BaseDialogInterface
+class BaseDialogInterface : public HandlerInterface
 {
 public:
   BaseDialogInterface();
   BaseDialogInterface(const BaseDialogInterface &);
   virtual ~BaseDialogInterface();
 
-  string GetName() const
+  const string& GetName() const
   {
     return name;
   }
 
-  void SetName(string name)
+  void SetName(const string& name)
   {
-    name = name;
+    this->name = name;
   }
 
   uint16_t GetDialogType() const
@@ -35,20 +36,18 @@ public:
 
   void SetDialogType(uint16_t dialogType)
   {
-    dialogType = dialogType;
+    this->dialogType = dialogType;
   }
 
-  string GetMessage() const
+  const string& GetMessage() const
   {
     return message;
   }
 
-  void SetMessage(string message)
+  void SetMessage(const string& message)
   {
-    message = message;
+    this->message = message;
   }
-
-  virtual spBotResponse HandleMessage(spClient &client, spUserInboxMessage &msg) = 0;
 
 private:
   string name;

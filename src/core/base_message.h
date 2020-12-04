@@ -2,9 +2,9 @@
 #define BaseMessageInterface_H
 
 
-#include "../core/preprocessors.h"
-#include "../core/errors.h"
-#include "../core/user_inbox_message.h"
+#include "preprocessors.h"
+#include "errors.h"
+#include "user_inbox_message.h"
 // #include <string>
 
 // using namespace std;

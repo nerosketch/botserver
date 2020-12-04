@@ -3,7 +3,7 @@
 
 #include "../core/preprocessors.h"
 #include "../core/base_message.h"
-#include <map>
+#include <unordered_map>
 #include <memory>
 
 using namespace std;
@@ -16,6 +16,6 @@ public:
     virtual spBaseMessageInterface createInst() = 0;
 };
 
-extern const map<const uint16_t, spBaseMsgCreatorInterface> MessageTypeMap;
+extern const unordered_map<const uint16_t, spBaseMsgCreatorInterface> MessageTypeMap;
 
 #endif /* MessageTypeMap_H */

@@ -1,7 +1,7 @@
 #ifndef Button_H
 #define Button_H
 
-#include "../core/preprocessors.h"
+#include "preprocessors.h"
 #include <string>
 
 DECLARE_SMART(Button, spButton);
