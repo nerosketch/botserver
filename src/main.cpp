@@ -14,25 +14,21 @@ using namespace std;
 
 // #define OUT(msg) std::cout << "======================" << std::endl; msg; std::cout << std::endl;
 
-volatile sig_atomic_t already_stopped_flag = 0;
-
 SockServer srv;
 
-void sigint_function(int sig)
+void sigend_function(int)
 {
-  if (already_stopped_flag == 1)
-  {
-    cout << "Already stopped" << endl;
-    return;
-  }
-  already_stopped_flag = 1;
   srv.stopSignal();
 }
 
 int main(int argc, char **argv)
 {
 
-  signal(SIGINT, sigint_function);
+  signal(SIGINT, sigend_function);
+  // signal(SIGQUIT, [](int) { cout << "SIGQUIT" << endl; });
+  // signal(SIGHUP, [](int) { cout << "SIGHUP" << endl; });
+  signal(SIGTERM, sigend_function);  // kill <pid> signal
+  // signal(SIGKILL, [](int) { cout << "SIGILL" << endl; });
 
   auto err = srv.Serve(3142);
   if (err)
