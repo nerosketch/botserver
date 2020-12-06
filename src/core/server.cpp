@@ -58,11 +58,15 @@ spBotResponse handleConnection(ssize_t len, const char *data)
     return nullptr;
   }
 
-  spUserInboxMessage msg = UserInboxMessage::parseFromBytes(len, data);
+  if (len > sizeof(uint16_t))
+  {
+    data += sizeof(uint16_t);
+    spUserInboxMessage msg = UserInboxMessage::parseFromBytes(len, data);
 
-  const auto& msg_creator_if = msg_map_it->second;
-  const auto& msg_int = msg_creator_if->createInst();
-  return msg_int->onMessageHandler(msg);
+    const auto& msg_creator_if = msg_map_it->second;
+    const auto& msg_int = msg_creator_if->createInst();
+    return msg_int->onMessageHandler(msg);
+  }
 }
 
 spErrorBase SockServer::Serve(in_port_t port)

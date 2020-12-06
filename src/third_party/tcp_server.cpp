@@ -138,7 +138,9 @@ TcpServer::Client::Client(int socket, struct sockaddr_in address) : _socket(sock
   DEBUG_STRUCT_LOG("TcpServer::Client::Client()");
 }
 // Конструктор копирования
-TcpServer::Client::Client(const TcpServer::Client &other) : _socket(other._socket), address(other.address) {}
+TcpServer::Client::Client(const TcpServer::Client &other) : _socket(other._socket), address(other.address) {
+  DEBUG_STRUCT_LOG("TcpServer::Client::Client(const Client&)");
+}
 
 TcpServer::Client::~Client()
 {
