@@ -9,20 +9,14 @@
 #include <thread>
 #include <list>
 
-#ifdef _WIN32 // Windows NT
-
-#include <WinSock2.h>
-
-#else // *nix
-
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <unistd.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <signal.h>
 
-#endif
 
 //Буффер для приёма данных от клиента
 static constexpr uint16_t buffer_size = 4096;
@@ -51,12 +45,9 @@ private:
     std::list<std::thread> client_handler_threads;
     std::list<std::thread::id> client_handling_end;
 
-#ifdef _WIN32 // Windows NT
-    SOCKET serv_socket = INVALID_SOCKET;
-    WSAData w_data;
-#else // *nix
+    volatile sig_atomic_t sig_stop;
+
     int serv_socket;
-#endif
 
     void handlingLoop();
 
@@ -75,28 +66,19 @@ public:
     status restart();
     status start();
     void stop();
+    inline void setSigStop() { sig_stop = 1; }
 
     void joinLoop();
 };
 
 class TcpServer::Client
 {
-#ifdef _WIN32 // Windows NT
-    SOCKET socket;
-    SOCKADDR_IN address;
-    char buffer[buffer_size];
-
-public:
-    Client(SOCKET socket, SOCKADDR_IN address);
-#else // *nix
-    int socket;
+    int _socket;
     struct sockaddr_in address;
     char buffer[buffer_size];
 
 public:
     Client(int socket, struct sockaddr_in address);
-#endif
-public:
     Client(const Client &other);
     ~Client();
     in_addr_t getHost() const;

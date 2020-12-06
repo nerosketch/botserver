@@ -7,10 +7,14 @@ set( CMAKE_CXX_STANDARD 11 )
 set( CMAKE_VERBOSE_MAKEFILE ON )
 set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-unused-result" )
 #set( CMAKE_BUILD_TYPE RELEASE )
-#set( CMAKE_BUILD_TYPE DEBUG )
+set( CMAKE_BUILD_TYPE DEBUG )
 
 if(NOT CMAKE_BUILD_TYPE)
 	set(CMAKE_BUILD_TYPE RELEASE)
+endif()
+
+if(CMAKE_BUILD_TYPE MATCHES DEBUG)
+	set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DDEBUG -D_DEBUG" )
 endif()
 
 aux_source_directory( ${CMAKE_CURRENT_SOURCE_DIR}/src SRC )
@@ -34,13 +38,13 @@ set( LIBS
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/src)
 
-find_package(CURL REQUIRED)
-if(CURL_FOUND)
-	include_directories(${CURL_INCLUDE_DIR})
-	set(LIBS ${LIBS} ${CURL_LIBRARIES} )
-else(CURL_FOUND)
-	message(fatal_error "Could not find the CURL library and development files.")
-endif(CURL_FOUND)
+#find_package(CURL REQUIRED)
+#if(CURL_FOUND)
+#	include_directories(${CURL_INCLUDE_DIR})
+#	set(LIBS ${LIBS} ${CURL_LIBRARIES} )
+#else(CURL_FOUND)
+#	message(fatal_error "Could not find the CURL library and development files.")
+#endif(CURL_FOUND)
 
 # Target libconfig
 # find_path(CONFIGCPP_INCLUDES_FOLDER NAMES log4cpp/Appender.hh)

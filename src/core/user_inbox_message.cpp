@@ -22,7 +22,12 @@ spUserInboxMessage UserInboxMessage::parseFromBytes(ssize_t len, const char *dat
   }
   catch (json::parse_error &ex)
   {
-    cerr << "parse error at byte " << ex.byte << endl;
+    cerr << "ERROR: parse error at byte " << ex.byte << endl;
+    return nullptr;
   }
-  доделать
+  auto parsed_inbox_message = j.get<UserInboxMessage>();
+
+  auto sp_inbox_msg = make_shared<UserInboxMessage>();
+  *sp_inbox_msg = parsed_inbox_message;
+  return sp_inbox_msg;
 }

@@ -3,7 +3,27 @@
 
 #include <netinet/in.h>
 #include "errors.h"
+#include "../third_party/tcp_server.h"
 
-spErrorBase Serve(in_port_t port);
+DECLARE_SMART(SockServer, spSockServer);
 
+class SockServer {
+public:
+  SockServer();
+
+  virtual ~SockServer();
+
+  spErrorBase Serve(in_port_t port);
+
+  void stopSignal()
+  {
+    p_server->setSigStop();
+  }
+
+private:
+  TcpServer* p_server;
+
+  SockServer(const SockServer&);
+  SockServer operator=(const SockServer&);
+};
 #endif /* BOTSERVER_H */

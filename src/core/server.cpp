@@ -1,11 +1,32 @@
 #include <iostream>
 #include <memory.h>
 #include "server.h"
-#include "../third_party/tcp_server.h"
 #include "../messages/msg_map.h"
 #include "bot_response.h"
 
 using namespace std;
+
+
+SockServer::SockServer() : p_server(nullptr)
+{
+  DEBUG_STRUCT_LOG("SockServer::SockServer()");
+}
+
+SockServer::SockServer(const SockServer& o)
+= default;
+
+SockServer::~SockServer()
+{
+  DEBUG_STRUCT_LOG("SockServer::~SockServer()");
+
+  if (p_server != nullptr)
+  {
+    delete p_server;
+  }
+}
+
+
+
 
 //Парсер ip в string
 string getHostStr(const TcpServer::Client &client)
@@ -44,10 +65,10 @@ spBotResponse handleConnection(ssize_t len, const char *data)
   return msg_int->onMessageHandler(msg);
 }
 
-spErrorBase Serve(in_port_t port)
+spErrorBase SockServer::Serve(in_port_t port)
 {
   //Создание объекта TcpServer с передачей аргументами порта и лябда-фунции для обработк клиента
-  TcpServer server(port,
+  p_server = new TcpServer(port,
 
                    [](TcpServer::Client client) {
                      //Вывод адреса подключившего клиента в консоль
@@ -74,17 +95,26 @@ spErrorBase Serve(in_port_t port)
   );
 
   //Запуск серевера
-  if (server.start() == TcpServer::status::up)
+  if (p_server->start() == TcpServer::status::up)
   {
     //Если сервер запущен вывести сообщение и войти в поток ожиданий клиентов
-    cout << "Server is up!" << endl;
-    server.joinLoop();
+    cout << "Server is up! Listening..." << endl;
+    p_server->joinLoop();
   }
   else
   {
     //Если сервер не запущен вывод кода ошибки и заверешение программы
-    cout << "Server start error! Error code:" << int(server.getStatus()) << endl;
-    return ErrorBase::makeError("Server start error!", int(server.getStatus()));
+    #ifdef DEBUG
+    cout << "Server start error! Error code:" << int(p_server->getStatus()) << endl;
+    #endif
+
+    delete p_server;
+    p_server = nullptr;
+    return ErrorBase::makeError("Server start error!", int(p_server->getStatus()));
   }
+
+  delete p_server;
+  p_server = nullptr;
+
   return nullptr;
 }
