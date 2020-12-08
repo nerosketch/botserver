@@ -13,15 +13,15 @@ using namespace std;
 // GameTimer::GameTimer(const GameTimer &o) = default;
 // GameTimer::~GameTimer() = default;
 
-void GameTimer::wait_run(std::chrono::microseconds delay, std::function<void()> callback)
+void GameTimer::wait_run(const chrono::microseconds& delay, const GameTimerFunc& callback)
 {
   this_thread::sleep_for(delay);
   callback();
 }
 
-thread GameTimer::await_run(std::chrono::microseconds delay, std::function<void()> callback)
+thread GameTimer::await_run(const chrono::microseconds& delay, const GameTimerFunc& callback)
 {
-  auto t = thread([=]() {
+  auto t = thread([&]() {
     this_thread::sleep_for(delay);
     callback();
   });
