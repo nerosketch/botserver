@@ -10,6 +10,8 @@ using namespace std;
 
 DECLARE_SMART(QuestStorage, spQuestStorage);
 
+typedef unordered_map<string, spQuest> QuestMapType;
+
 class QuestStorage
 {
 public:
@@ -17,7 +19,7 @@ public:
 
     spQuest findQuest(const string &name);
     bool delQuest(const string &name);
-    void setQuests(unordered_map<string, spQuest> quests);
+    void setQuests(const QuestMapType& quests);
     spQuest getDefaultQuest();
 
 private:
@@ -26,7 +28,7 @@ private:
     virtual ~QuestStorage();
     QuestStorage &operator=(const QuestStorage &);
 
-    unordered_map<string, spQuest> _quests_map;
+    QuestMapType _quests_map;
 };
 
 #endif /* QuestStorage_H */

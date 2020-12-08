@@ -11,6 +11,7 @@ InboxMessageHandler ::~InboxMessageHandler() = default;
 
 spBotResponse InboxMessageHandler::onMessageHandler(const char* data)
 {
-  cout << "Message type 1, onInboxMessageHandler()" << endl;
-  return make_shared<BotResponse>("InboxMessageHandler message");
+  DEBUG_STRUCT_LOG("Message type 1, onInboxMessageHandler()");
+
+  return BotResponse::makeResponse("InboxMessageHandler message");
 }

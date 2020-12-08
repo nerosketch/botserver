@@ -43,6 +43,9 @@ public:
 
   string getJsonString();
 
+  static spBotResponse makeResponse(const string& text);
+  static spBotResponse makeResponse(const string& text, const vector<Button>& buttons);
+
 protected:
   string text;
   vector<Button> buttons;

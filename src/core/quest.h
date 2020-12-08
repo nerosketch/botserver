@@ -38,6 +38,11 @@ public:
         _dialogs[name] = dialog;
     }
 
+    inline void setDialogs(const unordered_map<string, spBaseDialogInterface> &dialogs)
+    {
+        _dialogs = dialogs;
+    }
+
     inline void clearDialogs()
     {
         _dialogs.clear();
@@ -50,6 +55,34 @@ public:
     void DeserializeMe(std::ostream &out) override;
 
     spBotResponse HandleMessage(spClient &client, spUserInboxMessage &msg) override;
+
+    const string& GetTitle() const
+    {
+        return _title;
+    }
+
+    void Set_title(const string& title)
+    {
+        _title = title;
+    }
+    const string& GetDescription() const
+    {
+        return _description;
+    }
+
+    void SetDescription(const string& description)
+    {
+        _description = description;
+    }
+    const string& GetFirstDialog() const
+    {
+        return _first_dialog;
+    }
+
+    void Set_first_dialog(const string& first_dialog)
+    {
+        _first_dialog = first_dialog;
+    }
 
 private:
     string _title;

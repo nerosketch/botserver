@@ -20,3 +20,13 @@ string BotResponse::getJsonString()
   json j = *this;
   return j.dump();
 }
+
+spBotResponse BotResponse::makeResponse(const string& text)
+{
+  return make_shared<BotResponse>(text);
+}
+
+spBotResponse BotResponse::makeResponse(const string& text, const vector<Button>& buttons)
+{
+  return make_shared<BotResponse>(text, buttons);
+}

@@ -53,9 +53,8 @@ spBotResponse handleConnection(ssize_t len, const char *data)
   const auto &msg_map_it = MessageTypeMap.find(hdr->message_type);
   if (msg_map_it == MessageTypeMap.end())
   {
-    // not found;
-    cout << "Unexpected message type: " << hdr->message_type << endl;
-    return nullptr;
+    // message not found;
+    return BotResponse::makeResponse("Unexpected message type: " + hdr->message_type);
   }
 
   if (len > sizeof(uint16_t))

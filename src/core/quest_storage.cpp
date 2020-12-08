@@ -29,7 +29,7 @@ bool QuestStorage::delQuest(const string &name)
     return deleted_count != 0;
 }
 
-void QuestStorage::setQuests(unordered_map<string, spQuest> quests)
+void QuestStorage::setQuests(const QuestMapType& quests)
 {
     _quests_map = quests;
 }
