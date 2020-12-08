@@ -9,7 +9,7 @@ UpdateQuestHandler::UpdateQuestHandler(const UpdateQuestHandler &o) = default;
 
 UpdateQuestHandler::~UpdateQuestHandler() = default;
 
-spBotResponse UpdateQuestHandler::onMessageHandler(spUserInboxMessage &msg)
+spBotResponse UpdateQuestHandler::onMessageHandler(const char* data)
 {
   cout << "Message type 3, onUpdateQuestHandler()" << endl;
   return make_shared<BotResponse>("UpdateQuestHandler message");

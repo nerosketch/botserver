@@ -3,10 +3,12 @@
 
 #include <string>
 #include <vector>
+#include <nlohmann/json.hpp>
 #include "preprocessors.h"
 #include "button.h"
 
 using namespace std;
+using nlohmann::json;
 
 DECLARE_SMART(BotResponse, spBotResponse);
 
@@ -26,22 +28,27 @@ public:
 
   void SetText(string text)
   {
-    text = text;
+    this->text = text;
   }
 
-  vector<Button> GetButtons() const
+  const vector<Button>& GetButtons() const
   {
     return buttons;
   }
 
-  void SetButtons(vector<Button> buttons)
+  void SetButtons(const vector<Button>& buttons)
   {
-    buttons = buttons;
+    this->buttons = buttons;
   }
+
+  string getJsonString();
 
 protected:
   string text;
   vector<Button> buttons;
+
+private:
+  NLOHMANN_DEFINE_TYPE_INTRUSIVE(BotResponse, text, buttons)
 };
 
 #endif /* BotResponse_H */

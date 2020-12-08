@@ -40,12 +40,11 @@ public:
 
   static spUserInboxMessage parseFromBytes(ssize_t len, const char *data);
 
-  NLOHMANN_DEFINE_TYPE_INTRUSIVE(UserInboxMessage, uname, text)
-
 private:
   string uname;
   string text;
 
+  NLOHMANN_DEFINE_TYPE_INTRUSIVE(UserInboxMessage, uname, text)
 };
 
 #endif /* UserInboxMessage_H */

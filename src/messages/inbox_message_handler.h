@@ -16,7 +16,7 @@ public:
     InboxMessageHandler(const InboxMessageHandler &);
     virtual ~InboxMessageHandler();
 
-    spBotResponse onMessageHandler(spUserInboxMessage &msg) override;
+    spBotResponse onMessageHandler(const char* data) override;
 
 private:
 };

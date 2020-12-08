@@ -3,7 +3,6 @@
 
 
 #include "preprocessors.h"
-#include "user_inbox_message.h"
 #include "bot_response.h"
 // #include <string>
 
@@ -15,7 +14,7 @@ DECLARE_SMART(BaseMessageInterface, spBaseMessageInterface);
 class BaseMessageInterface {
 public:
 
-    virtual spBotResponse onMessageHandler(spUserInboxMessage& msg) = 0;
+    virtual spBotResponse onMessageHandler(const char* data) = 0;
 
 };
 

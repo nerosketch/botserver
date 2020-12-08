@@ -61,12 +61,12 @@ spBotResponse handleConnection(ssize_t len, const char *data)
   if (len > sizeof(uint16_t))
   {
     data += sizeof(uint16_t);
-    spUserInboxMessage msg = UserInboxMessage::parseFromBytes(len, data);
 
     const auto& msg_creator_if = msg_map_it->second;
     const auto& msg_int = msg_creator_if->createInst();
-    return msg_int->onMessageHandler(msg);
+    return msg_int->onMessageHandler(data);
   }
+  return nullptr;
 }
 
 spErrorBase SockServer::Serve(in_port_t port)
@@ -82,17 +82,29 @@ spErrorBase SockServer::Serve(in_port_t port)
                      ssize_t size = 0;
                      while (!(size = client.loadData()));
 
+#ifdef DEBUG
                      //Вывод размера данных и самих данных в консоль
                      cout
-                         << "size: " << size << " bytes" << endl
-                         << client.getData() << endl;
+                         << "Size: " << size << " bytes" << endl
+                         << "Data: " << client.getData()+2 << endl;
+#endif
 
                      const auto response = handleConnection(size, client.getData());
+                     if (!response)
+                     {
+                       const string null_ret("null");
+                       client.sendData(null_ret.c_str(), null_ret.length());
+                       return;
+                     }
 
                      //Отправка ответа клиенту
                      //  const char answer[] = "Hello World from Server";
                      //  client.sendData(answer, sizeof(answer));
-                     const auto& response_text = response->GetText();
+                     DEBUG_STRUCT_LOG("Pre Out client data");
+                     const auto response_text = response->getJsonString();
+
+                     DEBUG_STRUCT_LOG("Out client data");
+                     DEBUG_STRUCT_LOG(response_text);
                      client.sendData(response_text.c_str(), response_text.length());
                    }
 
