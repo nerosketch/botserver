@@ -2,6 +2,7 @@
 #define BaseDialogInterface_H
 
 #include <string>
+#include <nlohmann/json.hpp>
 #include "preprocessors.h"
 #include "bot_response.h"
 #include "client.h"
@@ -16,6 +17,7 @@ class BaseDialogInterface : public HandlerInterface
 {
 public:
   BaseDialogInterface();
+  BaseDialogInterface(const nlohmann::json& json_dialog);
   BaseDialogInterface(const BaseDialogInterface &);
   virtual ~BaseDialogInterface();
 

@@ -2,6 +2,9 @@
 
 InboxMessageDialog::InboxMessageDialog() = default;
 
+InboxMessageDialog::InboxMessageDialog(const nlohmann::json& json_dialog):
+BaseDialogInterface(json_dialog) {}
+
 InboxMessageDialog::InboxMessageDialog(const InboxMessageDialog &o) = default;
 
 InboxMessageDialog::~InboxMessageDialog() = default;
@@ -10,5 +13,5 @@ spBotResponse InboxMessageDialog::HandleMessage(spClient &client, spUserInboxMes
 {
   DEBUG_STRUCT_LOG("InboxMessageDialog::HandleMessage");
 
-  return BotResponse::makeResponse("Inbox msg dialog response");
+  return BotResponse::makeResponse(GetMessage());
 }

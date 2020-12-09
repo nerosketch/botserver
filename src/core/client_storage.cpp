@@ -27,5 +27,5 @@ bool ClientStorage::DelClient(const string &name)
 
 void ClientStorage::AddClient(spClient &client)
 {
-    clients.at(client->GetUsername()) = client;
+    clients[client->GetUsername()] = client;
 }

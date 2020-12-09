@@ -1,6 +1,7 @@
 #ifndef StartMessagingDialog_H
 #define StartMessagingDialog_H
 
+#include <nlohmann/json.hpp>
 #include "../core/preprocessors.h"
 #include "../core/base_dialog.h"
 
@@ -10,6 +11,7 @@ class StartMessagingDialog : public BaseDialogInterface
 {
 public:
   StartMessagingDialog();
+  StartMessagingDialog(const nlohmann::json& json_dialog);
   StartMessagingDialog(const StartMessagingDialog &);
   virtual ~StartMessagingDialog();
 

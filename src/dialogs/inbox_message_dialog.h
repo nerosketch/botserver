@@ -1,6 +1,7 @@
 #ifndef InboxMessageDialog_H
 #define InboxMessageDialog_H
 
+#include <nlohmann/json.hpp>
 #include "../core/preprocessors.h"
 #include "../core/base_dialog.h"
 
@@ -10,6 +11,7 @@ class InboxMessageDialog : public BaseDialogInterface
 {
 public:
   InboxMessageDialog();
+  InboxMessageDialog(const nlohmann::json& json_dialog);
   InboxMessageDialog(const InboxMessageDialog &);
   virtual ~InboxMessageDialog();
 

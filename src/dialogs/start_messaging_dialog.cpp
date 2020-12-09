@@ -2,6 +2,9 @@
 
 StartMessagingDialog::StartMessagingDialog() = default;
 
+StartMessagingDialog::StartMessagingDialog(const nlohmann::json& json_dialog):
+BaseDialogInterface(json_dialog) {}
+
 StartMessagingDialog::StartMessagingDialog(const StartMessagingDialog &o) = default;
 
 StartMessagingDialog::~StartMessagingDialog() = default;
@@ -10,5 +13,5 @@ spBotResponse StartMessagingDialog::HandleMessage(spClient &client, spUserInboxM
 {
   DEBUG_STRUCT_LOG("StartMessagingDialog::HandleMessage");
 
-  return BotResponse::makeResponse("start msg dialog response");
+  return BotResponse::makeResponse(GetMessage());
 }

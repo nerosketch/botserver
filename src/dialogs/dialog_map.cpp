@@ -9,8 +9,8 @@ using namespace std;
 template<typename T>
 class DialogInstanceCreatorTemplate : public BaseDialogCreatorInterface {
 public:
-  spBaseDialogInterface createInst() {
-    return make_shared<T>();
+  spBaseDialogInterface createInst(const nlohmann::json& json_dialog) {
+    return make_shared<T>(json_dialog);
   }
 };
 

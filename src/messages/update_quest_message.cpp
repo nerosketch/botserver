@@ -88,7 +88,7 @@ spBotResponse UpdateQuestHandler::onMessageHandler(ssize_t len, const char *data
       {
         // Found dialog creator by dialog type integer
         const auto &dialog_creator = type_el->second;
-        auto dialog_instance = dialog_creator->createInst();
+        auto dialog_instance = dialog_creator->createInst(q_dialog); 
 
         try
         {

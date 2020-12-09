@@ -3,6 +3,7 @@
 
 #include <chrono>
 #include <iostream>
+#include <cstring>
 #include "tcp_server.h"
 #include "../core/preprocessors.h"
 
@@ -56,7 +57,10 @@ void TcpServer::joinLoop()
 }
 
 //Загружает в буфер данные от клиента и возвращает их размер
-ssize_t TcpServer::Client::loadData() { return recv(_socket, buffer, buffer_size, 0); }
+ssize_t TcpServer::Client::loadData() {
+  memset(buffer, 0, buffer_size);
+  return recv(_socket, buffer, buffer_size, 0);
+}
 //Возвращает указатель на буфер с данными от клиента
 char *TcpServer::Client::getData() { return buffer; }
 //Отправляет данные клиенту

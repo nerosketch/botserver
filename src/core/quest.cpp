@@ -79,7 +79,7 @@ void Quest::DeserializeMe(std::ostream &out)
 
 spBotResponse Quest::HandleMessage(spClient &client, spUserInboxMessage &msg)
 {
-    const auto &dialog_it = _dialogs.find(msg->GetUname());
+    const auto &dialog_it = _dialogs.find(msg->GetText());
     if (dialog_it == _dialogs.end())
     {
         // Dialog not found, get entrypoint

@@ -2,6 +2,7 @@
 #define DIALOGS_MAP_H
 
 #include <map>
+#include <nlohmann/json.hpp>
 #include "../core/preprocessors.h"
 #include "../core/base_dialog.h"
 
@@ -12,7 +13,7 @@ DECLARE_SMART(BaseDialogCreatorInterface, spBaseDialogCreatorInterface);
 class BaseDialogCreatorInterface
 {
 public:
-  virtual spBaseDialogInterface createInst() = 0;
+  virtual spBaseDialogInterface createInst(const nlohmann::json& json_dialog) = 0;
 };
 
 typedef map<const uint16_t, spBaseDialogCreatorInterface> DialogTypeMapType;
