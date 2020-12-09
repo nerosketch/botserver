@@ -10,7 +10,7 @@
 #include <cstdlib>
 #include <unordered_map>
 #include <libconfig.h++>
-#include "GameConfig.h"
+#include "game_config.h"
 
 using namespace std;
 using namespace libconfig;
