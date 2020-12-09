@@ -25,7 +25,7 @@ struct TcpServer
 {
     class Client;
     //Тип Callback-функции обработчика клиента
-    typedef std::function<void(Client)> handler_function_t;
+    typedef std::function<void(Client&)> handler_function_t;
     //Статус сервера
     enum class status : uint8_t
     {
@@ -85,7 +85,7 @@ public:
     in_port_t getPort() const;
 
     ssize_t loadData();
-    char *getData();
+    const char *getData() const;
 
     bool sendData(const char *buffer, const size_t size) const;
 };

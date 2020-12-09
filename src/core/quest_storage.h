@@ -3,6 +3,7 @@
 
 #include <string>
 #include <unordered_map>
+#include <mutex>
 #include "preprocessors.h"
 #include "quest.h"
 
@@ -29,6 +30,8 @@ private:
     QuestStorage &operator=(const QuestStorage &);
 
     QuestMapType _quests_map;
+
+    mutex _quests_map_m;
 };
 
 #endif /* QuestStorage_H */

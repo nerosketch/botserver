@@ -73,7 +73,7 @@ spErrorBase SockServer::Serve(in_port_t port)
   //Создание объекта TcpServer с передачей аргументами порта и лябда-фунции для обработк клиента
   p_server = new TcpServer(port,
 
-                   [](TcpServer::Client client) {
+                   [](TcpServer::Client& client) {
                      //Вывод адреса подключившего клиента в консоль
                      cout << "Connected host:" << getHostStr(client) << endl;
 

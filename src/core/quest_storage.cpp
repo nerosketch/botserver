@@ -2,7 +2,8 @@
 
 QuestStorage::QuestStorage() = default;
 
-QuestStorage::QuestStorage(const QuestStorage &o) = default;
+QuestStorage::QuestStorage(const QuestStorage &o) :
+_quests_map(o._quests_map), _quests_map_m() {}
 
 QuestStorage::~QuestStorage() = default;
 
@@ -25,12 +26,20 @@ spQuest QuestStorage::findQuest(const string &name) const
 
 bool QuestStorage::delQuest(const string &name)
 {
-    const auto deleted_count = _quests_map.erase(name);
-    return deleted_count != 0;
+    if (_quests_map.find(name) != _quests_map.end())
+    {
+        lock_guard<mutex> lg(_quests_map_m);
+
+        const auto deleted_count = _quests_map.erase(name);
+        return deleted_count != 0;
+    }
+    return false;
 }
 
 void QuestStorage::setQuests(const QuestMapType& quests)
 {
+    lock_guard<mutex> lg(_quests_map_m);
+
     _quests_map = quests;
 }
 

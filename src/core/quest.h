@@ -11,6 +11,7 @@
 #include <string>
 #include <unordered_map>
 #include <utility>
+#include <mutex>
 #include "preprocessors.h"
 #include "base_dialog.h"
 #include "BaseSerializedObject.h"
@@ -31,30 +32,21 @@ public:
 
     virtual ~Quest();
 
-    spBaseDialogInterface findDialog(const string &name);
+    spBaseDialogInterface findDialog(const string &name) const;
 
-    inline void addDialog(const string &name, const spBaseDialogInterface &dialog)
-    {
-        _dialogs[name] = dialog;
-    }
+    void addDialog(const string &name, const spBaseDialogInterface &dialog);
 
-    inline void setDialogs(const unordered_map<string, spBaseDialogInterface> &dialogs)
-    {
-        _dialogs = dialogs;
-    }
+    void setDialogs(const unordered_map<string, spBaseDialogInterface> &dialogs);
 
-    inline void clearDialogs()
-    {
-        _dialogs.clear();
-    }
+    void clearDialogs();
 
     // Get entry point to quest
-    spBaseDialogInterface getFirstDialog();
+    spBaseDialogInterface getFirstDialog() const;
 
     void SerializeMe(std::istream &in) override;
     void DeserializeMe(std::ostream &out) override;
 
-    spBotResponse HandleMessage(spClient &client, spUserInboxMessage &msg) override;
+    spBotResponse HandleMessage(spClient &client, spUserInboxMessage &msg) const override;
 
     const string& GetTitle() const
     {
@@ -89,6 +81,8 @@ private:
     string _description;
     string _first_dialog;
     unordered_map<string, spBaseDialogInterface> _dialogs;
+
+    mutex _dialogs_m;
 };
 
 #endif /* GAMEQUEST_H */

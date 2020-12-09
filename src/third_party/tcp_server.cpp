@@ -1,6 +1,5 @@
 // snatched from https://habr.com/ru/post/503432/
 
-
 #include <chrono>
 #include <iostream>
 #include <cstring>
@@ -28,7 +27,10 @@ TcpServer::~TcpServer()
 }
 
 //Задаёт callback-функцию запускаямую при подключении клиента
-void TcpServer::setHandler(TcpServer::handler_function_t handler) { this->handler = handler; }
+void TcpServer::setHandler(TcpServer::handler_function_t handler)
+{
+  this->handler = handler;
+}
 
 //Getter/Setter порта
 in_port_t TcpServer::getPort() const { return port; }
@@ -57,18 +59,23 @@ void TcpServer::joinLoop()
 }
 
 //Загружает в буфер данные от клиента и возвращает их размер
-ssize_t TcpServer::Client::loadData() {
+ssize_t TcpServer::Client::loadData()
+{
   memset(buffer, 0, buffer_size);
+
   return recv(_socket, buffer, buffer_size, 0);
 }
+
 //Возвращает указатель на буфер с данными от клиента
-char *TcpServer::Client::getData() { return buffer; }
+const char *TcpServer::Client::getData() const
+{
+  return buffer;
+}
+
 //Отправляет данные клиенту
 bool TcpServer::Client::sendData(const char *buffer, const size_t size) const
 {
-  if (send(_socket, buffer, size, 0) < 0)
-    return false;
-  return true;
+  return !(send(_socket, buffer, size, 0) < 0);
 }
 
 //Запуск сервера (по аналогии с реализацией для Windows)
@@ -81,14 +88,22 @@ TcpServer::status TcpServer::start()
   serv_socket = socket(AF_INET, SOCK_STREAM | SOCK_NONBLOCK | SOCK_CLOEXEC, 0);
 
   if (serv_socket == -1)
+  {
     return _status = status::err_socket_init;
+  }
   if (bind(serv_socket, (struct sockaddr *)&server, sizeof(server)) < 0)
+  {
     return _status = status::err_socket_bind;
+  }
   if (listen(serv_socket, 3) < 0)
+  {
     return _status = status::err_socket_listening;
+  }
 
   _status = status::up;
-  handler_thread = std::thread([this] { handlingLoop(); });
+  handler_thread = std::thread([this] {
+    handlingLoop();
+  });
   return _status;
 }
 
@@ -99,7 +114,9 @@ void TcpServer::stop()
   close(serv_socket);
   joinLoop();
   for (std::thread &cl_thr : client_handler_threads)
+  {
     cl_thr.join();
+  }
   client_handler_threads.clear();
   client_handling_end.clear();
 }
@@ -118,14 +135,20 @@ void TcpServer::handlingLoop()
     struct sockaddr_in client_addr;
     int addrlen = sizeof(struct sockaddr_in);
     if ((client_socket = accept(serv_socket, (struct sockaddr *)&client_addr, (socklen_t *)&addrlen)) >= 0 && _status == status::up)
+    {
       client_handler_threads.push_back(std::thread([this, &client_socket, &client_addr] {
-        handler(Client(client_socket, client_addr));
+        Client client(client_socket, client_addr);
+        handler(client);
         client_handling_end.push_back(std::this_thread::get_id());
       }));
+    }
 
     if (!client_handling_end.empty())
+    {
       for (std::list<std::thread::id>::iterator id_it = client_handling_end.begin(); !client_handling_end.empty(); id_it = client_handling_end.begin())
+      {
         for (std::list<std::thread>::iterator thr_it = client_handler_threads.begin(); thr_it != client_handler_threads.end(); ++thr_it)
+        {
           if (thr_it->get_id() == *id_it)
           {
             thr_it->join();
@@ -133,17 +156,25 @@ void TcpServer::handlingLoop()
             client_handling_end.erase(id_it);
             break;
           }
+        }
+      }
+    }
     std::this_thread::sleep_for(std::chrono::milliseconds(10));
   }
 }
 
 // Конструктор клиента по сокету и адресу
-TcpServer::Client::Client(int socket, struct sockaddr_in address) : _socket(socket), address(address) {
+TcpServer::Client::Client(int socket, struct sockaddr_in address) : _socket(socket), address(address)
+{
   DEBUG_STRUCT_LOG("TcpServer::Client::Client()");
+  memset(buffer, 0, buffer_size);
 }
 // Конструктор копирования
-TcpServer::Client::Client(const TcpServer::Client &other) : _socket(other._socket), address(other.address) {
+TcpServer::Client::Client(const TcpServer::Client &other) : _socket(other._socket), address(other.address)
+{
   DEBUG_STRUCT_LOG("TcpServer::Client::Client(const Client&)");
+
+  memcpy(buffer, other.buffer, buffer_size);
 }
 
 TcpServer::Client::~Client()
@@ -154,5 +185,12 @@ TcpServer::Client::~Client()
 }
 
 // Геттеры хоста и порта
-in_addr_t TcpServer::Client::getHost() const { return address.sin_addr.s_addr; }
-in_port_t TcpServer::Client::getPort() const { return address.sin_port; }
+in_addr_t TcpServer::Client::getHost() const
+{
+  return address.sin_addr.s_addr;
+}
+
+in_port_t TcpServer::Client::getPort() const
+{
+  return address.sin_port;
+}

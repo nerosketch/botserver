@@ -15,7 +15,7 @@ public:
   StartMessagingDialog(const StartMessagingDialog &);
   virtual ~StartMessagingDialog();
 
-  spBotResponse HandleMessage(spClient &client, spUserInboxMessage &msg) override;
+  spBotResponse HandleMessage(spClient &client, spUserInboxMessage &msg) const override;
 
 private:
 };

@@ -15,7 +15,7 @@ public:
     return singletone;
   }
 
-  spBotResponse HandleMessage(spClient &client, spUserInboxMessage &msg) override;
+  spBotResponse HandleMessage(spClient &client, spUserInboxMessage &msg) const override;
 
 private:
   UnexpectedDialog();

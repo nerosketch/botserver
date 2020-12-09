@@ -3,6 +3,7 @@
 
 #include <unordered_map>
 #include <string>
+#include <mutex>
 #include "client.h"
 
 using namespace std;
@@ -27,6 +28,8 @@ private:
     ClientStorage &operator=(const ClientStorage &);
 
     unordered_map<string, spClient> clients;
+
+    mutex _clients_m;
 };
 
 #endif /* ClientStorage_H */

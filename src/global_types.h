@@ -8,11 +8,8 @@
 #ifndef GLOBAL_TYPES_H
 #define GLOBAL_TYPES_H
 
-//#include <cstdint>
-#include <string>
-#include <unordered_map>
+#include <cstdint>
 
-typedef std::unordered_map<std::string, std::string> RequestParamsMap;
 
 class Color
 {

@@ -11,7 +11,7 @@ DECLARE_SMART(HandlerInterface, spHandlerInterface);
 
 class HandlerInterface {
 public:
-    virtual spBotResponse HandleMessage(spClient &client, spUserInboxMessage &msg) = 0;
+    virtual spBotResponse HandleMessage(spClient &client, spUserInboxMessage &msg) const = 0;
 
 };
 

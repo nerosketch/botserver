@@ -15,7 +15,10 @@ Quest::Quest(const string &title, const string &description, const string &first
 {
 }
 
-Quest::Quest(const Quest &o) = default;
+Quest::Quest(const Quest &o) :
+_dialogs(o._dialogs), _title(o._title), _description(o._description), _first_dialog(o._first_dialog),
+_dialogs_m()
+{}
 
 Quest::~Quest() = default;
 
@@ -25,7 +28,7 @@ spQuest Quest::makeQuest()
     return ret;
 }
 
-spBaseDialogInterface Quest::findDialog(const string &name)
+spBaseDialogInterface Quest::findDialog(const string &name) const
 {
     const auto &dialog_it = _dialogs.find(name);
     if (dialog_it == _dialogs.end())
@@ -36,6 +39,31 @@ spBaseDialogInterface Quest::findDialog(const string &name)
     return dialog_it->second;
 }
 
+void Quest::addDialog(const string &name, const spBaseDialogInterface &dialog)
+{
+    if (_dialogs.find(name) != _dialogs.end())
+    {
+        lock_guard<mutex> lg(_dialogs_m);
+
+        _dialogs[name] = dialog;
+    }
+}
+
+void Quest::setDialogs(const unordered_map<string, spBaseDialogInterface> &dialogs)
+{
+    lock_guard<mutex> lg(_dialogs_m);
+
+    _dialogs = dialogs;
+}
+
+
+void Quest::clearDialogs()
+{
+    lock_guard<mutex> lg(_dialogs_m);
+
+    _dialogs.clear();
+}
+
 spQuest Quest::makeQuest(const string &title, const string &description, const string &first_dialog_name)
 {
     auto ret = make_shared<Quest>(title, description, first_dialog_name);
@@ -43,7 +71,7 @@ spQuest Quest::makeQuest(const string &title, const string &description, const s
 }
 
 // Get entry point to quest
-spBaseDialogInterface Quest::getFirstDialog()
+spBaseDialogInterface Quest::getFirstDialog() const
 {
     // Try to find dialog by name
     for (const auto &pair : _dialogs)
@@ -77,7 +105,7 @@ void Quest::DeserializeMe(std::ostream &out)
     // TODO: Make deserialize for this
 }
 
-spBotResponse Quest::HandleMessage(spClient &client, spUserInboxMessage &msg)
+spBotResponse Quest::HandleMessage(spClient &client, spUserInboxMessage &msg) const
 {
     const auto &dialog_it = _dialogs.find(msg->GetText());
     if (dialog_it == _dialogs.end())
