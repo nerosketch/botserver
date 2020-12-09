@@ -13,7 +13,7 @@ public:
   UpdateQuestHandler(const UpdateQuestHandler &);
   virtual ~UpdateQuestHandler();
 
-  spBotResponse onMessageHandler(const char* data) override;
+  spBotResponse onMessageHandler(ssize_t len, const char* data) override;
 
 private:
 };

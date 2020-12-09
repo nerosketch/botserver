@@ -17,24 +17,27 @@ public:
   Client(const Client &);
   virtual ~Client();
 
-  string GetUsername() const
+  static spClient createClient(const string &uname);
+  static spClient createClient(const string &uname, const string &current_quest_name);
+
+  const string& GetUsername() const
   {
     return username;
   }
 
-  void SetUsername(string username)
+  void SetUsername(const string& username)
   {
-    username = username;
+    this->username = username;
   }
 
-  string GetCurrentQuestName() const
+  const string& GetCurrentQuestName() const
   {
     return currentQuestName;
   }
 
-  void SetCurrentQuestName(string currentQuestName)
+  void SetCurrentQuestName(const string& currentQuestName)
   {
-    currentQuestName = currentQuestName;
+    this->currentQuestName = currentQuestName;
   }
 
 private:

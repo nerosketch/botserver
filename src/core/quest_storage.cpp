@@ -12,7 +12,7 @@ QuestStorage &QuestStorage::getInstance()
     return singletone;
 }
 
-spQuest QuestStorage::findQuest(const string &name)
+spQuest QuestStorage::findQuest(const string &name) const
 {
     const auto &quest_it = _quests_map.find(name);
     if (quest_it == _quests_map.end())
@@ -34,7 +34,7 @@ void QuestStorage::setQuests(const QuestMapType& quests)
     _quests_map = quests;
 }
 
-spQuest QuestStorage::getDefaultQuest()
+spQuest QuestStorage::getDefaultQuest() const
 {
     // FIXME: Currently first available quest.
     for (auto& pair : _quests_map)

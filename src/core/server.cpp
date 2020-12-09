@@ -63,7 +63,7 @@ spBotResponse handleConnection(ssize_t len, const char *data)
 
     const auto& msg_creator_if = msg_map_it->second;
     const auto& msg_int = msg_creator_if->createInst();
-    return msg_int->onMessageHandler(data);
+    return msg_int->onMessageHandler(len, data);
   }
   return nullptr;
 }

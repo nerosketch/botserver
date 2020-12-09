@@ -7,7 +7,7 @@ ClientStorage::ClientStorage(const ClientStorage &o) = default;
 ClientStorage::~ClientStorage() = default;
 
 
-spClient ClientStorage::FindClient(const string &name)
+spClient ClientStorage::FindClient(const string &name) const
 {
     // clients.at(name);
     const auto &client_it = clients.find(name);

@@ -19,7 +19,7 @@ public:
 
 
 
-const map<const uint16_t, spBaseDialogCreatorInterface> DialogTypeMap = {
+const DialogTypeMapType DialogTypeMap = {
   DAT_TYPE(1, StartMessagingDialog),
   DAT_TYPE(2, InboxMessageDialog),
   DAT_TYPE(3, ShowMessageDialog)

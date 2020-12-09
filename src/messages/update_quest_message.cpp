@@ -49,7 +49,7 @@ UpdateQuestHandler::UpdateQuestHandler(const UpdateQuestHandler &o) = default;
 
 UpdateQuestHandler::~UpdateQuestHandler() = default;
 
-spBotResponse UpdateQuestHandler::onMessageHandler(const char *data)
+spBotResponse UpdateQuestHandler::onMessageHandler(ssize_t len, const char *data)
 {
   DEBUG_STRUCT_LOG("Message type 3, onUpdateQuestHandler()");
 

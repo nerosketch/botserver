@@ -12,11 +12,11 @@ DECLARE_SMART(InboxMessageHandler, spInboxMessageHandler);
 class InboxMessageHandler : public BaseMessageInterface
 {
 public:
-    InboxMessageHandler();
-    InboxMessageHandler(const InboxMessageHandler &);
-    virtual ~InboxMessageHandler();
+    // InboxMessageHandler();
+    // InboxMessageHandler(const InboxMessageHandler &);
+    // virtual ~InboxMessageHandler();
 
-    spBotResponse onMessageHandler(const char* data) override;
+    spBotResponse onMessageHandler(ssize_t len, const char* data) override;
 
 private:
 };

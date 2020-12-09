@@ -14,7 +14,7 @@ DECLARE_SMART(BaseMessageInterface, spBaseMessageInterface);
 class BaseMessageInterface {
 public:
 
-    virtual spBotResponse onMessageHandler(const char* data) = 0;
+    virtual spBotResponse onMessageHandler(ssize_t len, const char* data) = 0;
 
 };
 

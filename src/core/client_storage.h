@@ -16,7 +16,7 @@ public:
         return singletone;
     }
 
-    spClient FindClient(const string& name);
+    spClient FindClient(const string& name) const;
     bool DelClient(const string& name);
     void AddClient(spClient& client);
 

@@ -15,7 +15,9 @@ public:
   virtual spBaseDialogInterface createInst() = 0;
 };
 
-extern const map<const uint16_t, spBaseDialogCreatorInterface> DialogTypeMap;
+typedef map<const uint16_t, spBaseDialogCreatorInterface> DialogTypeMapType;
+
+extern const DialogTypeMapType DialogTypeMap;
 
 // const auto er = DialogTypeMap.at(2);
 // auto ts = er->createInst();

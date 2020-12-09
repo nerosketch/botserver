@@ -17,10 +17,10 @@ class QuestStorage
 public:
     static QuestStorage &getInstance();
 
-    spQuest findQuest(const string &name);
+    spQuest findQuest(const string &name) const;
     bool delQuest(const string &name);
     void setQuests(const QuestMapType& quests);
-    spQuest getDefaultQuest();
+    spQuest getDefaultQuest() const;
 
 private:
     QuestStorage();
