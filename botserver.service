@@ -1,0 +1,18 @@
+[Unit]
+Description=botserver state worker
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=notify
+ExecStart=/usr/local/bin/botserver
+#ExecReload=/usr/local/bin/botserver -r
+WorkingDirectory=/tmp
+TimeoutSec=7
+Restart=on-failure
+RestartSec=5
+User=botserver
+Group=botserver
+
+[Install]
+WantedBy=multi-user.target

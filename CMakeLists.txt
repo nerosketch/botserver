@@ -33,6 +33,7 @@ aux_source_directory( ${CMAKE_CURRENT_SOURCE_DIR}/src/third_party SRC )
 set( LIBS
 	config++
 	pthread
+	systemd
 	# event
 	 )
 

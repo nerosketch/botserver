@@ -68,7 +68,7 @@ spBotResponse handleConnection(ssize_t len, const char *data)
   return nullptr;
 }
 
-spErrorBase SockServer::Serve(in_port_t port)
+spErrorBase SockServer::Serve(in_port_t port, function<void ()> on_ready)
 {
   //Создание объекта TcpServer с передачей аргументами порта и лябда-фунции для обработк клиента
   p_server = new TcpServer(port,
@@ -112,8 +112,7 @@ spErrorBase SockServer::Serve(in_port_t port)
   //Запуск серевера
   if (p_server->start() == TcpServer::status::up)
   {
-    //Если сервер запущен вывести сообщение и войти в поток ожиданий клиентов
-    cout << "Server is up! Listening..." << endl;
+    on_ready();
     p_server->joinLoop();
   }
   else

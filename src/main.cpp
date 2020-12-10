@@ -6,7 +6,10 @@
  */
 
 #include <iostream>
+#include <string>
+#include <unistd.h>
 #include <signal.h>
+#include <systemd/sd-daemon.h>
 
 #include "core/server.h"
 
@@ -30,11 +33,25 @@ int main(int argc, char **argv)
   signal(SIGTERM, sigend_function);  // kill <pid> signal
   // signal(SIGKILL, [](int) { cout << "SIGILL" << endl; });
 
-  auto err = srv.Serve(3142);
+  auto pid = getpid();
+
+  auto err = srv.Serve(3142, [pid] {
+    sd_notifyf(0, "READY=1\n"
+                  "STATUS=Server is up! Listening...\n"
+                  "MAINPID=%lu",
+                  (unsigned long) pid
+    );
+  });
+
+  // https://www.freedesktop.org/software/systemd/man/sd_notify.html
+  sd_notify(0, "STOPPING=1");
+
   if (err)
   {
     cerr << "Error: " << err << endl;
+    sd_notifyf(0, "STATUS=%s", err->getMsg().c_str());
     return -1;
   }
+
   return 0;
 }

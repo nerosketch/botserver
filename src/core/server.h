@@ -13,7 +13,7 @@ public:
 
   virtual ~SockServer();
 
-  spErrorBase Serve(in_port_t port);
+  spErrorBase Serve(in_port_t port, function<void ()> on_ready);
 
   void stopSignal()
   {

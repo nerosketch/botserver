@@ -18,6 +18,10 @@ public:
 
     static spErrorBase makeError(const string &msg, int err_code = 0);
 
+    const string& getMsg() const{
+        return message_text;
+    }
+
 protected:
     string message_text;
     int error_num;
