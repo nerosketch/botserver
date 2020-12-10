@@ -33,13 +33,11 @@ int main(int argc, char **argv)
   signal(SIGTERM, sigend_function);  // kill <pid> signal
   // signal(SIGKILL, [](int) { cout << "SIGILL" << endl; });
 
-  auto pid = getpid();
-
-  auto err = srv.Serve(3142, [pid] {
+  auto err = srv.Serve(3142, [] {
     sd_notifyf(0, "READY=1\n"
                   "STATUS=Server is up! Listening...\n"
                   "MAINPID=%lu",
-                  (unsigned long) pid
+                  (unsigned long) getpid()
     );
   });
 
@@ -51,6 +49,8 @@ int main(int argc, char **argv)
     cerr << "Error: " << err << endl;
     sd_notifyf(0, "STATUS=%s", err->getMsg().c_str());
     return -1;
+  } else {
+    sd_notify(0, "STATUS=I'm done. Thnx.");
   }
 
   return 0;
