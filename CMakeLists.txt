@@ -1,4 +1,4 @@
-cmake_minimum_required (VERSION 3.11)
+cmake_minimum_required (VERSION 3.5)
 project( botserver )
 
 set( APP_NAME botserver )
@@ -59,7 +59,7 @@ include(FetchContent)
 
 # Target nlohmann/json
 FetchContent_Declare(json
-  GIT_REPOSITORY https://github.com/ArthurSonzogni/nlohmann_json_cmake_fetchcontent
+  GIT_REPOSITORY git://github.com/ArthurSonzogni/nlohmann_json_cmake_fetchcontent.git
   GIT_TAG v3.9.1)
 
 FetchContent_GetProperties(json)
@@ -69,6 +69,20 @@ if(NOT json_POPULATED)
   set(LIBS ${LIBS} nlohmann_json::nlohmann_json )
 endif()
 
+
+# restinio HTTP Library target
+set(RESTINIO_USE_EXTERNAL_HTTP_PARSER ON)
+set(RESTINIO_FMT_HEADER_ONLY OFF)
+find_package(fmt REQUIRED)
+FetchContent_Declare(restinio
+  GIT_REPOSITORY git://github.com/Stiffstream/restinio.git
+  GIT_TAG master)
+FetchContent_GetProperties(restinio)
+if(NOT restinio_POPULATED)
+  FetchContent_Populate(restinio)
+  add_subdirectory(${restinio_SOURCE_DIR}/dev ${restinio_BINARY_DIR} EXCLUDE_FROM_ALL)
+  set(LIBS ${LIBS} restinio::restinio)
+endif()
 
 
 add_executable( ${APP_NAME} ${SRC} )

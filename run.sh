@@ -3,4 +3,6 @@
 mkdir build
 cd ./build
 cmake ..
-make
+
+cpu_num=`grep ^cpu\\scores /proc/cpuinfo | uniq |  awk '{print $4}'`
+make -j${cpu_num}
