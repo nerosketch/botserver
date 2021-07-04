@@ -11,17 +11,19 @@
 #include <signal.h>
 #include <systemd/sd-daemon.h>
 
-#include "core/server.h"
+#include <net/http_server.h>
 
 using namespace std;
 
 // #define OUT(msg) std::cout << "======================" << std::endl; msg; std::cout << std::endl;
 
-SockServer srv;
+spLocalHttpServer http_srv;
 
 void sigend_function(int)
 {
-  srv.stopSignal();
+  if(http_srv) {
+    http_srv->stopSignal();
+  }
 }
 
 int main(int argc, char **argv)
@@ -33,13 +35,14 @@ int main(int argc, char **argv)
   signal(SIGTERM, sigend_function);  // kill <pid> signal
   // signal(SIGKILL, [](int) { cout << "SIGILL" << endl; });
 
-  auto err = srv.Serve(3142, [] {
-    sd_notifyf(0, "READY=1\n"
-                  "STATUS=Server is up! Listening...\n"
-                  "MAINPID=%lu",
-                  (unsigned long) getpid()
-    );
-  });
+  http_srv = LocalHttpServer::getInstance();
+
+  sd_notifyf(0, "READY=1\n"
+                "STATUS=Server is up! Listening...\n"
+                "MAINPID=%lu",
+                (unsigned long) getpid()
+  );
+  auto err = http_srv->Serve("localhost", 8083);
 
   // https://www.freedesktop.org/software/systemd/man/sd_notify.html
   sd_notify(0, "STOPPING=1");
@@ -53,5 +56,6 @@ int main(int argc, char **argv)
     sd_notify(0, "STATUS=I'm done. Thnx.");
   }
 
+  cout << "Bye :)" << endl;
   return 0;
 }

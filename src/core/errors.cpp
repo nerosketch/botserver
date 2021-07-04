@@ -1,15 +1,15 @@
 #include "errors.h"
 
-ErrorBase::ErrorBase() = default;
+Error::Error() = default;
 
-ErrorBase::ErrorBase(const string &msg, int err_code)
+Error::Error(const string &msg, int err_code)
     : message_text(msg), error_num(err_code) {}
 
-ErrorBase::ErrorBase(const ErrorBase &o) = default;
+Error::Error(const Error &o) = default;
 
-ErrorBase::~ErrorBase() = default;
+Error::~Error() = default;
 
-spErrorBase ErrorBase::makeError(const string &msg, int err_code)
+spError Error::makeError(const string &msg, int err_code)
 {
-    return make_shared<ErrorBase>(msg, err_code);
+    return make_shared<Error>(msg, err_code);
 }

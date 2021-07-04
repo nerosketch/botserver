@@ -3,8 +3,8 @@
 
 #include <map>
 #include <memory>
-#include "../core/preprocessors.h"
-#include "../core/base_message.h"
+#include <core/preprocessors.h>
+#include <core/base_message.h>
 
 using namespace std;
 

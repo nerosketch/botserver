@@ -13,7 +13,7 @@ UserInboxMessage::UserInboxMessage(const UserInboxMessage &o) = default;
 
 UserInboxMessage::~UserInboxMessage() = default;
 
-spUserInboxMessage UserInboxMessage::parseFromBytes(ssize_t len, const char *data)
+spUserInboxMessage UserInboxMessage::parseFromString(const string &data)
 {
   json j;
   try

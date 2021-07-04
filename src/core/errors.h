@@ -1,22 +1,22 @@
-#ifndef ErrorBase_H
-#define ErrorBase_H
+#ifndef Error_H
+#define Error_H
 
 #include <string>
 #include "preprocessors.h"
 
 using namespace std;
 
-DECLARE_SMART(ErrorBase, spErrorBase);
+DECLARE_SMART(Error, spError);
 
-class ErrorBase
+class Error
 {
 public:
-    ErrorBase();
-    ErrorBase(const string &msg, int err_code);
-    ErrorBase(const ErrorBase &);
-    virtual ~ErrorBase();
+    Error();
+    Error(const string &msg, int err_code);
+    Error(const Error &);
+    virtual ~Error();
 
-    static spErrorBase makeError(const string &msg, int err_code = 0);
+    static spError makeError(const string &msg, int err_code = 0);
 
     const string& getMsg() const{
         return message_text;
@@ -27,4 +27,4 @@ protected:
     int error_num;
 };
 
-#endif /* ErrorBase_H */
+#endif /* Error_H */

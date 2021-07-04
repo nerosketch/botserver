@@ -1,4 +1,4 @@
-cmake_minimum_required (VERSION 3.5)
+cmake_minimum_required (VERSION 3.11)
 project( botserver )
 
 set( APP_NAME botserver )
@@ -24,7 +24,8 @@ aux_source_directory( ${CMAKE_CURRENT_SOURCE_DIR}/src/quest SRC )
 aux_source_directory( ${CMAKE_CURRENT_SOURCE_DIR}/src/storage SRC )
 aux_source_directory( ${CMAKE_CURRENT_SOURCE_DIR}/src/user SRC )
 aux_source_directory( ${CMAKE_CURRENT_SOURCE_DIR}/src/messages SRC )
-aux_source_directory( ${CMAKE_CURRENT_SOURCE_DIR}/src/third_party SRC )
+aux_source_directory( ${CMAKE_CURRENT_SOURCE_DIR}/src/net SRC )
+#aux_source_directory( ${CMAKE_CURRENT_SOURCE_DIR}/src/third_party SRC )
 
 #set( SRC ${SRC}
 #	${CMAKE_CURRENT_SOURCE_DIR}/src/third_party/libscgi/parser.cpp
@@ -70,18 +71,15 @@ if(NOT json_POPULATED)
 endif()
 
 
-# restinio HTTP Library target
-set(RESTINIO_USE_EXTERNAL_HTTP_PARSER ON)
-set(RESTINIO_FMT_HEADER_ONLY OFF)
-find_package(fmt REQUIRED)
-FetchContent_Declare(restinio
-  GIT_REPOSITORY git://github.com/Stiffstream/restinio.git
-  GIT_TAG master)
-FetchContent_GetProperties(restinio)
-if(NOT restinio_POPULATED)
-  FetchContent_Populate(restinio)
-  add_subdirectory(${restinio_SOURCE_DIR}/dev ${restinio_BINARY_DIR} EXCLUDE_FROM_ALL)
-  set(LIBS ${LIBS} restinio::restinio)
+# cpp-httplib target
+FetchContent_Declare(cpphttplib
+  GIT_REPOSITORY git://github.com/yhirose/cpp-httplib.git
+  GIT_TAG        v0.9.0
+)
+FetchContent_GetProperties(cpphttplib)
+if(NOT cpphttplib_POPULATED)
+  FetchContent_Populate(cpphttplib)
+	include_directories(${cpphttplib_SOURCE_DIR})
 endif()
 
 

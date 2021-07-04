@@ -3,7 +3,7 @@
 
 #include "../core/preprocessors.h"
 #include "../core/base_message.h"
-// #include <string>
+#include <string>
 
 using namespace std;
 
@@ -16,7 +16,7 @@ public:
     // InboxMessageHandler(const InboxMessageHandler &);
     // virtual ~InboxMessageHandler();
 
-    spBotResponse onMessageHandler(ssize_t len, const char* data) override;
+    spBotResponse onMessageHandler(const string &data) override;
 
 private:
 };

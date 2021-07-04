@@ -3,10 +3,10 @@
 #include <unordered_map>
 #include <nlohmann/json.hpp>
 #include "update_quest_message.h"
-#include "../core/button.h"
-#include "../core/quest.h"
-#include "../core/quest_storage.h"
-#include "../dialogs/dialog_map.h"
+#include <core/button.h>
+#include <core/quest.h>
+#include <core/quest_storage.h>
+#include <dialogs/dialog_map.h>
 
 using namespace std;
 using nlohmann::json;
@@ -49,7 +49,7 @@ UpdateQuestHandler::UpdateQuestHandler(const UpdateQuestHandler &o) = default;
 
 UpdateQuestHandler::~UpdateQuestHandler() = default;
 
-spBotResponse UpdateQuestHandler::onMessageHandler(ssize_t len, const char *data)
+spBotResponse UpdateQuestHandler::onMessageHandler(const string &data)
 {
   DEBUG_STRUCT_LOG("Message type 3, onUpdateQuestHandler()");
 

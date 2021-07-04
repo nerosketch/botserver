@@ -38,7 +38,7 @@ public:
     this->text = text;
   }
 
-  static spUserInboxMessage parseFromBytes(ssize_t len, const char *data);
+  static spUserInboxMessage parseFromString(const string &data);
 
 private:
   string uname;

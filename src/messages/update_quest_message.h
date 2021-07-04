@@ -1,8 +1,9 @@
 #ifndef UpdateQuestHandler_H
 #define UpdateQuestHandler_H
 
-#include "../core/preprocessors.h"
-#include "../core/base_message.h"
+#include <string>
+#include <core/preprocessors.h>
+#include <core/base_message.h>
 
 DECLARE_SMART(UpdateQuestHandler, spUpdateQuestHandler);
 
@@ -13,7 +14,7 @@ public:
   UpdateQuestHandler(const UpdateQuestHandler &);
   virtual ~UpdateQuestHandler();
 
-  spBotResponse onMessageHandler(ssize_t len, const char* data) override;
+  spBotResponse onMessageHandler(const std::string &data) override;
 
 private:
 };

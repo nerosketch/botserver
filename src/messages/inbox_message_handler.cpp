@@ -29,11 +29,11 @@ spBotResponse _inbox_client_msg(spClient& c, spUserInboxMessage& msg)
 }
 
 
-spBotResponse InboxMessageHandler::onMessageHandler(ssize_t len, const char* data)
+spBotResponse InboxMessageHandler::onMessageHandler(const string &data)
 {
   DEBUG_STRUCT_LOG("Message type 1, onInboxMessageHandler()");
 
-  spUserInboxMessage msg = UserInboxMessage::parseFromBytes(len, data);
+  spUserInboxMessage msg = UserInboxMessage::parseFromString(data);
   const string& uname = msg->GetUname();
   if (uname.empty())
   {
