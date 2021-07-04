@@ -16,7 +16,7 @@ public:
   LocalHttpServer();
   virtual ~LocalHttpServer();
 
-  spError Serve(const char *host, int port, int socket_flags = 0);
+  botserver::spError Serve(const char *host, int port, int socket_flags = 0);
 
   static spLocalHttpServer getInstance()
   {

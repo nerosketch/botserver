@@ -6,25 +6,28 @@
 
 using namespace std;
 
-DECLARE_SMART(Error, spError);
+namespace botserver {
 
-class Error
-{
-public:
-    Error();
-    Error(const string &msg, int err_code);
-    Error(const Error &);
-    virtual ~Error();
+  DECLARE_SMART(Error, spError);
 
-    static spError makeError(const string &msg, int err_code = 0);
+  class Error
+  {
+  public:
+      Error();
+      Error(const string &msg, int err_code);
+      Error(const Error &);
+      virtual ~Error();
 
-    const string& getMsg() const{
-        return message_text;
-    }
+      static spError makeError(const string &msg, int err_code = 0);
 
-protected:
-    string message_text;
-    int error_num;
-};
+      const string& getMsg() const{
+          return message_text;
+      }
 
+  protected:
+      string message_text;
+      int error_num;
+  };
+
+}
 #endif /* Error_H */

@@ -1,15 +1,18 @@
 #include "errors.h"
+namespace botserver {
 
-Error::Error() = default;
+  Error::Error() = default;
 
-Error::Error(const string &msg, int err_code)
-    : message_text(msg), error_num(err_code) {}
+  Error::Error(const string &msg, int err_code)
+      : message_text(msg), error_num(err_code) {}
 
-Error::Error(const Error &o) = default;
+  Error::Error(const Error &o) = default;
 
-Error::~Error() = default;
+  Error::~Error() = default;
 
-spError Error::makeError(const string &msg, int err_code)
-{
-    return make_shared<Error>(msg, err_code);
+  spError Error::makeError(const string &msg, int err_code)
+  {
+      return make_shared<Error>(msg, err_code);
+  }
+
 }
