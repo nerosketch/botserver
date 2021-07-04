@@ -22,8 +22,8 @@ spUserInboxMessage UserInboxMessage::parseFromString(const string &data)
     j = json::parse(data);
     auto parsed_inbox_message = j.get<UserInboxMessage>();
 
-    auto sp_inbox_msg = make_shared<UserInboxMessage>();
-    *sp_inbox_msg = parsed_inbox_message;
+    auto sp_inbox_msg = make_shared<UserInboxMessage>(parsed_inbox_message);
+
     return sp_inbox_msg;
   }
   catch (json::parse_error &ex)

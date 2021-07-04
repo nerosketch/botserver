@@ -7,6 +7,8 @@
 
 DECLARE_SMART(StartMessagingDialog, spStartMessagingDialog);
 
+typedef std::vector<Button> ButtonsType;
+
 class StartMessagingDialog : public BaseDialogInterface
 {
 public:
@@ -17,7 +19,10 @@ public:
 
   spBotResponse HandleMessage(spClient &client, spUserInboxMessage &msg) const override;
 
+  NLOHMANN_DEFINE_TYPE_INTRUSIVE(StartMessagingDialog, buttons)
+
 private:
+  ButtonsType buttons;
 };
 
 #endif /* StartMessagingDialog_H */
