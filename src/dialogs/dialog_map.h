@@ -3,8 +3,8 @@
 
 #include <map>
 #include <nlohmann/json.hpp>
-#include "../core/preprocessors.h"
-#include "../core/base_dialog.h"
+#include <core/preprocessors.h>
+#include <core/base_dialog.h>
 
 using namespace std;
 

@@ -2,7 +2,7 @@
 // Created by ns on 7/20/20.
 //
 
-#include "../core/game_config.h"
+#include <core/game_config.h>
 #include "BaseSerializedObject.h"
 
 bool BaseSerializedObject::Save()

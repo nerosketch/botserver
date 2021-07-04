@@ -2,8 +2,8 @@
 #define ShowMessageDialog_H
 
 #include <nlohmann/json.hpp>
-#include "../core/preprocessors.h"
-#include "../core/base_dialog.h"
+#include <core/preprocessors.h>
+#include <core/base_dialog.h>
 
 DECLARE_SMART(ShowMessageDialog, spShowMessageDialog);
 
