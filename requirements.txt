@@ -1,6 +1,5 @@
 libsystemd-dev
 libconfig++-dev
 
-# restinio dependencies
-libhttp-parser-dev
+# string formatting
 libfmt-dev

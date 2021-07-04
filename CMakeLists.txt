@@ -8,6 +8,7 @@ set( CMAKE_VERBOSE_MAKEFILE ON )
 set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-unused-result" )
 #set( CMAKE_BUILD_TYPE RELEASE )
 set( CMAKE_BUILD_TYPE DEBUG )
+set(EXECUTABLE_OUTPUT_PATH ${CMAKE_CURRENT_SOURCE_DIR}/bin)
 
 if(NOT CMAKE_BUILD_TYPE)
 	set(CMAKE_BUILD_TYPE RELEASE)
@@ -81,6 +82,11 @@ if(NOT cpphttplib_POPULATED)
   FetchContent_Populate(cpphttplib)
 	include_directories(${cpphttplib_SOURCE_DIR})
 endif()
+
+
+# libfmt target
+find_package(fmt REQUIRED)
+set(LIBS ${LIBS} fmt::fmt)
 
 
 add_executable( ${APP_NAME} ${SRC} )

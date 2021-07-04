@@ -21,6 +21,13 @@ Server::Handler entrypoint_handler = [](const Request &request, Response &res)
   const auto& msg_interface = msg_creator_if->createInst();
   auto response = msg_interface->onMessageHandler(request.body);
 
+  if (!response)
+  {
+    res.status = 500;
+    res.set_content("Server Error", "application/json");
+    return;
+  }
+
   const string response_text = response->getJsonString();
 
   res.set_content(response_text, "application/json");

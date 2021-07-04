@@ -1,7 +1,7 @@
 #include "inbox_message_handler.h"
-#include "../core/user_inbox_message.h"
-#include "../core/client_storage.h"
-#include "../core/quest_storage.h"
+#include <core/user_inbox_message.h>
+#include <core/client_storage.h>
+#include <core/quest_storage.h>
 
 // InboxMessageHandler ::InboxMessageHandler() = default;
 
@@ -34,6 +34,11 @@ spBotResponse InboxMessageHandler::onMessageHandler(const string &data)
   DEBUG_STRUCT_LOG("Message type 1, onInboxMessageHandler()");
 
   spUserInboxMessage msg = UserInboxMessage::parseFromString(data);
+  if (!msg)
+  {
+    return nullptr;
+  }
+
   const string& uname = msg->GetUname();
   if (uname.empty())
   {

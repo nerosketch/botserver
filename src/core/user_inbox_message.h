@@ -43,8 +43,9 @@ public:
 private:
   string uname;
   string text;
+  string dialog;
 
-  NLOHMANN_DEFINE_TYPE_INTRUSIVE(UserInboxMessage, uname, text)
+  NLOHMANN_DEFINE_TYPE_INTRUSIVE(UserInboxMessage, uname, text, dialog)
 };
 
 #endif /* UserInboxMessage_H */

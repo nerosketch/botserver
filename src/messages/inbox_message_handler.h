@@ -1,9 +1,9 @@
 #ifndef InboxMessageHandler_H
 #define InboxMessageHandler_H
 
-#include "../core/preprocessors.h"
-#include "../core/base_message.h"
 #include <string>
+#include <core/preprocessors.h>
+#include <core/base_message.h>
 
 using namespace std;
 

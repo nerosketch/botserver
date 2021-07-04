@@ -13,20 +13,24 @@ namespace botserver {
   class Error
   {
   public:
-      Error();
-      Error(const string &msg, int err_code);
-      Error(const Error &);
-      virtual ~Error();
+    Error();
+    Error(const string &msg, int err_code);
+    Error(const Error &);
+    virtual ~Error();
 
-      static spError makeError(const string &msg, int err_code = 0);
+    static spError makeError(const string &msg, int err_code = 0);
 
-      const string& getMsg() const{
-          return message_text;
-      }
+    static void sendError(spError err);
+    static void sendError(const string &msg, int err_code = 0);
+
+    const string& getMsg() const
+    {
+      return message_text;
+    }
 
   protected:
-      string message_text;
-      int error_num;
+    string message_text;
+    int error_num;
   };
 
 }

@@ -8,5 +8,5 @@ CMakeFiles/
 build/
 dist/
 nbproject/
-botserver
+bin/
 .idea/
