@@ -45,7 +45,7 @@ spError LocalHttpServer::Serve(const char *host, int port, int socket_flags)
   // HTTPS
   //httplib::SSLServer svr;
 
-  _svr.Get("/entrypoint/", entrypoint_handler);
+  _svr.Post("/entrypoint/", entrypoint_handler);
 
   if (!_svr.listen(host, port))
   {
