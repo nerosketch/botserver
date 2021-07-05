@@ -3,6 +3,7 @@
 
 #include <string>
 #include "preprocessors.h"
+#include "base_dialog.h"
 
 using namespace std;
 
@@ -20,29 +21,40 @@ public:
   static spClient createClient(const string &uname);
   static spClient createClient(const string &uname, const string &current_quest_name);
 
-  const string& GetUsername() const
+  inline const string& getUsername() const
   {
     return username;
   }
 
-  void SetUsername(const string& username)
+  inline void setUsername(const string& username)
   {
     this->username = username;
   }
 
-  const string& getCurrentQuestName() const
+  inline const string& getCurrentQuestName() const
   {
     return currentQuestName;
   }
 
-  void setCurrentQuestName(const string& current_quest_name)
+  inline void setCurrentQuestName(const string& current_quest_name)
   {
-    this->currentQuestName = current_quest_name;
+    currentQuestName = current_quest_name;
+  }
+
+  inline const spBaseDialogInterface& getCurrentDialog() const
+  {
+    return current_dialog;
+  }
+
+  inline void setCurrentDialog(const spBaseDialogInterface &dialog)
+  {
+    current_dialog = dialog;
   }
 
 private:
   string username;
   string currentQuestName;
+  spBaseDialogInterface current_dialog;
 };
 
 #endif /* Client_H */

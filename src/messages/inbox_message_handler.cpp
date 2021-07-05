@@ -41,7 +41,7 @@ spBotResponse InboxMessageHandler::onMessageHandler(const string &data, botserve
     return nullptr;
   }
 
-  const string& uname = msg->GetUname();
+  const string& uname = msg->getUname();
   if (uname.empty())
   {
     return BotResponse::makeResponse("uname not found in data");

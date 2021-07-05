@@ -4,11 +4,10 @@
 
 UserInboxMessage::UserInboxMessage() = default;
 
-UserInboxMessage::UserInboxMessage(const string &uname)
-    : uname(uname) {}
-
-UserInboxMessage::UserInboxMessage(const string &uname, const string &text)
-    : uname(uname), text(text) {}
+UserInboxMessage::UserInboxMessage(const nlohmann::json& json_dialog)
+{
+  from_json(json_dialog, *this);
+}
 
 UserInboxMessage::UserInboxMessage(const UserInboxMessage &o) = default;
 

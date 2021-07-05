@@ -19,22 +19,22 @@ public:
   Button(const Button &);
   virtual ~Button();
 
-  const string& GetTitle() const
+  inline const string& GetTitle() const
   {
     return title;
   }
 
-  void setTitle(const string& title)
+  inline void setTitle(const string& title)
   {
     this->title = title;
   }
 
-  const string& getNextDialogName() const
+  inline const string& getNextDialogName() const
   {
     return next_dialog_name;
   }
 
-  void setNextDialogName(const string& next_dialog_name)
+  inline void setNextDialogName(const string& next_dialog_name)
   {
     this->next_dialog_name = next_dialog_name;
   }
@@ -45,11 +45,22 @@ public:
     return os;
   }
 
+  inline const string& getCommand() const
+  {
+    return command;
+  }
+
+  inline void setCommand(const string &cmd)
+  {
+    command = cmd;
+  }
+
+  NLOHMANN_DEFINE_TYPE_INTRUSIVE(Button, title, next_dialog_name, command)
+
 private:
   string title;
   string next_dialog_name;
-
-  NLOHMANN_DEFINE_TYPE_INTRUSIVE(Button, title, next_dialog_name)
+  string command;
 };
 
 typedef vector<Button> ButtonsType;
