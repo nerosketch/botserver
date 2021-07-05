@@ -1,11 +1,15 @@
 #include <string>
 #include <messages/msg_map.h>
+#include <core/request.h>
 #include "http_handlers.h"
 
 using namespace std;
 
-Server::Handler entrypoint_handler = [](const Request &request, Response &res)
+httplib::Server::Handler entrypoint_handler = [](const httplib::Request &request, httplib::Response &res)
 {
+  botserver::spRequest bot_request = make_shared<botserver::Request>();
+
+  bot_request->setHttpRequestPtr(&request);
 
   auto msg_type = request.get_header_value<uint64_t>("bot-message-type");
 
@@ -19,7 +23,7 @@ Server::Handler entrypoint_handler = [](const Request &request, Response &res)
 
   const auto& msg_creator_if = msg_map_it->second;
   const auto& msg_interface = msg_creator_if->createInst();
-  auto response = msg_interface->onMessageHandler(request.body);
+  auto response = msg_interface->onMessageHandler(request.body, bot_request);
 
   if (!response)
   {

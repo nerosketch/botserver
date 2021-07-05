@@ -9,7 +9,7 @@ DECLARE_SMART(HandlerInterface, spHandlerInterface);
 
 class HandlerInterface {
 public:
-  virtual spBotResponse HandleMessage(spRequest &request) const = 0;
+  virtual spBotResponse HandleMessage(botserver::spRequest &request) const = 0;
 
 };
 

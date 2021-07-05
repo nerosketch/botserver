@@ -16,7 +16,7 @@ public:
     return singletone;
   }
 
-  spBotResponse HandleMessage(spRequest &request) const override;
+  spBotResponse HandleMessage(botserver::spRequest &request) const override;
 
 private:
   UnexpectedDialog();

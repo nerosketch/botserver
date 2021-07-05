@@ -12,7 +12,7 @@ StartMessagingDialog::StartMessagingDialog(const StartMessagingDialog &o) = defa
 
 StartMessagingDialog::~StartMessagingDialog() = default;
 
-spBotResponse StartMessagingDialog::HandleMessage(spRequest &request) const
+spBotResponse StartMessagingDialog::HandleMessage(botserver::spRequest &request) const
 {
   DEBUG_STRUCT_LOG("StartMessagingDialog::HandleMessage");
 

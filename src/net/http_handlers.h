@@ -3,10 +3,7 @@
 
 #include <httplib.h>
 
-using namespace httplib;
-
-extern Server::Handler entrypoint_handler;
-
+extern httplib::Server::Handler entrypoint_handler;
 
 
 #endif /* HttpHandlers_H */

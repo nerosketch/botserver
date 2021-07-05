@@ -14,7 +14,7 @@ public:
   UpdateQuestHandler(const UpdateQuestHandler &);
   virtual ~UpdateQuestHandler();
 
-  spBotResponse onMessageHandler(const std::string &data) override;
+  spBotResponse onMessageHandler(const std::string &data, botserver::spRequest &request) override;
 
 private:
 };

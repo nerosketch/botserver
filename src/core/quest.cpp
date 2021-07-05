@@ -105,7 +105,7 @@ void Quest::DeserializeMe(std::ostream &out)
     // TODO: Make deserialize for this
 }
 
-spBotResponse Quest::HandleMessage(spRequest &request) const
+spBotResponse Quest::HandleMessage(botserver::spRequest &request) const
 {
     const auto &msg = request->getUserInboxMessage();
     const auto &dialog_it = _dialogs.find(msg->GetText());

@@ -18,7 +18,7 @@ public:
   StartMessagingDialog(const StartMessagingDialog &);
   virtual ~StartMessagingDialog();
 
-  spBotResponse HandleMessage(spRequest &request) const override;
+  spBotResponse HandleMessage(botserver::spRequest &request) const override;
 
   NLOHMANN_DEFINE_TYPE_INTRUSIVE(StartMessagingDialog, buttons)
 

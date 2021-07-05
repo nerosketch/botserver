@@ -10,7 +10,7 @@
 // InboxMessageHandler ::~InboxMessageHandler() = default;
 
 
-spBotResponse _inbox_client_msg(spRequest &request)
+spBotResponse _inbox_client_msg(botserver::spRequest &request)
 {
   auto c = request->getClient();
 
@@ -31,7 +31,7 @@ spBotResponse _inbox_client_msg(spRequest &request)
 }
 
 
-spBotResponse InboxMessageHandler::onMessageHandler(const string &data)
+spBotResponse InboxMessageHandler::onMessageHandler(const string &data, botserver::spRequest &request)
 {
   DEBUG_STRUCT_LOG("Message type 1, onInboxMessageHandler()");
 
@@ -49,8 +49,6 @@ spBotResponse InboxMessageHandler::onMessageHandler(const string &data)
 
   ClientStorage& cs = ClientStorage::getInstance();
   spClient client = cs.FindClient(uname);
-
-  spRequest request = make_shared<Request>();
 
   request->setMessage(msg);
 

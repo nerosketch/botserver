@@ -4,6 +4,7 @@
 
 #include "preprocessors.h"
 #include "bot_response.h"
+#include "request.h"
 #include <string>
 
 
@@ -12,7 +13,7 @@ DECLARE_SMART(BaseMessageInterface, spBaseMessageInterface);
 class BaseMessageInterface {
 public:
 
-  virtual spBotResponse onMessageHandler(const std::string &data) = 0;
+  virtual spBotResponse onMessageHandler(const std::string &data, botserver::spRequest &request) = 0;
 
 };
 
