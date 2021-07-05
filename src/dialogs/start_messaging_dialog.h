@@ -5,10 +5,9 @@
 #include <core/preprocessors.h>
 #include <core/base_dialog.h>
 #include <core/request.h>
+#include <core/button.h>
 
 DECLARE_SMART(StartMessagingDialog, spStartMessagingDialog);
-
-typedef std::vector<Button> ButtonsType;
 
 class StartMessagingDialog : public BaseDialogInterface
 {
@@ -18,12 +17,7 @@ public:
   StartMessagingDialog(const StartMessagingDialog &);
   virtual ~StartMessagingDialog();
 
-  spBotResponse HandleMessage(botserver::spRequest &request) const override;
-
-  NLOHMANN_DEFINE_TYPE_INTRUSIVE(StartMessagingDialog, buttons)
-
-private:
-  ButtonsType buttons;
+  spBotResponse HandleMessage(botserver::spRequest &request) override;
 };
 
 #endif /* StartMessagingDialog_H */

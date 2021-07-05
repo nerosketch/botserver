@@ -14,7 +14,7 @@ spBotResponse _inbox_client_msg(botserver::spRequest &request)
 {
   auto c = request->getClient();
 
-  const string& current_quest_name = c->GetCurrentQuestName(); 
+  const string& current_quest_name = c->getCurrentQuestName(); 
   if (current_quest_name.empty())
   {
     return BotResponse::makeResponse("current_quest_name is empty");

@@ -3,6 +3,7 @@
 
 #include <string>
 #include <ostream>
+#include <vector>
 #include <nlohmann/json.hpp>
 #include "preprocessors.h"
 
@@ -23,17 +24,17 @@ public:
     return title;
   }
 
-  void SetTitle(const string& title)
+  void setTitle(const string& title)
   {
     this->title = title;
   }
 
-  const string& GetNext_dialog_name() const
+  const string& getNextDialogName() const
   {
     return next_dialog_name;
   }
 
-  void SetNext_dialog_name(const string& next_dialog_name)
+  void setNextDialogName(const string& next_dialog_name)
   {
     this->next_dialog_name = next_dialog_name;
   }
@@ -50,5 +51,7 @@ private:
 
   NLOHMANN_DEFINE_TYPE_INTRUSIVE(Button, title, next_dialog_name)
 };
+
+typedef vector<Button> ButtonsType;
 
 #endif /* Button_H */

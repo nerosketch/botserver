@@ -9,9 +9,9 @@ ShowMessageDialog::ShowMessageDialog(const ShowMessageDialog &o) = default;
 
 ShowMessageDialog::~ShowMessageDialog() = default;
 
-spBotResponse ShowMessageDialog::HandleMessage(botserver::spRequest &request) const
+spBotResponse ShowMessageDialog::HandleMessage(botserver::spRequest &request)
 {
   DEBUG_STRUCT_LOG("ShowMessageDialog::HandleMessage");
 
-  return BotResponse::makeResponse(GetMessage());
+  return BotResponse::makeResponse(getMessage());
 }

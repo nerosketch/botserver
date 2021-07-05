@@ -9,9 +9,16 @@ InboxMessageDialog::InboxMessageDialog(const InboxMessageDialog &o) = default;
 
 InboxMessageDialog::~InboxMessageDialog() = default;
 
-spBotResponse InboxMessageDialog::HandleMessage(botserver::spRequest &request) const
+spBotResponse InboxMessageDialog::HandleMessage(botserver::spRequest &request)
 {
   DEBUG_STRUCT_LOG("InboxMessageDialog::HandleMessage");
 
-  return BotResponse::makeResponse(GetMessage());
+  // TODO: Перемещать пользователя на следующий диалог
+
+  const spClient &client = request->getClient();
+  const string &msg = getMessage();
+
+  //client->
+
+  return BotResponse::makeResponse(msg);
 }

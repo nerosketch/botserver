@@ -2,7 +2,6 @@
 #define CUSTOM_PREPROCESSORS_H
 
 #include <memory>
-#include <iostream>
 
 #define DECLARE_SMART(class_name, spname) \
     class class_name;\
@@ -11,6 +10,7 @@
 
 #ifndef DEBUG_STRUCT_LOG
 #ifdef DEBUG
+#include <iostream>
 #define DEBUG_STRUCT_LOG(text) std::cout << text << std::endl
 #else
 #define DEBUG_STRUCT_LOG(text)

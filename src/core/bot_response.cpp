@@ -6,7 +6,7 @@ BotResponse::BotResponse() = default;
 BotResponse::BotResponse(const string& text)
 :text(text) {}
 
-BotResponse::BotResponse(const string& text, const vector<Button>& buttons )
+BotResponse::BotResponse(const string& text, const ButtonsType& buttons )
 :text(text), buttons(buttons) {}
 
 BotResponse::BotResponse(const BotResponse &o) = default;
@@ -26,7 +26,7 @@ spBotResponse BotResponse::makeResponse(const string& text)
   return make_shared<BotResponse>(text);
 }
 
-spBotResponse BotResponse::makeResponse(const string& text, const vector<Button>& buttons)
+spBotResponse BotResponse::makeResponse(const string& text, const ButtonsType& buttons)
 {
   return make_shared<BotResponse>(text, buttons);
 }

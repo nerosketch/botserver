@@ -47,7 +47,7 @@ public:
     void SerializeMe(std::istream &in) override;
     void DeserializeMe(std::ostream &out) override;
 
-    spBotResponse HandleMessage(botserver::spRequest &request) const override;
+    spBotResponse HandleMessage(botserver::spRequest &request) override;
 
     const string& GetTitle() const
     {

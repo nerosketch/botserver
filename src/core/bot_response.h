@@ -2,7 +2,6 @@
 #define BotResponse_H
 
 #include <string>
-#include <vector>
 #include <nlohmann/json.hpp>
 #include "preprocessors.h"
 #include "button.h"
@@ -17,7 +16,7 @@ class BotResponse
 public:
   BotResponse();
   BotResponse(const string& text);
-  BotResponse(const string& text, const vector<Button>& buttons );
+  BotResponse(const string& text, const ButtonsType& buttons );
   BotResponse(const BotResponse &);
   virtual ~BotResponse();
 
@@ -31,12 +30,12 @@ public:
     this->text = text;
   }
 
-  const vector<Button>& GetButtons() const
+  const ButtonsType& GetButtons() const
   {
     return buttons;
   }
 
-  void SetButtons(const vector<Button>& buttons)
+  void SetButtons(const ButtonsType& buttons)
   {
     this->buttons = buttons;
   }
@@ -44,11 +43,11 @@ public:
   string getJsonString();
 
   static spBotResponse makeResponse(const string& text);
-  static spBotResponse makeResponse(const string& text, const vector<Button>& buttons);
+  static spBotResponse makeResponse(const string& text, const ButtonsType& buttons);
 
 protected:
   string text;
-  vector<Button> buttons;
+  ButtonsType buttons;
 
 private:
   NLOHMANN_DEFINE_TYPE_INTRUSIVE(BotResponse, text, buttons)

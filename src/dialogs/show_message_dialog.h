@@ -16,9 +16,8 @@ public:
   ShowMessageDialog(const ShowMessageDialog &);
   virtual ~ShowMessageDialog();
 
-  spBotResponse HandleMessage(botserver::spRequest &request) const override;
+  spBotResponse HandleMessage(botserver::spRequest &request) override;
 
-private:
 };
 
 #endif /* ShowMessageDialog_H */

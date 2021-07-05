@@ -30,14 +30,14 @@ public:
     this->username = username;
   }
 
-  const string& GetCurrentQuestName() const
+  const string& getCurrentQuestName() const
   {
     return currentQuestName;
   }
 
-  void SetCurrentQuestName(const string& currentQuestName)
+  void setCurrentQuestName(const string& current_quest_name)
   {
-    this->currentQuestName = currentQuestName;
+    this->currentQuestName = current_quest_name;
   }
 
 private:

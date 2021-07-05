@@ -22,7 +22,7 @@ private:
   string name;
   uint16_t dialog_type;
   string message;
-  vector<Button> buttons;
+  ButtonsType buttons;
 
   NLOHMANN_DEFINE_TYPE_INTRUSIVE(DialogStructClass, name, dialog_type, message, buttons)
 };

@@ -4,10 +4,8 @@
 #include <string>
 #include <nlohmann/json.hpp>
 #include "preprocessors.h"
-#include "bot_response.h"
-#include "client.h"
-#include "user_inbox_message.h"
 #include "handler_interface.h"
+#include "button.h"
 
 using namespace std;
 
@@ -26,36 +24,48 @@ public:
     return name;
   }
 
-  void SetName(const string& name)
+  inline void SetName(const string& name)
   {
     this->name = name;
   }
 
-  uint16_t GetDialogType() const
+  inline uint16_t getDialogType() const
   {
-    return dialogType;
+    return dialog_type;
   }
 
-  void SetDialogType(uint16_t dialogType)
+  inline void setDialogType(uint16_t dialogType)
   {
-    this->dialogType = dialogType;
+    this->dialog_type = dialogType;
   }
 
-  const string& GetMessage() const
+  inline const string& getMessage() const
   {
     return message;
   }
 
-  void SetMessage(const string& message)
+  inline void setMessage(const string& message)
   {
     this->message = message;
   }
 
+  inline ButtonsType& getButtons()
+  {
+    return buttons;
+  }
+
+  inline void setButtons(const ButtonsType &btns)
+  {
+    buttons = btns;
+  }
+
+  NLOHMANN_DEFINE_TYPE_INTRUSIVE(BaseDialogInterface, name, dialog_type, message, buttons)
+
 private:
   string name;
-  uint16_t dialogType;
+  uint16_t dialog_type;
   string message;
-
+  ButtonsType buttons;
 };
 
 #endif /* BaseDialogInterface_H */

@@ -85,7 +85,7 @@ spBaseDialogInterface Quest::getFirstDialog() const
     // try to find dialog by type (1 - start messaging dialog)
     for (const auto &pair : _dialogs)
     {
-        if (pair.second->GetDialogType() == 1)
+        if (pair.second->getDialogType() == 1)
         {
             return pair.second;
         }
@@ -105,10 +105,11 @@ void Quest::DeserializeMe(std::ostream &out)
     // TODO: Make deserialize for this
 }
 
-spBotResponse Quest::HandleMessage(botserver::spRequest &request) const
+spBotResponse Quest::HandleMessage(botserver::spRequest &request)
 {
     const auto &msg = request->getUserInboxMessage();
     const auto &dialog_it = _dialogs.find(msg->GetText());
+
     if (dialog_it == _dialogs.end())
     {
         // Dialog not found, get entrypoint
@@ -122,5 +123,7 @@ spBotResponse Quest::HandleMessage(botserver::spRequest &request) const
         }
         return entrypoint_dialog_it->HandleMessage(request);
     }
-    return dialog_it->second->HandleMessage(request);
+    const spBaseDialogInterface &dialog = dialog_it->second;
+
+    return dialog->HandleMessage(request);
 }
