@@ -12,26 +12,19 @@
 
 spBotResponse _inbox_client_msg(botserver::spRequest &request)
 {
-  spQuest &quest = request->getCurrentQuest();
+  auto c = request->getClient();
 
+  const string& current_quest_name = c->GetCurrentQuestName(); 
+  if (current_quest_name.empty())
+  {
+    return BotResponse::makeResponse("current_quest_name is empty");
+  }
+
+  const QuestStorage& qs = QuestStorage::getInstance();
+  spQuest quest = qs.findQuest(current_quest_name);
   if (!quest)
   {
-    auto c = request->getClient();
-
-    const string& current_quest_name = c->GetCurrentQuestName(); 
-    if (current_quest_name.empty())
-    {
-      return BotResponse::makeResponse("current_quest_name is empty");
-    }
-
-    const QuestStorage& qs = QuestStorage::getInstance();
-    quest = qs.findQuest(current_quest_name);
-    if (!quest)
-    {
-      return BotResponse::makeResponse("Current quest not found");
-    }
-
-    request->setCurrentQuest(quest);
+    return BotResponse::makeResponse("Current quest not found");
   }
 
   return quest->HandleMessage(request);
@@ -73,7 +66,6 @@ spBotResponse InboxMessageHandler::onMessageHandler(const string &data, botserve
     // Create new client
     auto new_client = Client::createClient(uname, quest->GetTitle());
     request->setClient(new_client);
-    request->setCurrentQuest(quest);
     cs.AddClient(new_client);
     return _inbox_client_msg(request);
   }
