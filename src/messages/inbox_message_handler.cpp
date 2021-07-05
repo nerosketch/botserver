@@ -10,8 +10,10 @@
 // InboxMessageHandler ::~InboxMessageHandler() = default;
 
 
-spBotResponse _inbox_client_msg(spClient& c, spUserInboxMessage& msg)
+spBotResponse _inbox_client_msg(spRequest &request)
 {
+  auto c = request->getClient();
+
   const string& current_quest_name = c->GetCurrentQuestName();
   if (current_quest_name.empty())
   {
@@ -25,7 +27,7 @@ spBotResponse _inbox_client_msg(spClient& c, spUserInboxMessage& msg)
     return BotResponse::makeResponse("Current quest not found");
   }
 
-  return quest->HandleMessage(c, msg);
+  return quest->HandleMessage(request);
 }
 
 
@@ -47,11 +49,17 @@ spBotResponse InboxMessageHandler::onMessageHandler(const string &data)
 
   ClientStorage& cs = ClientStorage::getInstance();
   spClient client = cs.FindClient(uname);
+
+  spRequest request = make_shared<Request>();
+
+  request->setMessage(msg);
+
   if (client)
   {
-    return _inbox_client_msg(client, msg);
+    request->setClient(client);
+    return _inbox_client_msg(request);
   }
-  else 
+  else
   {
     // Get default quest
     const QuestStorage& qs = QuestStorage::getInstance();
@@ -59,10 +67,10 @@ spBotResponse InboxMessageHandler::onMessageHandler(const string &data)
 
     // Create new client
     auto new_client = Client::createClient(uname, quest->GetTitle());
+    request->setClient(new_client);
     cs.AddClient(new_client);
-    return _inbox_client_msg(new_client, msg);
+    return _inbox_client_msg(request);
   }
-
 
   return BotResponse::makeResponse("InboxMessageHandler message");
 }

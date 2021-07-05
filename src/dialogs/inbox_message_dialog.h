@@ -4,6 +4,7 @@
 #include <nlohmann/json.hpp>
 #include <core/preprocessors.h>
 #include <core/base_dialog.h>
+#include <core/request.h>
 
 DECLARE_SMART(InboxMessageDialog, spInboxMessageDialog);
 
@@ -15,7 +16,7 @@ public:
   InboxMessageDialog(const InboxMessageDialog &);
   virtual ~InboxMessageDialog();
 
-  spBotResponse HandleMessage(spClient &client, spUserInboxMessage &msg) const override;
+  spBotResponse HandleMessage(spRequest &request) const override;
 
 private:
 };

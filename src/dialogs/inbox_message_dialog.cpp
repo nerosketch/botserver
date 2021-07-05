@@ -9,7 +9,7 @@ InboxMessageDialog::InboxMessageDialog(const InboxMessageDialog &o) = default;
 
 InboxMessageDialog::~InboxMessageDialog() = default;
 
-spBotResponse InboxMessageDialog::HandleMessage(spClient &client, spUserInboxMessage &msg) const
+spBotResponse InboxMessageDialog::HandleMessage(spRequest &request) const
 {
   DEBUG_STRUCT_LOG("InboxMessageDialog::HandleMessage");
 

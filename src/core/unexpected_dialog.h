@@ -3,6 +3,7 @@
 
 #include "preprocessors.h"
 #include "base_dialog.h"
+#include "request.h"
 
 DECLARE_SMART(UnexpectedDialog, spUnexpectedDialog);
 
@@ -15,7 +16,7 @@ public:
     return singletone;
   }
 
-  spBotResponse HandleMessage(spClient &client, spUserInboxMessage &msg) const override;
+  spBotResponse HandleMessage(spRequest &request) const override;
 
 private:
   UnexpectedDialog();

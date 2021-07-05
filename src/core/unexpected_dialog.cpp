@@ -7,7 +7,7 @@ UnexpectedDialog::UnexpectedDialog(const UnexpectedDialog &o) = default;
 
 UnexpectedDialog::~UnexpectedDialog() = default;
 
-spBotResponse UnexpectedDialog::HandleMessage(spClient &client, spUserInboxMessage &msg) const
+spBotResponse UnexpectedDialog::HandleMessage(spRequest &request) const
 {
     DEBUG_STRUCT_LOG("UnexpectedDialog::HandleMessage");
 

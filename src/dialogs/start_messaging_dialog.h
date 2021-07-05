@@ -4,6 +4,7 @@
 #include <nlohmann/json.hpp>
 #include <core/preprocessors.h>
 #include <core/base_dialog.h>
+#include <core/request.h>
 
 DECLARE_SMART(StartMessagingDialog, spStartMessagingDialog);
 
@@ -17,7 +18,7 @@ public:
   StartMessagingDialog(const StartMessagingDialog &);
   virtual ~StartMessagingDialog();
 
-  spBotResponse HandleMessage(spClient &client, spUserInboxMessage &msg) const override;
+  spBotResponse HandleMessage(spRequest &request) const override;
 
   NLOHMANN_DEFINE_TYPE_INTRUSIVE(StartMessagingDialog, buttons)
 

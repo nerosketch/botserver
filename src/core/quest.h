@@ -15,6 +15,7 @@
 #include "preprocessors.h"
 #include "base_dialog.h"
 #include "BaseSerializedObject.h"
+#include "request.h"
 
 using namespace std;
 
@@ -46,7 +47,7 @@ public:
     void SerializeMe(std::istream &in) override;
     void DeserializeMe(std::ostream &out) override;
 
-    spBotResponse HandleMessage(spClient &client, spUserInboxMessage &msg) const override;
+    spBotResponse HandleMessage(spRequest &request) const override;
 
     const string& GetTitle() const
     {

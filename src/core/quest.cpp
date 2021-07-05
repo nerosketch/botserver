@@ -105,8 +105,9 @@ void Quest::DeserializeMe(std::ostream &out)
     // TODO: Make deserialize for this
 }
 
-spBotResponse Quest::HandleMessage(spClient &client, spUserInboxMessage &msg) const
+spBotResponse Quest::HandleMessage(spRequest &request) const
 {
+    const auto &msg = request->getUserInboxMessage();
     const auto &dialog_it = _dialogs.find(msg->GetText());
     if (dialog_it == _dialogs.end())
     {
@@ -117,9 +118,9 @@ spBotResponse Quest::HandleMessage(spClient &client, spUserInboxMessage &msg) co
             // dialog not found,
             // handle unexpected dialog
             auto& un_dlg = UnexpectedDialog::getInstance();
-            return un_dlg.HandleMessage(client, msg);
+            return un_dlg.HandleMessage(request);
         }
-        return entrypoint_dialog_it->HandleMessage(client, msg);
+        return entrypoint_dialog_it->HandleMessage(request);
     }
-    return dialog_it->second->HandleMessage(client, msg);
+    return dialog_it->second->HandleMessage(request);
 }
