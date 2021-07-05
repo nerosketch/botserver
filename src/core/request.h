@@ -47,10 +47,20 @@ namespace botserver {
       p_http_request = p_req;
     }
 
+    inline spQuest& getCurrentQuest()
+    {
+      return current_quest;
+    }
+    inline void setCurrentQuest(spQuest &quest)
+    {
+      current_quest = quest;
+    }
+
   private:
     spClient client;
     spUserInboxMessage message;
     const httplib::Request *p_http_request;
+    spQuest current_quest;
   };
 }
 

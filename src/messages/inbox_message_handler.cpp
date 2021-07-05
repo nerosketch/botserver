@@ -27,6 +27,8 @@ spBotResponse _inbox_client_msg(botserver::spRequest &request)
     return BotResponse::makeResponse("Current quest not found");
   }
 
+  request->setCurrentQuest(quest);
+
   return quest->HandleMessage(request);
 }
 
@@ -66,6 +68,7 @@ spBotResponse InboxMessageHandler::onMessageHandler(const string &data, botserve
     // Create new client
     auto new_client = Client::createClient(uname, quest->GetTitle());
     request->setClient(new_client);
+    request->setCurrentQuest(quest);
     cs.AddClient(new_client);
     return _inbox_client_msg(request);
   }
