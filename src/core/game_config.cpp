@@ -107,7 +107,7 @@ int GameConfig::load_config(const char *fname)
         const Setting &conf = app.lookup("storage");
         const string &store_type = conf["type"];
 
-        const unordered_map<string, StorageConfigType> storage_types_map = {
+        /*const unordered_map<string, StorageConfigType> storage_types_map = {
             {"file", StorageConfigType::FILE},
         };
 
@@ -121,7 +121,7 @@ int GameConfig::load_config(const char *fname)
         {
             auto storage_type = storage_types_map_it->second;
             _storage_config.set_type(storage_type);
-        }
+        }*/
     }
     catch (const SettingNotFoundException &nfex)
     {
