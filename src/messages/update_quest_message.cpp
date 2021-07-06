@@ -3,13 +3,11 @@
 #include <unordered_map>
 #include <nlohmann/json.hpp>
 #include "update_quest_message.h"
-#include <core/button.h>
-#include <core/quest.h>
-#include <core/quest_storage.h>
 #include <dialogs/dialog_map.h>
 
 using namespace std;
 using nlohmann::json;
+using namespace botserver;
 
 DECLARE_SMART(DialogStructClass, spDialogStructClass);
 class DialogStructClass

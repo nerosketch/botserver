@@ -1,5 +1,8 @@
 #include "start_messaging_dialog.h"
 
+using namespace botserver;
+
+
 StartMessagingDialog::StartMessagingDialog() = default;
 
 StartMessagingDialog::StartMessagingDialog(const nlohmann::json& json_dialog):
@@ -9,9 +12,9 @@ StartMessagingDialog::StartMessagingDialog(const StartMessagingDialog &o) = defa
 
 StartMessagingDialog::~StartMessagingDialog() = default;
 
-spBotResponse StartMessagingDialog::HandleMessage(botserver::spRequest &request)
+spBotResponse StartMessagingDialog::handleMessage(spRequest &request)
 {
-  DEBUG_STRUCT_LOG("StartMessagingDialog::HandleMessage");
+  DEBUG_STRUCT_LOG("StartMessagingDialog::handleMessage");
 
   ButtonsType &btns = getButtons();
 

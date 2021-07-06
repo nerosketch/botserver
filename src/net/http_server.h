@@ -2,8 +2,7 @@
 #define LocalHttpServer_H
 
 
-#include <core/preprocessors.h>
-#include <core/errors.h>
+#include <core/core.h>
 #include <string>
 
 using namespace std;

@@ -3,10 +3,10 @@
 
 #include <map>
 #include <nlohmann/json.hpp>
-#include <core/preprocessors.h>
-#include <core/base_dialog.h>
+#include <core/core.h>
 
 using namespace std;
+using namespace botserver;
 
 DECLARE_SMART(BaseDialogCreatorInterface, spBaseDialogCreatorInterface);
 

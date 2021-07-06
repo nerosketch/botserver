@@ -3,12 +3,11 @@
 
 #include <nlohmann/json.hpp>
 #include <core/preprocessors.h>
-#include <core/base_dialog.h>
-#include <core/request.h>
+#include <core/core.h>
 
 DECLARE_SMART(ShowMessageDialog, spShowMessageDialog);
 
-class ShowMessageDialog : public BaseDialogInterface
+class ShowMessageDialog : public botserver::BaseDialogInterface
 {
 public:
   ShowMessageDialog();
@@ -16,7 +15,7 @@ public:
   ShowMessageDialog(const ShowMessageDialog &);
   virtual ~ShowMessageDialog();
 
-  spBotResponse HandleMessage(botserver::spRequest &request) override;
+  botserver::spBotResponse handleMessage(botserver::spRequest &request) override;
 
 };
 

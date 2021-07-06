@@ -2,14 +2,11 @@
 #define StartMessagingDialog_H
 
 #include <nlohmann/json.hpp>
-#include <core/preprocessors.h>
-#include <core/base_dialog.h>
-#include <core/request.h>
-#include <core/button.h>
+#include <core/core.h>
 
 DECLARE_SMART(StartMessagingDialog, spStartMessagingDialog);
 
-class StartMessagingDialog : public BaseDialogInterface
+class StartMessagingDialog : public botserver::BaseDialogInterface
 {
 public:
   StartMessagingDialog();
@@ -17,7 +14,7 @@ public:
   StartMessagingDialog(const StartMessagingDialog &);
   virtual ~StartMessagingDialog();
 
-  spBotResponse HandleMessage(botserver::spRequest &request) override;
+  botserver::spBotResponse handleMessage(botserver::spRequest &request) override;
 };
 
 #endif /* StartMessagingDialog_H */

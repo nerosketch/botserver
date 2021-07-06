@@ -1,7 +1,4 @@
 #include "inbox_message_handler.h"
-#include <core/user_inbox_message.h>
-#include <core/client_storage.h>
-#include <core/quest_storage.h>
 
 // InboxMessageHandler ::InboxMessageHandler() = default;
 
@@ -27,7 +24,7 @@ spBotResponse _inbox_client_msg(botserver::spRequest &request)
     return BotResponse::makeResponse("Current quest not found");
   }
 
-  return quest->HandleMessage(request);
+  return quest->handleMessage(request);
 }
 
 

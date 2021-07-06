@@ -2,13 +2,11 @@
 #define InboxMessageDialog_H
 
 #include <nlohmann/json.hpp>
-#include <core/preprocessors.h>
-#include <core/base_dialog.h>
-#include <core/request.h>
+#include <core/core.h>
 
 DECLARE_SMART(InboxMessageDialog, spInboxMessageDialog);
 
-class InboxMessageDialog : public BaseDialogInterface
+class InboxMessageDialog : public botserver::BaseDialogInterface
 {
 public:
   InboxMessageDialog();
@@ -16,7 +14,7 @@ public:
   InboxMessageDialog(const InboxMessageDialog &);
   virtual ~InboxMessageDialog();
 
-  spBotResponse HandleMessage(botserver::spRequest &request) override;
+  botserver::spBotResponse handleMessage(botserver::spRequest &request) override;
 
 };
 

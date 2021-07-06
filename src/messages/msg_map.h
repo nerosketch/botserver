@@ -3,10 +3,10 @@
 
 #include <map>
 #include <memory>
-#include <core/preprocessors.h>
-#include <core/base_message.h>
+#include <core/core.h>
 
 using namespace std;
+using namespace botserver;
 
 DECLARE_SMART(BaseMsgCreatorInterface, spBaseMsgCreatorInterface);
 

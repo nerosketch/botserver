@@ -1,5 +1,9 @@
 #include "show_message_dialog.h"
 
+using namespace botserver;
+
+
+
 ShowMessageDialog::ShowMessageDialog() = default;
 
 ShowMessageDialog::ShowMessageDialog(const nlohmann::json& json_dialog):
@@ -9,9 +13,9 @@ ShowMessageDialog::ShowMessageDialog(const ShowMessageDialog &o) = default;
 
 ShowMessageDialog::~ShowMessageDialog() = default;
 
-spBotResponse ShowMessageDialog::HandleMessage(botserver::spRequest &request)
+spBotResponse ShowMessageDialog::handleMessage(spRequest &request)
 {
-  DEBUG_STRUCT_LOG("ShowMessageDialog::HandleMessage");
+  DEBUG_STRUCT_LOG("ShowMessageDialog::handleMessage");
 
   return BotResponse::makeResponse(getMessage());
 }

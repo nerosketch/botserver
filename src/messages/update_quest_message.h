@@ -2,19 +2,18 @@
 #define UpdateQuestHandler_H
 
 #include <string>
-#include <core/preprocessors.h>
-#include <core/base_message.h>
+#include <core/core.h>
 
 DECLARE_SMART(UpdateQuestHandler, spUpdateQuestHandler);
 
-class UpdateQuestHandler : public BaseMessageInterface
+class UpdateQuestHandler : public botserver::BaseMessageInterface
 {
 public:
   UpdateQuestHandler();
   UpdateQuestHandler(const UpdateQuestHandler &);
   virtual ~UpdateQuestHandler();
 
-  spBotResponse onMessageHandler(const std::string &data, botserver::spRequest &request) override;
+  botserver::spBotResponse onMessageHandler(const std::string &data, botserver::spRequest &request) override;
 
 private:
 };

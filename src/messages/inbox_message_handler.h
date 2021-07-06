@@ -2,10 +2,10 @@
 #define InboxMessageHandler_H
 
 #include <string>
-#include <core/preprocessors.h>
-#include <core/base_message.h>
+#include <core/core.h>
 
 using namespace std;
+using namespace botserver;
 
 DECLARE_SMART(InboxMessageHandler, spInboxMessageHandler);
 
@@ -16,7 +16,7 @@ public:
   // InboxMessageHandler(const InboxMessageHandler &);
   // virtual ~InboxMessageHandler();
 
-  spBotResponse onMessageHandler(const string &data, botserver::spRequest &request) override;
+  spBotResponse onMessageHandler(const string &data, spRequest &request) override;
 
 private:
 };

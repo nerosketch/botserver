@@ -1,6 +1,6 @@
 #include <string>
+#include <core/core.h>
 #include <messages/msg_map.h>
-#include <core/request.h>
 #include "http_handlers.h"
 
 using namespace std;
