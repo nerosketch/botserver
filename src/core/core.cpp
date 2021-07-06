@@ -89,6 +89,10 @@ namespace botserver {
 
 
   // UnexpectedDialog
+  UnexpectedDialog::UnexpectedDialog() = default;
+  UnexpectedDialog::UnexpectedDialog(const UnexpectedDialog&) = default;
+  UnexpectedDialog::~UnexpectedDialog() = default;
+
   spBotResponse UnexpectedDialog::handleMessage(botserver::spRequest &request)
   {
       DEBUG_STRUCT_LOG("UnexpectedDialog::handleMessage");
