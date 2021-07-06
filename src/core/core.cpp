@@ -255,15 +255,11 @@ namespace botserver {
       if (!current_dialog)
       {
           const auto &dialog = getDefaultDialog();
-          dialog->handleMessage(request);
+          return dialog->handleMessage(request);
       }
 
       const auto &message = request->getUserInboxMessage();
       const ButtonsType &btns = current_dialog->getButtons();
-
-      // TODO:
-      // Тут current_dialog не заполнен когда новый клиент, и когда первое сообщение.
-      // Надо разобраться
 
       for (const Button &btn : btns)
       {
