@@ -193,12 +193,12 @@ namespace botserver {
   public:
     Client();
     Client(const string &uname);
-    Client(const string &uname, const string &current_quest_name);
+    Client(const string &uname, const spQuest &current);
     Client(const Client &);
     virtual ~Client();
 
     static spClient createClient(const string &uname);
-    static spClient createClient(const string &uname, const string &current_quest_name);
+    static spClient createClient(const string &uname, const spQuest &current_quest);
 
     inline const string& getUsername() const
     {
@@ -210,14 +210,14 @@ namespace botserver {
       this->username = username;
     }
 
-    inline const string& getCurrentQuestName() const
+    inline const spQuest& getCurrentQuest() const
     {
-      return currentQuestName;
+      return currentQuest;
     }
 
-    inline void setCurrentQuestName(const string& current_quest_name)
+    inline void setCurrentQuest(const spQuest& current_quest)
     {
-      currentQuestName = current_quest_name;
+      currentQuest = current_quest;
     }
 
     inline const spBaseDialogInterface& getCurrentDialog() const
@@ -232,7 +232,7 @@ namespace botserver {
 
   private:
     string username;
-    string currentQuestName;
+    spQuest currentQuest;
     spBaseDialogInterface current_dialog;
   };
   // End Client
@@ -273,10 +273,20 @@ namespace botserver {
       p_http_request = p_req;
     }
 
+    inline spQuest &getCurrentQuest()
+    {
+      return current_quest;
+    }
+    inline void setCurrentQuest(const spQuest &quest)
+    {
+      current_quest = quest;
+    }
+
   private:
     spClient client;
     spUserInboxMessage message;
     const httplib::Request *p_http_request;
+    spQuest current_quest;
   };
   // End Request
 

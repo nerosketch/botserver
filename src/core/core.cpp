@@ -56,8 +56,8 @@ namespace botserver {
   :username(uname)
   {}
 
-  Client::Client(const string &uname, const string &current_quest_name)
-  :username(uname), currentQuestName(current_quest_name)
+  Client::Client(const string &uname, const spQuest &current_quest)
+  :username(uname), currentQuest(current_quest)
   {}
 
   Client::Client(const Client &o) = default;
@@ -69,9 +69,9 @@ namespace botserver {
     return make_shared<Client>(uname);
   }
 
-  spClient Client::createClient(const string &uname, const string &current_quest_name)
+  spClient Client::createClient(const string &uname, const spQuest &current_quest)
   {
-    return make_shared<Client>(uname, current_quest_name);
+    return make_shared<Client>(uname, current_quest);
   }
   // End Client
 
